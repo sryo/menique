@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{PAGE_TITLE}}</title>
+    <style>
+      /* (All your shared CSS: canvas, body, pointer-events, etc.) */
+      body {
+        margin: 0; padding: 0;
+        background: white;
+        font-family: serif;
+        color: black;
+        overflow: hidden;
+      }
+      header {
+        position: fixed; top: 20px; left: 20px; right: 20px;
+        display: flex; justify-content: space-between; z-index: 1000;
+        pointer-events: none;
+      }
+      /* etc. for .title, .menu, .floating, .home, canvas, etc. */
+    </style>
+</head>
+<body>
+    <canvas id="drawCanvas"></canvas>
+
+    <header>
+      <div class="title">Meñique</div>
+      <div class="menu">
+        <!--AUTHORS_MENU-->
+      </div>
+    </header>
+
+    <!-- Here’s the main “page content” placeholder: -->
+    <div id="pageContent">
+      {{PAGE_CONTENT}}
+    </div>
+
+    <script>
+      // (All the “floating images” code, canvas drawing code, etc.)
+      // e.g. document.addEventListener("mousemove", ...)
+      // etc.
+    </script>
+</body>
+</html>
