@@ -1,7 +1,0 @@
-Title: Bob Dylan, Tom Waits, Popeye y Mohamed Ali
-Published: 2011-01-16T14:25:00.000-03:00
-Author: cronopio
-Volume: abortos de monos
-Tags: el recomendado de jean paul
-
-<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/P1jvw5nNU6U?fs=1&amp;hl=en_US"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/P1jvw5nNU6U?fs=1&amp;hl=en_US" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>

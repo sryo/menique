@@ -3,7 +3,7 @@ Published: 2013-09-03T12:10:00.000-03:00
 Author: mateoso,yoko mona,monoman,flash
 Volume: sangre de monos,monopolis
 Location: villa allende,cordoba
-Tags: argentores 2012,jp,radio nacional,radio nexo fm 93.9
+Tags: argentores 2012,jp,monovalente,radio nacional,radio nexo fm 93.9
 
 <div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi7iotw2TUKaeydl88BWGss1NFJ6367qrbOsriCO3IKH08FcpcThJh9RIZlatLG2c8Up2HMdzzwf6LdzoeU6z3GnFUXsFHzWU5p6qe7823hAhmPuExpTmL3KZ2tEjBejIq6WsBrHI1Cw3i_/s1600/argentores.jpg" imageanchor="1"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi7iotw2TUKaeydl88BWGss1NFJ6367qrbOsriCO3IKH08FcpcThJh9RIZlatLG2c8Up2HMdzzwf6LdzoeU6z3GnFUXsFHzWU5p6qe7823hAhmPuExpTmL3KZ2tEjBejIq6WsBrHI1Cw3i_/s600/argentores.jpg" width="100%" /></a></div><br />
 <div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));</script><br />

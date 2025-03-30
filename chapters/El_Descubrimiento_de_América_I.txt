@@ -1,9 +1,10 @@
 Title: El Descubrimiento de América I
 Published: 2010-12-13T16:16:00.001-03:00
 Author: monoman
+Book: el libro de nietzsche
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,el libro de nietzsche,radioteatros para el olvido
+Tags: radio turismo,radioteatros para el olvido
 
 <b><i>En el año 1485 de nuestra era, Cristóbal Colón abandonó Portugal tras el fallecimiento de su esposa Felipa. Solo dos años antes, en 1483, había ofrecido al monarca de Portugal su proyecto de alcanzar el lejano Oriente viajando hacia el Oeste. Fue  rechazado entonces por una junta de expertos geógrafos y matemáticos. Confundido y desalentado por la mala fortuna que lo aquejaba, Cristóbal realizó un corto viaje hacia unas Islas Portuguesas del Atlántico. Allí, en una inmunda fonda de marineros, tendría un encuentro revelador que cambiaria su vida…</i></b><br />
 <br />

@@ -1,26 +1,18 @@
 #!/usr/bin/env bash
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Meñique Audiovisual Site Generator
-# (No "local" usage, no "declare -A", uses a home page template)
+# Meñique Site Generator
+# Multiple authors/books, no "book" pages, sanitized filenames,
+# author pages sorted newest->oldest, no `local`.
 # ─────────────────────────────────────────────────────────────────────────────
 #
-# 1) Looks in "chapters/" for .txt files with front matter:
-#      Title: ...
-#      Author: ...
-#      Book: ...
-#      Published: YYYY-MM-DD
-#      BodyClass: ...
-#    (blank line, then raw HTML)
-# 2) Gathers that data into arrays.
-# 3) Builds:
-#    - build/index.html using templates/home.html (inserting placeholders)
-#    - build/404.html
-#    - build/books/<book>.html
-#    - build/authors/<author>.html
-#    - build/years/<year>.html
-#    - build/chapters/<filename>.html
-# 4) Avoids advanced Bash features so it runs in older shells (like macOS default).
+# 1) Chapters can have multiple authors or books (comma-separated).
+# 2) We skip generating book pages. The home page icons link to the newest chapter.
+# 3) Output filenames are sanitized so special chars/spaces don’t break URLs.
+# 4) Author pages are now sorted by date descending (newest first).
+# 5) Uses older-shell-friendly syntax (no `local`).
+#
+# Usage: bash build.sh
 # ─────────────────────────────────────────────────────────────────────────────
 
 CHAPTERS_DIR="chapters"
@@ -28,117 +20,201 @@ IMAGES_DIR="images"
 BUILD_DIR="build"
 TEMPLATES_DIR="templates"
 
-# Name that appears in <title> or page headings
 SITE_TITLE="Meñique Audiovisual"
-
-# The body class used for the home page
-HOMEPAGE_BODYCLASS="home-page"
-
-# The default extension used for book images
 BOOK_IMG_EXT="png"
 
-# 1) Ensure minimal folders exist or create them
-if [ ! -d "$CHAPTERS_DIR" ]; then
-  echo "No '$CHAPTERS_DIR' folder found. Creating it..."
-  mkdir "$CHAPTERS_DIR"
-  cat <<EOF > "$CHAPTERS_DIR/sample-chapter.txt"
-Title: El viaje increíble
-Author: Juana Lujan
-Book: Monstruos
-Published: 2022-05-15
-Tags: fancy-chapter
+##############################################################################
+# Utility functions (no `local`)
+##############################################################################
 
-<p>This is a <strong>sample chapter</strong> with a custom body class <code>fancy-chapter</code>.</p>
-<p>Feel free to edit or remove this sample file.</p>
-EOF
-  echo "Created '$CHAPTERS_DIR/sample-chapter.txt' as an example."
-fi
+trim_spaces() {
+  param="$1"
+  echo "$param" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+}
 
-if [ ! -d "$IMAGES_DIR" ]; then
-  echo "No '$IMAGES_DIR' folder found. Creating it..."
-  mkdir "$IMAGES_DIR"
-  echo "(Optional) Place your images in '$IMAGES_DIR'."
-fi
+slugify() {
+  param="$1"
+  echo "$param" \
+    | tr '[:upper:]' '[:lower:]' \
+    | sed 's/[[:space:]]\+/-/g'
+}
 
-mkdir -p "$BUILD_DIR" "$BUILD_DIR/books" "$BUILD_DIR/authors" "$BUILD_DIR/years" "$BUILD_DIR/chapters"
+# Convert the original .txt name => a safe .html
+sanitize_filename() {
+  base="$1"
+  base="${base%.*}"                                  # remove .txt
+  base="$(echo "$base" | tr '[:upper:]' '[:lower:]')"
+  # Replace any non-alphanumeric with dashes
+  base="$(echo "$base" | sed 's/[^a-z0-9]/-/g; s/-\+/-/g; s/^-//; s/-$//')"
+  echo "$base.html"
+}
 
-# 2) Global arrays for chapters
+# Split on commas => multiple tokens
+split_by_commas() {
+  line="$1"
+  # Turn commas into newlines, then trim each
+  echo "$line" | tr ',' '\n' | while read -r token; do
+    trim_spaces "$token"
+  done
+}
+
+# Book storing. We do not use `local` or advanced bash, just plain variables.
+find_book_index_by_name() {
+  bookName="$1"
+  i=0
+  while [ $i -lt ${#BOOK_NAMES[@]} ]; do
+    if [ "${BOOK_NAMES[$i]}" = "$bookName" ]; then
+      echo "$i"
+      return
+    fi
+    i=$((i+1))
+  done
+  echo "-1"
+}
+
+set_book_chapters() {
+  bookName="$1"
+  chapterIndex="$2"
+
+  idx="$(find_book_index_by_name "$bookName")"
+  if [ "$idx" -eq "-1" ]; then
+    BOOK_NAMES[${#BOOK_NAMES[@]}]="$bookName"
+    BOOK_CHAPTER_LIST[${#BOOK_CHAPTER_LIST[@]}]="$chapterIndex"
+  else
+    oldList="${BOOK_CHAPTER_LIST[$idx]}"
+    BOOK_CHAPTER_LIST[$idx]="$oldList $chapterIndex"
+  fi
+}
+
+sort_book_chapters() {
+  i=0
+  while [ $i -lt ${#BOOK_NAMES[@]} ]; do
+    bk="${BOOK_NAMES[$i]}"
+    chList="${BOOK_CHAPTER_LIST[$i]}"
+    chList="$(trim_spaces "$chList")"
+
+    lines=""
+    for cIdx in $chList; do
+      dt="${CHAPTER_DATES[$cIdx]}"
+      lines="$lines$dt\t$cIdx
+"
+    done
+
+    sorted="$(echo -e "$lines" | sort)"  # ascending by date
+    finalIndices=""
+    while IFS=$'\t' read -r dateVal idxVal; do
+      finalIndices="$finalIndices $idxVal"
+    done <<< "$sorted"
+
+    BOOK_CHAPTER_LIST[$i]="$(trim_spaces "$finalIndices")"
+    i=$((i+1))
+  done
+}
+
+# For home-page icons => newest chapter
+get_newest_chapter_filename() {
+  bookName="$1"
+  idx="$(find_book_index_by_name "$bookName")"
+  if [ "$idx" -lt 0 ]; then
+    echo ""
+    return
+  fi
+  chList="${BOOK_CHAPTER_LIST[$idx]}"
+  chList="$(trim_spaces "$chList")"
+  read -r -a arr <<< "$chList"
+  arrLen=${#arr[@]}
+  if [ $arrLen -lt 1 ]; then
+    echo ""
+    return
+  fi
+  newestIndex="${arr[$((arrLen - 1))]}"
+  newestSlug="${CHAPTER_SLUGS[$newestIndex]}"
+  echo "$newestSlug"
+}
+
+##############################################################################
+# Global arrays
+##############################################################################
+
 CHAPTER_COUNT=0
+
 declare -a CHAPTER_FILENAMES
+declare -a CHAPTER_SLUGS
 declare -a CHAPTER_TITLES
-declare -a CHAPTER_AUTHORS
-declare -a CHAPTER_BOOKS
+declare -a CHAPTER_RAW_AUTHORS
+declare -a CHAPTER_RAW_BOOKS
 declare -a CHAPTER_DATES
-declare -a CHAPTER_TAGS
+declare -a CHAPTER_BODYCLASS
 declare -a CHAPTER_CONTENTS
 
-# Arrays for unique sets
-declare -a UNIQUE_BOOKS
+# "primary" for each chapter => the first "Book:" in its comma list
+declare -a CHAPTER_PRIMARY_BOOK
+
 declare -a UNIQUE_AUTHORS
 declare -a UNIQUE_YEARS
 
-# 3) parse_chapter (reads metadata + HTML)
+declare -a BOOK_NAMES
+declare -a BOOK_CHAPTER_LIST
+
+##############################################################################
+# Parsing .txt
+##############################################################################
+
 parse_chapter() {
   file="$1"
 
   cTitle="Untitled"
-  cAuthor="Unknown"
-  cBook="Misc"
+  cAuthors=""
+  cBooks=""
   cDate="1900-01-01"
   cClass=""
   cContent=""
 
-  # read lines until blank
   while IFS= read -r line; do
-    if [ -z "$line" ]; then
-      break
-    fi
+    [ -z "$line" ] && break
+
     case "$line" in
       Title:*)
-        cTitle="${line#Title:}"
-        cTitle="$(echo "$cTitle" | xargs)"
+        cTitle="$(trim_spaces "${line#Title:}")"
         ;;
       Author:*)
-        cAuthor="${line#Author:}"
-        cAuthor="$(echo "$cAuthor" | xargs)"
+        cAuthors="$(trim_spaces "${line#Author:}")"
         ;;
       Book:*)
-        cBook="${line#Book:}"
-        cBook="$(echo "$cBook" | xargs)"
+        cBooks="$(trim_spaces "${line#Book:}")"
         ;;
       Published:*)
-        cDate="${line#Published:}"
-        cDate="$(echo "$cDate" | xargs)"
+        cDate="$(trim_spaces "${line#Published:}")"
+        cDate="${cDate%%T*}"
+        [ -z "$cDate" ] && cDate="1900-01-01"
         ;;
-      Tags:*)
-        cClass="${line#Tags:}"
-        cClass="$(echo "$cClass" | xargs)"
+      BodyClass:*)
+        cClass="$(trim_spaces "${line#BodyClass:}")"
         ;;
     esac
   done < "$file"
 
-  # read rest as HTML
   htmlBuffer=""
   while IFS= read -r leftover; do
     htmlBuffer="$htmlBuffer$leftover
 "
   done < <(tail -n +1 "$file" | sed '1,/^$/d')
 
-  cContent="$htmlBuffer"
+  baseName="$(basename "$file")"
+  safeHtml="$(sanitize_filename "$baseName")"
 
-  # store
-  CHAPTER_FILENAMES[$CHAPTER_COUNT]="$(basename "$file")"
+  CHAPTER_FILENAMES[$CHAPTER_COUNT]="$baseName"
+  CHAPTER_SLUGS[$CHAPTER_COUNT]="$safeHtml"
   CHAPTER_TITLES[$CHAPTER_COUNT]="$cTitle"
-  CHAPTER_AUTHORS[$CHAPTER_COUNT]="$cAuthor"
-  CHAPTER_BOOKS[$CHAPTER_COUNT]="$cBook"
+  CHAPTER_RAW_AUTHORS[$CHAPTER_COUNT]="$cAuthors"
+  CHAPTER_RAW_BOOKS[$CHAPTER_COUNT]="$cBooks"
   CHAPTER_DATES[$CHAPTER_COUNT]="$cDate"
-  CHAPTER_TAGS[$CHAPTER_COUNT]="$cClass"
-  CHAPTER_CONTENTS[$CHAPTER_COUNT]="$cContent"
+  CHAPTER_BODYCLASS[$CHAPTER_COUNT]="$cClass"
+  CHAPTER_CONTENTS[$CHAPTER_COUNT]="$htmlBuffer"
 
   CHAPTER_COUNT=$((CHAPTER_COUNT+1))
 }
 
-# 4) read all .txt
 shopt -s nullglob
 allTxt=("$CHAPTERS_DIR"/*.txt)
 shopt -u nullglob
@@ -152,86 +228,129 @@ if [ $CHAPTER_COUNT -eq 0 ]; then
   echo "No .txt chapters found in '$CHAPTERS_DIR'."
 fi
 
-# 5) function: check if array contains item
-contains_item() {
-  item="$1"
-  shift
-  arrayToCheck=("$@")
-  for x in "${arrayToCheck[@]}"; do
-    if [ "$x" = "$item" ]; then
-      return 0
-    fi
-  done
-  return 1
-}
+##############################################################################
+# Fill arrays
+##############################################################################
 
-# 6) fill unique arrays
 i=0
 while [ $i -lt $CHAPTER_COUNT ]; do
-  bk="${CHAPTER_BOOKS[$i]}"
-  au="${CHAPTER_AUTHORS[$i]}"
+  authorLine="${CHAPTER_RAW_AUTHORS[$i]}"
+  # split authors
+  while read -r oneAuthor; do
+    [ -z "$oneAuthor" ] && continue
+    j=0
+    found=0
+    while [ $j -lt ${#UNIQUE_AUTHORS[@]} ]; do
+      if [ "${UNIQUE_AUTHORS[$j]}" = "$oneAuthor" ]; then
+        found=1
+        break
+      fi
+      j=$((j+1))
+    done
+    if [ $found -eq 0 ]; then
+      UNIQUE_AUTHORS[${#UNIQUE_AUTHORS[@]}]="$oneAuthor"
+    fi
+  done < <(split_by_commas "$authorLine")
+
+  # split books
+  bookLine="${CHAPTER_RAW_BOOKS[$i]}"
+  read -r -a booksArray <<< "$(split_by_commas "$bookLine")"
+  if [ ${#booksArray[@]} -gt 0 ]; then
+    CHAPTER_PRIMARY_BOOK[$i]="${booksArray[0]}"
+  else
+    CHAPTER_PRIMARY_BOOK[$i]="Misc"
+    booksArray=("Misc")
+  fi
+  # add the chapter to each book
+  for bName in "${booksArray[@]}"; do
+    set_book_chapters "$bName" "$i"
+  done
+
   dt="${CHAPTER_DATES[$i]}"
   yr="${dt:0:4}"
 
-  contains_item "$bk" "${UNIQUE_BOOKS[@]}"
-  if [ $? -ne 0 ]; then
-    UNIQUE_BOOKS+=( "$bk" )
-  fi
-
-  contains_item "$au" "${UNIQUE_AUTHORS[@]}"
-  if [ $? -ne 0 ]; then
-    UNIQUE_AUTHORS+=( "$au" )
-  fi
-
-  contains_item "$yr" "${UNIQUE_YEARS[@]}"
-  if [ $? -ne 0 ]; then
-    UNIQUE_YEARS+=( "$yr" )
+  j=0
+  found=0
+  while [ $j -lt ${#UNIQUE_YEARS[@]} ]; do
+    if [ "${UNIQUE_YEARS[$j]}" = "$yr" ]; then
+      found=1
+      break
+    fi
+    j=$((j+1))
+  done
+  if [ $found -eq 0 ]; then
+    UNIQUE_YEARS[${#UNIQUE_YEARS[@]}]="$yr"
   fi
 
   i=$((i+1))
 done
 
+# Sort UNIQUE_YEARS ascending
+i=0
+while [ $i -lt ${#UNIQUE_YEARS[@]} ]; do
+  j=$((i+1))
+  while [ $j -lt ${#UNIQUE_YEARS[@]} ]; do
+    if [ "${UNIQUE_YEARS[$j]}" \< "${UNIQUE_YEARS[$i]}" ]; then
+      temp="${UNIQUE_YEARS[$i]}"
+      UNIQUE_YEARS[$i]="${UNIQUE_YEARS[$j]}"
+      UNIQUE_YEARS[$j]="$temp"
+    fi
+    j=$((j+1))
+  done
+  i=$((i+1))
+done
+
+sort_book_chapters
+
 ##############################################################################
-# HOMEPAGE GENERATION using templates/home.html
+# Build HOME
 ##############################################################################
+
 TEMPLATE_HOME="$TEMPLATES_DIR/home.html"
 OUTPUT_HOME="$BUILD_DIR/index.html"
 
 if [ ! -f "$TEMPLATE_HOME" ]; then
-  echo "Error: $TEMPLATE_HOME not found. Create it with <!--AUTHORS_MENU--> and <!--FLOATING_BOOKS--> placeholders."
+  echo "Error: $TEMPLATE_HOME not found."
   exit 1
 fi
 
-# read template into a variable
 homeHTML=""
 while IFS= read -r line; do
   homeHTML="$homeHTML$line
 "
 done < "$TEMPLATE_HOME"
 
-# Build authors menu
 authorsMenu=""
-for authorName in "${UNIQUE_AUTHORS[@]}"; do
-  # slugify or just link
-  safeAuthor="$(echo "$authorName" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')"
-  authorsMenu="$authorsMenu<a href=\"authors/$safeAuthor.html\">$authorName</a>\n"
+k=0
+while [ $k -lt ${#UNIQUE_AUTHORS[@]} ]; do
+  authorName="${UNIQUE_AUTHORS[$k]}"
+  localSlug="$(slugify "$authorName")"
+  authorsMenu="$authorsMenu<a href=\"authors/$localSlug.html\">$authorName</a>
+"
+  k=$((k+1))
 done
 
-# Build floating books
 posTop=20
 posLeft=10
 increment=15
 floatingBooks=""
-for bookName in "${UNIQUE_BOOKS[@]}"; do
-  safeBook="$(echo "$bookName" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')"
-  # We'll link to an image $safeBook.$BOOK_IMG_EXT
-  # If you want them clickable, wrap in <a href="books/$safeBook.html">..</a>
+
+cntBooks=${#BOOK_NAMES[@]}
+b=0
+while [ $b -lt $cntBooks ]; do
+  bookName="${BOOK_NAMES[$b]}"
+  safeBook="$(slugify "$bookName")"
+  newestSlug="$(get_newest_chapter_filename "$bookName")"
+  [ -z "$newestSlug" ] && newestSlug="#"
+
   floatingBooks="$floatingBooks<div
   class=\"floating\"
   style=\"top: ${posTop}%; left: ${posLeft}%\"
   data-factor=\"0.02\"
 >
-    <img draggable=\"false\" src=\"$safeBook.$BOOK_IMG_EXT\" alt=\"$bookName\" />
+    <a href=\"chapters/$newestSlug\">
+      <img draggable=\"false\" src=\"$safeBook.$BOOK_IMG_EXT\" alt=\"$bookName\" />
+    </a>
 </div>
 
 "
@@ -243,13 +362,13 @@ for bookName in "${UNIQUE_BOOKS[@]}"; do
   if [ $posLeft -gt 80 ]; then
     posLeft=10
   fi
+
+  b=$((b+1))
 done
 
-# Replace placeholders
 homeHTML="${homeHTML/<!--AUTHORS_MENU-->/$authorsMenu}"
 homeHTML="${homeHTML/<!--FLOATING_BOOKS-->/$floatingBooks}"
 
-# Write final homepage
 echo "$homeHTML" > "$OUTPUT_HOME"
 echo "Generated homepage at $OUTPUT_HOME"
 
@@ -272,55 +391,13 @@ cat <<EOF > "$BUILD_DIR/404.html"
 EOF
 
 ##############################################################################
-# UTILS (slugify, etc.)
+# AUTHOR PAGES - SORT BY DATE DESC (NEWEST FIRST)
 ##############################################################################
-slugify() {
-  echo "$1" | tr '[:upper:]' '[:lower:]' | tr ' ' '-'
-}
 
-##############################################################################
-# GENERATE BOOK PAGES
-##############################################################################
-for bookName in "${UNIQUE_BOOKS[@]}"; do
-  safeBook="$(slugify "$bookName")"
-  outFile="$BUILD_DIR/books/$safeBook.html"
-
-  cat <<EOF > "$outFile"
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$SITE_TITLE - Book: $bookName</title>
-</head>
-<body>
-  <h1>Book: $bookName</h1>
-  <p><a href="../index.html">Home</a></p>
-  <hr/>
-  <h2>Chapters in "$bookName"</h2>
-  <ul>
-EOF
-
-  j=0
-  while [ $j -lt $CHAPTER_COUNT ]; do
-    if [ "${CHAPTER_BOOKS[$j]}" = "$bookName" ]; then
-      chapterFile="${CHAPTER_FILENAMES[$j]}"
-      chapterTitle="${CHAPTER_TITLES[$j]}"
-      echo "    <li><a href=\"../chapters/$chapterFile.html\">$chapterTitle</a></li>" >> "$outFile"
-    fi
-    j=$((j+1))
-  done
-
-  cat <<EOF >> "$outFile"
-  </ul>
-</body>
-</html>
-EOF
-done
-
-##############################################################################
-# GENERATE AUTHOR PAGES
-##############################################################################
-for authorName in "${UNIQUE_AUTHORS[@]}"; do
+cntAuthors=${#UNIQUE_AUTHORS[@]}
+a=0
+while [ $a -lt $cntAuthors ]; do
+  authorName="${UNIQUE_AUTHORS[$a]}"
   safeAuthor="$(slugify "$authorName")"
   outFile="$BUILD_DIR/authors/$safeAuthor.html"
 
@@ -338,49 +415,56 @@ for authorName in "${UNIQUE_AUTHORS[@]}"; do
   <ul>
 EOF
 
-  j=0
-  while [ $j -lt $CHAPTER_COUNT ]; do
-    if [ "${CHAPTER_AUTHORS[$j]}" = "$authorName" ]; then
-      chapterFile="${CHAPTER_FILENAMES[$j]}"
-      chapterTitle="${CHAPTER_TITLES[$j]}"
-      echo "    <li><a href=\"../chapters/$chapterFile.html\">$chapterTitle</a></li>" >> "$outFile"
+  # We'll gather matched chapters in a "lines" variable: "YYYY-MM-DD\tINDEX"
+  lines=""
+  cIndex=0
+  while [ $cIndex -lt $CHAPTER_COUNT ]; do
+    raw="${CHAPTER_RAW_AUTHORS[$cIndex]}"
+    match=0
+    while read -r oneAuth; do
+      if [ "$oneAuth" = "$authorName" ]; then
+        match=1
+        break
+      fi
+    done < <(split_by_commas "$raw")
+
+    if [ $match -eq 1 ]; then
+      # We'll store lines so we can sort them by date desc
+      dt="${CHAPTER_DATES[$cIndex]}"
+      lines="$lines$dt\t$cIndex
+"
     fi
-    j=$((j+1))
+    cIndex=$((cIndex+1))
   done
+
+  # Now sort lines by date descending:
+  # e.g. "sort -r" will put newest date at top
+  sorted="$(echo -e "$lines" | sort -r)"
+
+  # Output them in sorted order
+  while IFS=$'\t' read -r dateVal idxVal; do
+    localSlug="${CHAPTER_SLUGS[$idxVal]}"
+    localTitle="${CHAPTER_TITLES[$idxVal]}"
+    echo "    <li><a href=\"../chapters/$localSlug\">$localTitle</a> ($dateVal)</li>" >> "$outFile"
+  done <<< "$sorted"
 
   cat <<EOF >> "$outFile"
   </ul>
 </body>
 </html>
 EOF
+
+  a=$((a+1))
 done
 
 ##############################################################################
-# SORT UNIQUE_YEARS
-##############################################################################
-i=0
-while [ $i -lt ${#UNIQUE_YEARS[@]} ]; do
-  k=$((i+1))
-  while [ $k -lt ${#UNIQUE_YEARS[@]} ]; do
-    if [ "${UNIQUE_YEARS[$k]}" \< "${UNIQUE_YEARS[$i]}" ]; then
-      temp="${UNIQUE_YEARS[$i]}"
-      UNIQUE_YEARS[$i]="${UNIQUE_YEARS[$k]}"
-      UNIQUE_YEARS[$k]="$temp"
-    fi
-    k=$((k+1))
-  done
-  i=$((i+1))
-done
-
-##############################################################################
-# GENERATE YEAR PAGES
+# YEAR PAGES
 ##############################################################################
 
 haveMonthChapters() {
   hmYear="$1"
   hmMonth="$2"
   found=0
-
   idx=0
   while [ $idx -lt $CHAPTER_COUNT ]; do
     dd="${CHAPTER_DATES[$idx]}"
@@ -395,8 +479,12 @@ haveMonthChapters() {
   return $found
 }
 
-for yearNumber in "${UNIQUE_YEARS[@]}"; do
+cntYears=${#UNIQUE_YEARS[@]}
+y=0
+while [ $y -lt $cntYears ]; do
+  yearNumber="${UNIQUE_YEARS[$y]}"
   outFile="$BUILD_DIR/years/$yearNumber.html"
+
   cat <<EOF > "$outFile"
 <!DOCTYPE html>
 <html lang="en">
@@ -426,30 +514,36 @@ EOF
   <div style="margin-left: 22%;">
 EOF
 
-  # list chapters
-  for m in {01..12}; do
+  # list chapters by month
+  mm=1
+  while [ $mm -le 12 ]; do
+    mon="$(printf "%02d" "$mm")"
     foundCh=()
     idx=0
     while [ $idx -lt $CHAPTER_COUNT ]; do
       dd="${CHAPTER_DATES[$idx]}"
       yy="${dd:0:4}"
-      mm="${dd:5:2}"
-      if [ "$yy" = "$yearNumber" ] && [ "$mm" = "$m" ]; then
-        foundCh+=( "$idx" )
+      mo="${dd:5:2}"
+      if [ "$yy" = "$yearNumber" ] && [ "$mo" = "$mon" ]; then
+        foundCh+=("$idx")
       fi
       idx=$((idx+1))
     done
 
     if [ ${#foundCh[@]} -gt 0 ]; then
-      echo "    <h2 id=\"month-$m\">Month $m</h2>" >> "$outFile"
+      echo "    <h2 id=\"month-$mon\">Month $mon</h2>" >> "$outFile"
       echo "    <ul>" >> "$outFile"
-      for fc in "${foundCh[@]}"; do
-        chFile="${CHAPTER_FILENAMES[$fc]}"
-        chTitle="${CHAPTER_TITLES[$fc]}"
-        echo "      <li><a href=\"../chapters/$chFile.html\">$chTitle</a></li>" >> "$outFile"
+      fcIndex=0
+      while [ $fcIndex -lt ${#foundCh[@]} ]; do
+        fc="${foundCh[$fcIndex]}"
+        localSlug="${CHAPTER_SLUGS[$fc]}"
+        localTitle="${CHAPTER_TITLES[$fc]}"
+        echo "      <li><a href=\"../chapters/$localSlug\">$localTitle</a></li>" >> "$outFile"
+        fcIndex=$((fcIndex+1))
       done
       echo "    </ul>" >> "$outFile"
     fi
+    mm=$((mm+1))
   done
 
   cat <<EOF >> "$outFile"
@@ -457,48 +551,163 @@ EOF
 </body>
 </html>
 EOF
+
+  y=$((y+1))
 done
 
 ##############################################################################
-# GENERATE INDIVIDUAL CHAPTER PAGES
+# CHAPTER PAGES
 ##############################################################################
-i=0
-while [ $i -lt $CHAPTER_COUNT ]; do
-  filename="${CHAPTER_FILENAMES[$i]}"
-  title="${CHAPTER_TITLES[$i]}"
-  author="${CHAPTER_AUTHORS[$i]}"
-  book="${CHAPTER_BOOKS[$i]}"
-  date="${CHAPTER_DATES[$i]}"
-  bodyClass="${CHAPTER_TAGS[$i]}"
-  content="${CHAPTER_CONTENTS[$i]}"
 
-  outFile="$BUILD_DIR/chapters/$filename.html"
+make_chapter_sidebar() {
+  primaryBook="$1"
+  currentIndex="$2"
+
+  idx="$(find_book_index_by_name "$primaryBook")"
+  if [ "$idx" -lt 0 ]; then
+    echo "<div class=\"chapterSidebar\"><p>No Book Found</p></div>"
+    return
+  fi
+
+  chList="${BOOK_CHAPTER_LIST[$idx]}"
+  chList="$(trim_spaces "$chList")"
+  read -r -a arr <<< "$chList"
+
+  sidebar="<div class=\"chapterSidebar\"><ul>"
+  oneIdx=0
+  while [ $oneIdx -lt ${#arr[@]} ]; do
+    cIndex2="${arr[$oneIdx]}"
+    cSlug="${CHAPTER_SLUGS[$cIndex2]}"
+    cTitle="${CHAPTER_TITLES[$cIndex2]}"
+    if [ "$cIndex2" -eq "$currentIndex" ]; then
+      sidebar="$sidebar<li><strong>$cTitle</strong></li>"
+    else
+      sidebar="$sidebar<li><a href=\"$cSlug\">$cTitle</a></li>"
+    fi
+    oneIdx=$((oneIdx+1))
+  done
+
+  sidebar="$sidebar</ul></div>"
+  echo "$sidebar"
+}
+
+get_prev_next() {
+  primaryBook="$1"
+  currentIndex="$2"
+
+  idx="$(find_book_index_by_name "$primaryBook")"
+  if [ "$idx" -lt 0 ]; then
+    echo ""
+    return
+  fi
+
+  chList="${BOOK_CHAPTER_LIST[$idx]}"
+  chList="$(trim_spaces "$chList")"
+  read -r -a arr <<< "$chList"
+
+  position=0
+  i=0
+  while [ $i -lt ${#arr[@]} ]; do
+    if [ "${arr[$i]}" = "$currentIndex" ]; then
+      position=$i
+      break
+    fi
+    i=$((i+1))
+  done
+
+  prevIndex=""
+  nextIndex=""
+  if [ $position -gt 0 ]; then
+    prevIndex="${arr[$((position-1))]}"
+  fi
+  if [ $position -lt $(( ${#arr[@]} - 1 )) ]; then
+    nextIndex="${arr[$((position+1))]}"
+  fi
+  echo "$prevIndex $nextIndex"
+}
+
+ch=0
+while [ $ch -lt $CHAPTER_COUNT ]; do
+  outSlug="${CHAPTER_SLUGS[$ch]}"
+  title="${CHAPTER_TITLES[$ch]}"
+  rawAuthors="${CHAPTER_RAW_AUTHORS[$ch]}"
+  primaryBook="${CHAPTER_PRIMARY_BOOK[$ch]}"
+  date="${CHAPTER_DATES[$ch]}"
+  bodyClass="${CHAPTER_BODYCLASS[$ch]}"
+  content="${CHAPTER_CONTENTS[$ch]}"
+
+  outFile="$BUILD_DIR/chapters/$outSlug"
+
+  sidebar="$(make_chapter_sidebar "$primaryBook" "$ch")"
+  pn="$(get_prev_next "$primaryBook" "$ch")"
+  prevIdx="$(echo "$pn" | awk '{print $1}')"
+  nextIdx="$(echo "$pn" | awk '{print $2}')"
+
   cat <<EOF > "$outFile"
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>$SITE_TITLE - $title</title>
+  <style>
+    .chapterNav {
+      position: fixed; top: 50%;
+      width: 40px; height: 40px;
+      margin-top: -20px;
+      background: #ccc;
+      text-align: center; line-height: 40px;
+      font-size: 24px; font-weight: bold;
+      cursor: pointer;
+      z-index: 2000;
+    }
+    .chapterNav.left { left: 0; }
+    .chapterNav.right { right: 0; }
+
+    .chapterSidebar {
+      position: fixed; top: 60px; left: 0;
+      width: 250px; padding: 10px;
+      background: #f2f2f2; height: 100%;
+      overflow-y: auto;
+      z-index: 1000;
+    }
+    .chapterContent {
+      margin-left: 270px; padding: 20px;
+    }
+  </style>
 </head>
 <body class="$bodyClass">
-  <header>
-    <a href="../index.html">Home</a> |
-    <a href="../books/$(slugify "$book").html">Book: $book</a> |
-    <a href="../authors/$(slugify "$author").html">Author: $author</a>
-  </header>
-  <hr/>
-  <h1>$title</h1>
-  <p><strong>Author:</strong> $author<br/>
-     <strong>Book:</strong> $book<br/>
-     <strong>Date:</strong> $date</p>
-  <div>
+  $sidebar
+EOF
+
+  if [ -n "$prevIdx" ]; then
+    prevSlug="${CHAPTER_SLUGS[$prevIdx]}"
+    echo "  <a class=\"chapterNav left\" href=\"$prevSlug\">«</a>" >> "$outFile"
+  fi
+  if [ -n "$nextIdx" ]; then
+    nextSlug="${CHAPTER_SLUGS[$nextIdx]}"
+    echo "  <a class=\"chapterNav right\" href=\"$nextSlug\">»</a>" >> "$outFile"
+  fi
+
+  cat <<EOF >> "$outFile"
+  <div class="chapterContent">
+    <header>
+      <a href="../index.html">Home</a> |
+      <strong>Book(s):</strong> $primaryBook
+    </header>
+    <hr/>
+    <h1>$title</h1>
+    <p><strong>Authors:</strong> $rawAuthors<br/>
+       <strong>Book(s):</strong> $primaryBook<br/>
+       <strong>Date:</strong> $date</p>
+    <div>
 $content
+    </div>
   </div>
 </body>
 </html>
 EOF
 
-  i=$((i+1))
+  ch=$((ch+1))
 done
 
 echo "Done! The multi-page site is in '$BUILD_DIR/'."
