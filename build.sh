@@ -557,7 +557,8 @@ make_chapter_sidebar() {
   chList="$(trim_spaces "$chList")"
   read -r -a arr <<< "$chList"
 
-  sidebar="<div class=\"chapterSidebar\"><ul>"
+  sidebar="<div class=\"chapterSidebar\"><ul><div class=\"title\"><a href=\"/\">Meñique</a></div>
+"
   oneIdx=0
   while [ $oneIdx -lt ${#arr[@]} ]; do
     cIndex2="${arr[$oneIdx]}"
@@ -643,8 +644,8 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
       cursor: pointer;
       z-index: 2000;
     }
-    .chapterNav.left { left: 0; }
-    .chapterNav.right { right: 0; }
+    .chapterNav.left { translate: -50px 0; }
+    .chapterNav.right { left: clamp(250px, 100vw - 50px, 40em + 10px); }
 
     .chapterSidebar {
       position: fixed; top: 0; bottom: 0; left: 0;
@@ -653,38 +654,81 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
       z-index: 1000;
     }
     .chapterContent {
-      margin-left: 270px; padding: 20px;
+        margin-left: 270px;
+        padding: 60px;
+        max-width: 40em;
+    }
+    h1 {
+        font-family: impact;
+        font-size: clamp(1em, 10vw, 8em)
+        line-height: .9em;
+        text-transform: uppercase;
     }
   </style>
 </head>
 <body class="$bodyClass">
-  $sidebar
 EOF
+cat <<EOF > "$outFile"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>$SITE_TITLE - $title</title>
+  <style>
+  .chapterNav {
+        position: fixed; top: 50%;
+        width: 40px; height: 40px;
+        margin-top: -20px;
+        text-align: center; line-height: 40px;
+        font-size: 24px; font-weight: bold;
+        cursor: pointer;
+        z-index: 2000;
+      }
+      .chapterNav.left { translate: -50px 0; }
+      .chapterNav.right { left: clamp(250px, 100vw - 50px, 40em + 10px); }
 
-  if [ -n "$prevIdx" ]; then
-    prevSlug="${CHAPTER_SLUGS[$prevIdx]}"
-    echo "  <a class=\"chapterNav left\" href=\"$prevSlug\">«</a>" >> "$outFile"
-  fi
-  if [ -n "$nextIdx" ]; then
-    nextSlug="${CHAPTER_SLUGS[$nextIdx]}"
-    echo "  <a class=\"chapterNav right\" href=\"$nextSlug\">»</a>" >> "$outFile"
-  fi
-
-  cat <<EOF >> "$outFile"
+      .chapterSidebar {
+        position: fixed; top: 0; bottom: 0; left: 0;
+        width: 250px; padding: 10px;
+        overflow-y: auto;
+        z-index: 1000;
+      }
+      .chapterContent {
+          margin-left: 270px;
+          padding: 60px;
+          max-width: 40em;
+      }
+      h1 {
+          font-family: impact;
+          font-size: clamp(1em, 10vw, 8em);
+          line-height: .9em;
+          text-transform: uppercase;
+      }
+  </style>
+</head>
+<body class="$bodyClass">
   <div class="chapterContent">
-    <header>
-      <a href="../index.html">Home</a> |
-      <strong>Book(s):</strong> $primaryBook
-    </header>
-    <hr/>
     <h1>$title</h1>
-    <p><strong>Authors:</strong> $rawAuthors<br/>
-       <strong>Book(s):</strong> $primaryBook<br/>
-       <strong>Date:</strong> $date</p>
+    <p>en <strong>$primaryBook</strong> por <strong>$rawAuthors</strong> el <strong>$date</strong></p>
     <div>
 $content
     </div>
+EOF
+
+# Add arrows inside the chapterContent
+if [ -n "$prevIdx" ]; then
+  prevSlug="${CHAPTER_SLUGS[$prevIdx]}"
+  echo "    <a class=\"chapterNav left\" href=\"$prevSlug\">«</a>" >> "$outFile"
+fi
+if [ -n "$nextIdx" ]; then
+  nextSlug="${CHAPTER_SLUGS[$nextIdx]}"
+  echo "    <a class=\"chapterNav right\" href=\"$nextSlug\">»</a>" >> "$outFile"
+fi
+
+# Close chapterContent div and insert sidebar
+cat <<EOF >> "$outFile"
   </div>
+  $sidebar
 </body>
 </html>
 EOF
