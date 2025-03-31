@@ -344,7 +344,7 @@ while [ $b -lt $cntBooks ]; do
 
   floatingBooks="$floatingBooks<div class=\"floating\" data-factor=\"0.02\" data-book=\"$bookName\">
     <a href=\"chapters/$newestSlug\">
-      <img draggable=\"false\" src=\"$safeBook.$BOOK_IMG_EXT\" alt=\"$bookName\" />
+      <img draggable=\"false\" loading="lazy" src=\"$safeBook.$BOOK_IMG_EXT\" alt=\"$bookName\" />
     </a>
 </div>
 "
@@ -660,7 +660,7 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
     }
     h1 {
         font-family: impact;
-        font-size: clamp(1em, 10vw, 8em)
+        font-size: clamp(1em, 5vw, 8em)
         line-height: .9em;
         text-transform: uppercase;
     }
@@ -700,7 +700,7 @@ cat <<EOF > "$outFile"
       }
       h1 {
           font-family: impact;
-          font-size: clamp(1em, 10vw, 8em);
+          font-size: clamp(1em, 5vw, 8em);
           line-height: .9em;
           text-transform: uppercase;
       }
