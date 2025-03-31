@@ -11,6 +11,12 @@ IMAGES_DIR="images"
 BUILD_DIR="build"
 TEMPLATES_DIR="templates"
 
+# CREATE DIRECTORIES HERE (ADD THESE 4 LINES)
+mkdir -p "$BUILD_DIR"
+mkdir -p "$BUILD_DIR/authors"
+mkdir -p "$BUILD_DIR/years"
+mkdir -p "$BUILD_DIR/chapters"
+
 SITE_TITLE="Meñique Audiovisual"
 BOOK_IMG_EXT="png"
 
