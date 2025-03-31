@@ -604,7 +604,7 @@ get_prev_next() {
   if [ $position -gt 0 ]; then
     prevIndex="${arr[$((position-1))]}"
   fi
-  if [ $position -lt $(( ${#arr[@]} - 1 )) ]; do
+  if [ $position -lt $(( ${#arr[@]} - 1 )) ]; then
     nextIndex="${arr[$((position+1))]}"
   fi
   echo "$prevIndex $nextIndex"
