@@ -698,7 +698,7 @@ done
 # Create the 'build/images' folder (if it doesn't exist)
 # Then copy everything from the root 'images' folder into it.
 mkdir -p "$BUILD_DIR/images"
-cp -r "$IMAGES_DIR/"* "$BUILD_DIR/images"/
+cp -r "$IMAGES_DIR/"* "$BUILD_DIR"/
 
 echo "Done! The multi-page site is in '$BUILD_DIR/'."
 echo "Open '$BUILD_DIR/index.html' in a browser to see your new homepage!"
