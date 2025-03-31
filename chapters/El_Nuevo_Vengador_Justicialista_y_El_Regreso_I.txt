@@ -1,7 +1,7 @@
 Title: El Nuevo Vengador Justicialista y El Regreso I
 Published: 2012-11-12T11:01:00.004-03:00
 Author: flash
-Book: el vengador justicialista,flash performativo
+Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
 Tags: radioteatros para el olvido,radio nacional

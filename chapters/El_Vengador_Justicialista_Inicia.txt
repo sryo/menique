@@ -1,7 +1,7 @@
 Title: El Vengador Justicialista Inicia
 Published: 2012-05-15T09:40:00.002-03:00
 Author: flash
-Book: el vengador justicialista,flash performativo
+Book: el vengador justicialista
 Volume: sangre de monos
 Location: villa allende
 Tags: radioteatros para el olvido,radio nexo fm 93.9

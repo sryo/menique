@@ -1,7 +1,7 @@
 Title: El Nuevo Vengador Justicialista y Un Hogar
 Published: 2012-12-09T23:00:00.000-03:00
 Author: flash
-Book: el vengador justicialista,flash performativo
+Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
 Tags: radioteatros para el olvido,radio nacional

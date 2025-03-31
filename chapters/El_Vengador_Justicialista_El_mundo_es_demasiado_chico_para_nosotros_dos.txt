@@ -1,7 +1,7 @@
 Title: El mundo es demasiado chico para nosotros dos
 Published: 2012-04-17T11:56:00.001-03:00
 Author: flash
-Book: el vengador justicialista,flash performativo
+Book: el vengador justicialista
 Volume: sangre de monos
 Location: rio ceballos
 Tags: radio turismo,radioteatros para el olvido

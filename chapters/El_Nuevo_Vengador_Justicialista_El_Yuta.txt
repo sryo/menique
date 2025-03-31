@@ -1,7 +1,7 @@
 Title: El Nuevo Vengador Justicialista: “El Yuta”
 Published: 2012-08-21T11:04:00.001-03:00
 Author: flash
-Book: el vengador justicialista,flash performativo
+Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
 Tags: radioteatros para el olvido,radio nacional
