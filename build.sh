@@ -417,7 +417,6 @@ EOF
   done
 
   # Now sort lines by date descending:
-  # e.g. "sort -r" will put newest date at top
   sorted="$(echo -e "$lines" | sort -r)"
 
   # Output them in sorted order
@@ -599,7 +598,7 @@ get_prev_next() {
   if [ $position -gt 0 ]; then
     prevIndex="${arr[$((position-1))]}"
   fi
-  if [ $position -lt $(( ${#arr[@]} - 1 )) ]; then
+  if [ $position -lt $(( ${#arr[@]} - 1 )) ]; do
     nextIndex="${arr[$((position+1))]}"
   fi
   echo "$prevIndex $nextIndex"
@@ -686,6 +685,14 @@ EOF
 
   ch=$((ch+1))
 done
+
+##############################################################################
+# COPY IMAGES
+##############################################################################
+# Create the 'build/images' folder (if it doesn't exist)
+# Then copy everything from the root 'images' folder into it.
+mkdir -p "$BUILD_DIR/images"
+cp -r "$IMAGES_DIR/"* "$BUILD_DIR/images"/
 
 echo "Done! The multi-page site is in '$BUILD_DIR/'."
 echo "Open '$BUILD_DIR/index.html' in a browser to see your new homepage!"
