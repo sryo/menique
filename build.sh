@@ -1,16 +1,7 @@
 #!/usr/bin/env bash
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Meñique Site Generator
-# Multiple authors/books, no "book" pages, sanitized filenames,
-# author pages sorted newest->oldest, no `local`.
-# ─────────────────────────────────────────────────────────────────────────────
-#
-# 1) Chapters can have multiple authors or books (comma-separated).
-# 2) We skip generating book pages. The home page icons link to the newest chapter.
-# 3) Output filenames are sanitized so special chars/spaces don’t break URLs.
-# 4) Author pages are now sorted by date descending (newest first).
-# 5) Uses older-shell-friendly syntax (no `local`).
+# Meñique Generator
 #
 # Usage: bash build.sh
 # ─────────────────────────────────────────────────────────────────────────────
@@ -254,14 +245,19 @@ while [ $i -lt $CHAPTER_COUNT ]; do
 
   # split books
   bookLine="${CHAPTER_RAW_BOOKS[$i]}"
-  read -r -a booksArray <<< "$(split_by_commas "$bookLine")"
+  booksArray=()
+  while IFS= read -r oneBook; do
+    booksArray+=("$oneBook")
+  done < <(split_by_commas "$bookLine")
+
   if [ ${#booksArray[@]} -gt 0 ]; then
     CHAPTER_PRIMARY_BOOK[$i]="${booksArray[0]}"
   else
     CHAPTER_PRIMARY_BOOK[$i]="Misc"
     booksArray=("Misc")
   fi
-  # add the chapter to each book
+
+  # Add the chapter to each book
   for bName in "${booksArray[@]}"; do
     set_book_chapters "$bName" "$i"
   done
@@ -330,39 +326,22 @@ while [ $k -lt ${#UNIQUE_AUTHORS[@]} ]; do
   k=$((k+1))
 done
 
-posTop=20
-posLeft=10
-increment=15
+# Generate book data for JavaScript instead of positioning elements directly
 floatingBooks=""
-
-cntBooks=${#BOOK_NAMES[@]}
 b=0
+cntBooks=${#BOOK_NAMES[@]}
 while [ $b -lt $cntBooks ]; do
   bookName="${BOOK_NAMES[$b]}"
   safeBook="$(slugify "$bookName")"
   newestSlug="$(get_newest_chapter_filename "$bookName")"
   [ -z "$newestSlug" ] && newestSlug="#"
 
-  floatingBooks="$floatingBooks<div
-  class=\"floating\"
-  style=\"top: ${posTop}%; left: ${posLeft}%\"
-  data-factor=\"0.02\"
->
+  floatingBooks="$floatingBooks<div class=\"floating\" data-factor=\"0.02\" data-book=\"$bookName\">
     <a href=\"chapters/$newestSlug\">
       <img draggable=\"false\" src=\"$safeBook.$BOOK_IMG_EXT\" alt=\"$bookName\" />
     </a>
 </div>
-
 "
-  posTop=$((posTop+increment))
-  posLeft=$((posLeft+increment))
-  if [ $posTop -gt 80 ]; then
-    posTop=20
-  fi
-  if [ $posLeft -gt 80 ]; then
-    posLeft=10
-  fi
-
   b=$((b+1))
 done
 
@@ -654,7 +633,6 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
       position: fixed; top: 50%;
       width: 40px; height: 40px;
       margin-top: -20px;
-      background: #ccc;
       text-align: center; line-height: 40px;
       font-size: 24px; font-weight: bold;
       cursor: pointer;
@@ -664,9 +642,8 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
     .chapterNav.right { right: 0; }
 
     .chapterSidebar {
-      position: fixed; top: 60px; left: 0;
+      position: fixed; top: 0; bottom: 0; left: 0;
       width: 250px; padding: 10px;
-      background: #f2f2f2; height: 100%;
       overflow-y: auto;
       z-index: 1000;
     }

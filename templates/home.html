@@ -1,149 +1,276 @@
 <!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meñique</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: white;
-            font-family: serif;
-            color: black;
-            overflow: hidden;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Meñique</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background: white;
+                font-family: serif;
+                color: black;
+                overflow: hidden;
+            }
 
-        header {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            display: flex;
-            justify-content: space-between;
-            z-index: 1000;
-            pointer-events: none;
-        }
+            header {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                right: 20px;
+                display: flex;
+                justify-content: space-between;
+                z-index: 1000;
+                pointer-events: none;
+            }
 
-        .title {
-            font-size: 2rem;
-            font-weight: bold;
-            pointer-events: auto;
-        }
+            .title {
+                font-size: 2rem;
+                font-weight: bold;
+                pointer-events: auto;
+            }
 
-        .menu {
-            text-align: right;
-            pointer-events: auto;
-        }
+            .menu {
+                text-align: right;
+                pointer-events: auto;
+            }
 
-        .menu a {
-            display: block;
-            text-decoration: none;
-            color: black;
-            margin-bottom: 5px;
-        }
+            .menu a {
+                display: block;
+                text-decoration: none;
+                color: black;
+                margin-bottom: 5px;
+            }
 
-        .home {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-        }
+            .home {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                pointer-events: none;
+            }
 
-        .floating {
-            position: absolute;
-            will-change: transform;
-            transition: transform 0.1s ease-out;
-            pointer-events: all;
-        }
+            .floating {
+                position: absolute;
+                will-change: transform;
+                transition: transform 0.1s ease-out;
+                pointer-events: all;
+            }
 
-        .floating img {
-            width: 150px;
-            transition: transform 0.3s ease;
-        }
+            .floating img {
+                width: 150px;
+                transition: transform 0.3s ease;
+            }
 
-        .floating img:hover {
-            transform: scale(1.2);
-        }
+            .floating img:hover {
+                transform: scale(1.2);
+            }
 
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 0;
-        }
+            canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 0;
+            }
 
-        body.drawing header,
-        body.drawing .floating {
-            pointer-events: none !important;
-        }
-    </style>
-</head>
-<body>
-    <canvas id="drawCanvas"></canvas>
+            body.drawing header,
+            body.drawing .floating {
+                pointer-events: none !important;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="drawCanvas"></canvas>
 
-    <header>
-        <div class="title">Meñique</div>
-        <div class="menu">
-            <!--AUTHORS_MENU-->
+        <header>
+            <div class="title">Meñique</div>
+            <div class="menu">
+                <!--AUTHORS_MENU-->
+            </div>
+        </header>
+
+        <div class="home">
+            <!--FLOATING_BOOKS-->
         </div>
-    </header>
 
-    <div class="home">
-        <!--FLOATING_BOOKS-->
-    </div>
+        <script>
+            // Floating motion with boundary constraints
+            document.addEventListener("mousemove", (e) => {
+                const { clientX, clientY } = e;
+                const winWidth = window.innerWidth;
+                const winHeight = window.innerHeight;
 
-    <script>
-        // Floating motion
-        document.addEventListener("mousemove", (e) => {
-            const { clientX, clientY } = e;
-            const winWidth = window.innerWidth;
-            const winHeight = window.innerHeight;
+                document.querySelectorAll(".floating").forEach((el) => {
+                    // Get original position and element dimensions
+                    const origX = parseFloat(el.dataset.origX || 0);
+                    const origY = parseFloat(el.dataset.origY || 0);
+                    const elementWidth = el.offsetWidth;
+                    const elementHeight = el.offsetHeight;
 
-            document.querySelectorAll(".floating").forEach((el) => {
-                const factor = parseFloat(el.dataset.factor || 0.01);
-                const dx = (clientX - winWidth / 2) * factor;
-                const dy = (clientY - winHeight / 2) * factor;
-                el.style.transform = \`translate(\${dx}px, \${dy}px)\`;
+                    // Calculate max allowed movement in each direction
+                    const padding = 20; // Keep elements at least this far from edges
+                    const maxLeft = origX - padding;
+                    const maxRight =
+                        winWidth - (origX + elementWidth + padding);
+                    const maxTop = origY - padding;
+                    const maxBottom =
+                        winHeight - (origY + elementHeight + padding);
+
+                    // Calculate movement factor (smaller factor for larger movements)
+                    const factor = parseFloat(el.dataset.factor || 0.01);
+
+                    // Calculate displacement with boundaries
+                    const rawDx = (clientX - winWidth / 2) * factor;
+                    const rawDy = (clientY - winHeight / 2) * factor;
+
+                    // Constrain movement to keep elements on screen
+                    const dx = Math.max(Math.min(rawDx, maxRight), -maxLeft);
+                    const dy = Math.max(Math.min(rawDy, maxBottom), -maxTop);
+
+                    // Apply the constrained movement
+                    el.style.transform = `translate(${dx}px, ${dy}px)`;
+                });
             });
-        });
 
-        // Drawing on canvas
-        const canvas = document.getElementById("drawCanvas");
-        const ctx = canvas.getContext("2d");
-        let drawing = false;
+            // Drawing on canvas
+            const canvas = document.getElementById("drawCanvas");
+            const ctx = canvas.getContext("2d");
+            let drawing = false;
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
 
-        resizeCanvas();
-        window.addEventListener("resize", resizeCanvas);
+            resizeCanvas();
+            window.addEventListener("resize", resizeCanvas);
 
-        canvas.addEventListener("mousedown", (e) => {
-            drawing = true;
-            document.body.classList.add("drawing");
-            ctx.beginPath();
-            ctx.moveTo(e.clientX, e.clientY);
-        });
+            canvas.addEventListener("mousedown", (e) => {
+                drawing = true;
+                document.body.classList.add("drawing");
+                ctx.beginPath();
+                ctx.moveTo(e.clientX, e.clientY);
+            });
 
-        canvas.addEventListener("mouseup", () => {
-            drawing = false;
-            document.body.classList.remove("drawing");
-        });
+            canvas.addEventListener("mouseup", () => {
+                drawing = false;
+                document.body.classList.remove("drawing");
+            });
 
-        canvas.addEventListener("mousemove", (e) => {
-            if (!drawing) return;
-            ctx.lineTo(e.clientX, e.clientY);
-            ctx.strokeStyle = "black";
-            ctx.lineWidth = 1;
-            ctx.lineCap = "round";
-            ctx.stroke();
-        });
-    </script>
-</body>
+            canvas.addEventListener("mousemove", (e) => {
+                if (!drawing) return;
+                ctx.lineTo(e.clientX, e.clientY);
+                ctx.strokeStyle = "black";
+                ctx.lineWidth = 1;
+                ctx.lineCap = "round";
+                ctx.stroke();
+            });
+
+            // Function to position floating elements randomly without overlap
+            function positionFloatingElements() {
+                const floatingElements = document.querySelectorAll(".floating");
+                const container = document.querySelector(".home");
+                const containerRect = container.getBoundingClientRect();
+
+                // Padding from the edges (in pixels)
+                const padding = 70; // Increased padding to allow for parallax movement
+
+                // Keep track of occupied areas
+                const occupiedAreas = [];
+
+                // Reset transforms before measuring
+                floatingElements.forEach((element) => {
+                    element.style.transform = "none";
+                });
+
+                floatingElements.forEach((element) => {
+                    // Force reflow to ensure accurate measurements
+                    element.offsetHeight;
+
+                    const elementWidth = element.offsetWidth;
+                    const elementHeight = element.offsetHeight;
+
+                    // Available area for positioning
+                    const maxX =
+                        containerRect.width - elementWidth - padding * 2;
+                    const maxY =
+                        containerRect.height - elementHeight - padding * 2;
+
+                    if (maxX <= 0 || maxY <= 0) return; // Skip if no space available
+
+                    let attemptCount = 0;
+                    let validPosition = false;
+                    let randomX, randomY;
+
+                    // Try to find a non-overlapping position (max 100 attempts)
+                    while (!validPosition && attemptCount < 100) {
+                        // Generate random position within bounds
+                        randomX = padding + Math.random() * maxX;
+                        randomY = padding + Math.random() * maxY;
+
+                        // Add a safety margin for overlap detection
+                        const safetyMargin = 20;
+
+                        // Check for overlap with existing elements
+                        const newRect = {
+                            left: randomX - safetyMargin,
+                            top: randomY - safetyMargin,
+                            right: randomX + elementWidth + safetyMargin,
+                            bottom: randomY + elementHeight + safetyMargin,
+                        };
+
+                        validPosition = !occupiedAreas.some(
+                            (rect) =>
+                                !(
+                                    newRect.right < rect.left ||
+                                    newRect.left > rect.right ||
+                                    newRect.bottom < rect.top ||
+                                    newRect.top > rect.bottom
+                                ),
+                        );
+
+                        attemptCount++;
+                    }
+
+                    if (validPosition) {
+                        // Position the element
+                        element.style.left = `${randomX}px`;
+                        element.style.top = `${randomY}px`;
+                        element.style.transform = "translate(0, 0)"; // Reset transform
+
+                        // Store original position for mouse movement
+                        element.dataset.origX = randomX;
+                        element.dataset.origY = randomY;
+
+                        // Add to occupied areas
+                        occupiedAreas.push({
+                            left: randomX - 10,
+                            top: randomY - 10,
+                            right: randomX + elementWidth + 10,
+                            bottom: randomY + elementHeight + 10,
+                        });
+                    } else {
+                        console.warn(
+                            "Could not find non-overlapping position for element",
+                            element,
+                        );
+                    }
+                });
+            }
+
+            // Initial positioning with a delay to ensure images are loaded
+            window.addEventListener("load", () => {
+                setTimeout(positionFloatingElements, 100);
+            });
+
+            // Reposition on window resize
+            let resizeTimeout;
+            window.addEventListener("resize", () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(positionFloatingElements, 200);
+            });
+        </script>
+    </body>
 </html>
