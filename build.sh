@@ -595,7 +595,7 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
     }
     body {
         font-family: sans-serif;
-        font-size: 21px;
+        font-size: clamp(1em, 2vw, 1.4em);
         line-height: 1.6;
     }
 
