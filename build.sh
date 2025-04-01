@@ -33,7 +33,7 @@ slugify() {
   param="$1"
   echo "$param" \
     | tr '[:upper:]' '[:lower:]' \
-    | sed 's/[[:space:]]\+/-/g'
+    | sed 's/[^a-z0-9]/-/g; s/-\+/-/g; s/^-//; s/-$//'
 }
 
 # Convert the original .txt name => a safe .html
@@ -395,6 +395,7 @@ while [ $a -lt $cntAuthors ]; do
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>$authorName - $SITE_TITLE</title>
 </head>
 <body>
@@ -562,6 +563,7 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
   title="${CHAPTER_TITLES[$ch]}"
   rawAuthors="${CHAPTER_RAW_AUTHORS[$ch]}"
   primaryBook="${CHAPTER_PRIMARY_BOOK[$ch]}"
+  safeBook="$(slugify "$primaryBook")"
   date="${CHAPTER_DATES[$ch]}"
   bodyClass="${CHAPTER_BODYCLASS[$ch]}"
   content="${CHAPTER_CONTENTS[$ch]}"
@@ -579,6 +581,7 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>$title - $SITE_TITLE</title>
   <style>
     @media only screen and (max-width: 600px) {
@@ -644,14 +647,16 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
       text-wrap-style: pretty;
     }
     h1 {
-      font-size: clamp(1em, 5vw, 8em);
-      line-height: .9em;
+        font-size: clamp(2em, 4vw, 6em);
+        line-height: 1em;
+        text-wrap-style: pretty;
     }
   </style>
 </head>
 <body class="$bodyClass">
 
   <div class="chapterContent">
+    <img loading="lazy" src="/$safeBook.$BOOK_IMG_EXT" alt="$primaryBook" />
     <h1>$title</h1>
     <p>en <strong>$primaryBook</strong> por <strong>$rawAuthors</strong> el <strong>$date</strong></p>
     <div>
