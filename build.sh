@@ -398,8 +398,8 @@ while [ $a -lt $cntAuthors ]; do
   <title>$authorName - $SITE_TITLE</title>
 </head>
 <body>
-  <h1>Author: $authorName</h1>
-  <p><a href="../index.html">Home</a></p>
+  <h1>Todo lo de $authorName</h1>
+  <p><a href="../index.html">Meñique</a></p>
   <hr/>
 EOF
 
@@ -581,6 +581,21 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
   <meta charset="UTF-8">
   <title>$title - $SITE_TITLE</title>
   <style>
+    @media only screen and (max-width: 600px) {
+        .chapterContent {
+            margin-left: unset !important;
+        }
+        .chapterSidebar {
+          position: unset !important;
+          width: unset !important; padding: 60px !important;
+        }
+    }
+    body {
+        font-family: sans-serif;
+        font-size: 21px;
+        line-height: 1.6;
+    }
+
     .chapterNav {
       position: fixed; top: 50%;
       width: 40px; height: 40px;
@@ -591,36 +606,46 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
       z-index: 2000;
     }
     .chapterNav.left { translate: -50px 0; }
-    .chapterNav.right { left: clamp(250px, 100vw - 50px, 40em + 10px); }
+    .chapterNav.right { left: clamp(15rem, 100vw - 50px, 40em + 10px); }
 
     .chapterSidebar {
       position: fixed; top: 0; bottom: 0; left: 0;
-      width: 250px; padding: 10px;
+      width: 16rem; padding: 10px;
       overflow-y: auto;
       z-index: 1000;
     }
+    .chapterSidebar>* {
+        line-height: 1.6rem;
+    }
     .chapterSidebar h3 {
-      margin-top: 1em;
-      font-size: 1.1em;
+      margin-top: 1rem;
+      font-size: 1.1rem;
     }
     .chapterSidebar ul {
       list-style: none;
       padding: unset;
     }
+    .chapterSidebar li {
+        margin-bottom: 1rem;
+        text-wrap-style: pretty;
+        font-size: 1rem;
+    }
+    .chapterSidebar a {
+        text-decoration: none;
+    }
     .chapterSidebar .title {
       font-weight: bold;
-      margin-bottom: 1em;
+      margin-bottom: 1rem;
     }
     .chapterContent {
-      margin-left: 270px;
+      margin-left: 16rem;
       padding: 60px;
       max-width: 40em;
+      text-wrap-style: pretty;
     }
     h1 {
-      font-family: impact;
       font-size: clamp(1em, 5vw, 8em);
       line-height: .9em;
-      text-transform: uppercase;
     }
   </style>
 </head>
