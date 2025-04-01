@@ -6,18 +6,18 @@ Volume: minuciosa ignorancia
 Location: cordoba
 Tags:
 
-Se acabó la época de vacas gordas para linterna verde.
+<p>Se acabó la época de vacas gordas para linterna verde.
 
-Le cortaron la luz por falta de pago y el invierno arrecia.
+<p>Le cortaron la luz por falta de pago y el invierno arrecia.
 
-Por eso trata de terminar todo antes de las seis de la tarde.
+<p>Por eso trata de terminar todo antes de las seis de la tarde.
 
-Por eso va al trabajo desganado y  muerto de frio.
+<p>Por eso va al trabajo desganado y  muerto de frio.
 
-Desde que se separó ya no usa el anillo.
+<p>Desde que se separó ya no usa el anillo.
 
-Desde que se separó la linterna descansa en el fondo de un cajón.
+<p>Desde que se separó la linterna descansa en el fondo de un cajón.
 
-La usa cuando acomoda autos en la calle para ganarse el pan de todos los días.
+<p>La usa cuando acomoda autos en la calle para ganarse el pan de todos los días.
 
-Tanto derroche de historia y convicciones para que los desconocidos lo llamen “naranjita”.
+<p>Tanto derroche de historia y convicciones para que los desconocidos lo llamen “naranjita”.

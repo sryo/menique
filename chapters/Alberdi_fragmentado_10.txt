@@ -6,9 +6,9 @@ Volume: minuciosa ignorancia
 Location: cordoba
 Tags:
 
-En Agosto de 1979 Cynthia MacKern volvía de ver a su hijo en la ciudad de Nono.
-Mientras se acomodaba en el colectivo y ordenaba unos papeles planeando su inminente viaje a Londres, una gitana se le sentó al lado sin que se diera cuenta.
-Cynthia estaba algo absorta mirando una foto de su hijo, su nuera y sus nietos en el patio soleado de la casa en la que había pasado las últimas noches.
-De pronto sintió como un temblor, como un zumbido inexplicable que le llegaba desde el asiento de al lado.
-Rápido, guardo todo en la cartera y trato de dormir para acortar el viaje.
-A fines de ese mismo año Luca Prodan llegaría por primera vez a la Argentina.
+<p>En Agosto de 1979 Cynthia MacKern volvía de ver a su hijo en la ciudad de Nono.
+<p>Mientras se acomodaba en el colectivo y ordenaba unos papeles planeando su inminente viaje a Londres, una gitana se le sentó al lado sin que se diera cuenta.
+<p>Cynthia estaba algo absorta mirando una foto de su hijo, su nuera y sus nietos en el patio soleado de la casa en la que había pasado las últimas noches.
+<p>De pronto sintió como un temblor, como un zumbido inexplicable que le llegaba desde el asiento de al lado.
+<p>Rápido, guardo todo en la cartera y trato de dormir para acortar el viaje.
+<p>A fines de ese mismo año Luca Prodan llegaría por primera vez a la Argentina.

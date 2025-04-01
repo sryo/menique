@@ -6,16 +6,16 @@ Volume: minuciosa ignorancia
 Location: cordoba
 Tags:
 
-La gitana Natacha miro al campeón y le dijo sin titubear:
+<p>La gitana Natacha miro al campeón y le dijo sin titubear:
 
 
-"Un hombre puede creer o no creer, eso es cosa suya. Porque es su propia vida la que apuesta por la fe, la incredulidad, el amor y la inteligencia. Y no hay sobre la tierra otra verdad más grande para el espíritu humano que esta gloriosa y humilde condición. El hombre arriesga su propia vida cada vez que elige y eso lo hace libre".
+<p>"Un hombre puede creer o no creer, eso es cosa suya. Porque es su propia vida la que apuesta por la fe, la incredulidad, el amor y la inteligencia. Y no hay sobre la tierra otra verdad más grande para el espíritu humano que esta gloriosa y humilde condición. El hombre arriesga su propia vida cada vez que elige y eso lo hace libre".
 
 
-El campeón no entendió y quiso una respuesta más concreta.
+<p>El campeón no entendió y quiso una respuesta más concreta.
 
 
-“La pelea terminara cuando antes del décimo asalto” le dijo Natacha.
+<p>“La pelea terminara cuando antes del décimo asalto” le dijo Natacha.
 
 
-El campeón siguió sin comprender y se fue lleno de esperanza.
+<p>El campeón siguió sin comprender y se fue lleno de esperanza.

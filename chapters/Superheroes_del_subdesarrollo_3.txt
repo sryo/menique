@@ -6,19 +6,19 @@ Volume: minuciosa ignorancia
 Location: cordoba
 Tags:
 
-Ahora le tienen miedo al superhéroe del agua
+<p>Ahora le tienen miedo al superhéroe del agua
 
-Le dicen que está contaminado, le dicen.
+<p>Le dicen que está contaminado, le dicen.
 
-Lo culpan de las inundaciones y de los helados derretidos.
+<p>Lo culpan de las inundaciones y de los helados derretidos.
 
-Hasta los profetas lo condenan: Las futuras guerras serán por culpa suya.
+<p>Hasta los profetas lo condenan: Las futuras guerras serán por culpa suya.
 
-Es cierto que le queda la nostalgia del carnaval al superhéroe del agua.
+<p>Es cierto que le queda la nostalgia del carnaval al superhéroe del agua.
 
-Ahí siempre gana y es bienvenido en todas partes.
+<p>Ahí siempre gana y es bienvenido en todas partes.
 
-Pero ahora viene el invierno y se sabe perdedor nato en los juegos de mesa.
+<p>Pero ahora viene el invierno y se sabe perdedor nato en los juegos de mesa.
 
 
-La batalla naval, huelga decirlo…. es su peor pesadilla.
+<p>La batalla naval, huelga decirlo…. es su peor pesadilla.

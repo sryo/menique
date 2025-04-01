@@ -6,18 +6,18 @@ Volume: minuciosa ignorancia
 Location: cordoba
 Tags:
 
-Hay un enojo muy grande en el fondo del hombre verde.
+<p>Hay un enojo muy grande en el fondo del hombre verde.
 
-Será que no se recibió de arquitecto, aunque ahora vive de levantar lozas.
+<p>Será que no se recibió de arquitecto, aunque ahora vive de levantar lozas.
 
-Será que sus compañeros de laburo tiran a la parrilla carne a mansalva y se burlan de su viandita vegetariana.
+<p>Será que sus compañeros de laburo tiran a la parrilla carne a mansalva y se burlan de su viandita vegetariana.
 
-Sera que Ferro no volvió nunca a primera y se pasaron los años de buen futbol y canchas repletas.
+<p>Sera que Ferro no volvió nunca a primera y se pasaron los años de buen futbol y canchas repletas.
 
-A veces se acuerda de chistes subidos de tono el hombre verde. Pero no se anima a contarlos.
+<p>A veces se acuerda de chistes subidos de tono el hombre verde. Pero no se anima a contarlos.
 
-A veces lamenta no haber comprado dólares cuando aún podía.
+<p>A veces lamenta no haber comprado dólares cuando aún podía.
 
-Ahora… está secando la yerba de ayer con paciencia y dulzura.
+<p>Ahora… está secando la yerba de ayer con paciencia y dulzura.
 
-Pero sigue enojado el hombre verde…. y encima se está volviendo viejo.
+<p>Pero sigue enojado el hombre verde…. y encima se está volviendo viejo.

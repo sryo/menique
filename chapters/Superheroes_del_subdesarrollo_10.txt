@@ -6,20 +6,20 @@ Volume: minuciosa ignorancia
 Location: cordoba
 Tags:
 
-El Acertijo tenía el alma llena de preguntas.
+<p>El Acertijo tenía el alma llena de preguntas.
 
-Siempre hizo lo intelectualmente correcto para contestarlas: Leer, no ver televisión, aborrecer los deportes populares.
+<p>Siempre hizo lo intelectualmente correcto para contestarlas: Leer, no ver televisión, aborrecer los deportes populares.
 
-También intento lo políticamente correcto: Fue ecologista, feminista y socialista.
+<p>También intento lo políticamente correcto: Fue ecologista, feminista y socialista.
 
-Pero las preguntas seguían ahí, muertas de risa.
+<p>Pero las preguntas seguían ahí, muertas de risa.
 
-Intento enamorarse, construyo un prestigio y hasta fue artista.
+<p>Intento enamorarse, construyo un prestigio y hasta fue artista.
 
-Nada bastaba. El camino era cada vez más vacío. Todo caía en saco roto.
+<p>Nada bastaba. El camino era cada vez más vacío. Todo caía en saco roto.
 
-Pero ocurrió el milagro: Una noche vio una señal en el cielo y a pesar de ser ateo, todo cobró sentido.
+<p>Pero ocurrió el milagro: Una noche vio una señal en el cielo y a pesar de ser ateo, todo cobró sentido.
 
-Había encontrado su enemigo: No importaba la ideología, la religión, la moral, ni el dinero.
+<p>Había encontrado su enemigo: No importaba la ideología, la religión, la moral, ni el dinero.
 
-Batman lo completaba y lo llenaba como el dulce de leche al alfajor de maicena.
+<p>Batman lo completaba y lo llenaba como el dulce de leche al alfajor de maicena.

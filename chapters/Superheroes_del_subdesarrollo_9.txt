@@ -6,18 +6,18 @@ Volume: minuciosa ignorancia
 Location: cordoba
 Tags:
 
-Al pingüino le va tan mal que da pena verlo.
+<p>Al pingüino le va tan mal que da pena verlo.
 
-La gente lo odia por motivos equivocados y esto es la pesadilla de un villano.
+<p>La gente lo odia por motivos equivocados y esto es la pesadilla de un villano.
 
-¿Cómo explicarles a todos que lo suyo es maldad romántica, no política?
+<p>¿Cómo explicarles a todos que lo suyo es maldad romántica, no política?
 
-¿Cómo explicarles a todos que su archienemigo multimillonario es un murciélago y no un gorila?
+<p>¿Cómo explicarles a todos que su archienemigo multimillonario es un murciélago y no un gorila?
 
-¡Soy un ladrón de guante negro! Grita desesperado en las esquinas.
+<p>¡Soy un ladrón de guante negro! Grita desesperado en las esquinas.
 
-Para colmo leyó en un libro de autoayuda que el mal que le hacemos a los demás, nos lo hacemos en realidad, a nosotros mismos.
+<p>Para colmo leyó en un libro de autoayuda que el mal que le hacemos a los demás, nos lo hacemos en realidad, a nosotros mismos.
 
-Esto último lo hundió en la depresión: Hasta filosóficamente está en bancarrota.
+<p>Esto último lo hundió en la depresión: Hasta filosóficamente está en bancarrota.
 
-Los barrabravas, los políticos, los periodistas y los empresarios son una competencia desleal.
+<p>Los barrabravas, los políticos, los periodistas y los empresarios son una competencia desleal.

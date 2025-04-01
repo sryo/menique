@@ -6,16 +6,16 @@ Volume: minuciosa ignorancia
 Location: cordoba
 Tags:
 
-Todos los Viernes la gitana Natacha cruzaba el puente Avellaneda y caminaba por Ducasse hasta el Bv. Los Andes.
+<p>Todos los Viernes la gitana Natacha cruzaba el puente Avellaneda y caminaba por Ducasse hasta el Bv. Los Andes.
 
 
-Siempre lo encontraba en frente de las vías esperando. Hacía más de cuatro años que esperaba el tren con la inminencia de que pasaría de un momento a otro. Con las valijas hechas, con la mirada fija en el horizonte.
+<p>Siempre lo encontraba en frente de las vías esperando. Hacía más de cuatro años que esperaba el tren con la inminencia de que pasaría de un momento a otro. Con las valijas hechas, con la mirada fija en el horizonte.
 
 
-La gente parecía no darse cuenta de su presencia. Él parecía no darse cuenta de qué sucedía a su alrededor.
+<p>La gente parecía no darse cuenta de su presencia. Él parecía no darse cuenta de qué sucedía a su alrededor.
 
 
-El Jueves pasado, la gitana tuvo un sueño inequívoco: Un punto de luz a lo lejos, el humo, el silbato estridente. De inmediato se vistió, camino con paso apresurado hasta la esquina de los Andes y Lavalleja y comprobó su ausencia como un triunfo. Las vías estaban aún calientes y él había olvidado sus valijas.
+<p>El Jueves pasado, la gitana tuvo un sueño inequívoco: Un punto de luz a lo lejos, el humo, el silbato estridente. De inmediato se vistió, camino con paso apresurado hasta la esquina de los Andes y Lavalleja y comprobó su ausencia como un triunfo. Las vías estaban aún calientes y él había olvidado sus valijas.
 
 
-No le hizo falta abrirlas para saber que estaban atiborradas de canciones.
+<p>No le hizo falta abrirlas para saber que estaban atiborradas de canciones.

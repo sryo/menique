@@ -97,7 +97,8 @@ sort_book_chapters() {
 "
     done
 
-    sorted="$(echo -e "$lines" | sort)"  # ascending by date
+    # Sort ascending by date
+    sorted="$(echo -e "$lines" | sort)"
     finalIndices=""
     while IFS=$'\t' read -r dateVal idxVal; do
       finalIndices="$finalIndices $idxVal"
@@ -124,6 +125,7 @@ get_newest_chapter_filename() {
     echo ""
     return
   fi
+  # The newest (last) is the highest date, which is at the end after ascending sort
   newestIndex="${arr[$((arrLen - 1))]}"
   newestSlug="${CHAPTER_SLUGS[$newestIndex]}"
   echo "$newestSlug"
@@ -271,6 +273,7 @@ while [ $i -lt $CHAPTER_COUNT ]; do
   dt="${CHAPTER_DATES[$i]}"
   yr="${dt:0:4}"
 
+  # Keep track of all distinct years (used for grouping in the authors pages, etc.)
   j=0
   found=0
   while [ $j -lt ${#UNIQUE_YEARS[@]} ]; do
@@ -332,7 +335,7 @@ while [ $k -lt ${#UNIQUE_AUTHORS[@]} ]; do
   k=$((k+1))
 done
 
-# Generate book data for JavaScript instead of positioning elements directly
+# Generate book data for JavaScript (floating) instead of direct positioning
 floatingBooks=""
 b=0
 cntBooks=${#BOOK_NAMES[@]}
@@ -344,7 +347,7 @@ while [ $b -lt $cntBooks ]; do
 
   floatingBooks="$floatingBooks<div class=\"floating\" data-factor=\"0.02\" data-book=\"$bookName\">
     <a href=\"chapters/$newestSlug\">
-      <img draggable=\"false\" loading="lazy" src=\"$safeBook.$BOOK_IMG_EXT\" alt=\"$bookName\" />
+      <img draggable=\"false\" loading=\"lazy\" src=\"$safeBook.$BOOK_IMG_EXT\" alt=\"$bookName\" />
     </a>
 </div>
 "
@@ -376,7 +379,8 @@ cat <<EOF > "$BUILD_DIR/404.html"
 EOF
 
 ##############################################################################
-# AUTHOR PAGES - SORT BY DATE DESC (NEWEST FIRST)
+# AUTHOR PAGES - SORT BY DATE DESC (NEWEST FIRST),
+# BUT GROUP THEM UNDER YEAR HEADINGS
 ##############################################################################
 
 cntAuthors=${#UNIQUE_AUTHORS[@]}
@@ -391,30 +395,28 @@ while [ $a -lt $cntAuthors ]; do
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$SITE_TITLE - Author: $authorName</title>
+  <title>$authorName - $SITE_TITLE</title>
 </head>
 <body>
   <h1>Author: $authorName</h1>
   <p><a href="../index.html">Home</a></p>
   <hr/>
-  <ul>
 EOF
 
-  # We'll gather matched chapters in a "lines" variable: "YYYY-MM-DD\tINDEX"
+  # We'll gather matched chapters in "lines": "YYYY-MM-DD\tINDEX"
   lines=""
   cIndex=0
   while [ $cIndex -lt $CHAPTER_COUNT ]; do
-    raw="${CHAPTER_RAW_AUTHORS[$cIndex]}"
+    rawAuthors="${CHAPTER_RAW_AUTHORS[$cIndex]}"
     match=0
     while read -r oneAuth; do
       if [ "$oneAuth" = "$authorName" ]; then
         match=1
         break
       fi
-    done < <(split_by_commas "$raw")
+    done < <(split_by_commas "$rawAuthors")
 
     if [ $match -eq 1 ]; then
-      # We'll store lines so we can sort them by date desc
       dt="${CHAPTER_DATES[$cIndex]}"
       lines="$lines$dt\t$cIndex
 "
@@ -422,18 +424,38 @@ EOF
     cIndex=$((cIndex+1))
   done
 
-  # Now sort lines by date descending:
+  # Sort lines by date descending
   sorted="$(echo -e "$lines" | sort -r)"
+  lastYear=""
+  firstYearFound=0
 
-  # Output them in sorted order
+  # We'll insert headings for each year.
   while IFS=$'\t' read -r dateVal idxVal; do
+    year="${dateVal:0:4}"
+
+    if [ "$year" != "$lastYear" ]; then
+      # Close out the old year's list, if we had one
+      if [ -n "$lastYear" ]; then
+        echo "</ul>" >> "$outFile"
+      fi
+      echo "<h2>$year</h2>" >> "$outFile"
+      echo "<ul>" >> "$outFile"
+      lastYear="$year"
+      firstYearFound=1
+    fi
+
     localSlug="${CHAPTER_SLUGS[$idxVal]}"
     localTitle="${CHAPTER_TITLES[$idxVal]}"
-    echo "    <li><a href=\"../chapters/$localSlug\">$localTitle</a> ($dateVal)</li>" >> "$outFile"
+    echo "  <li><a href=\"../chapters/$localSlug\">$localTitle</a> ($dateVal)</li>" >> "$outFile"
+
   done <<< "$sorted"
 
+  # If at least one year was found, close the last <ul>
+  if [ $firstYearFound -eq 1 ]; then
+    echo "</ul>" >> "$outFile"
+  fi
+
   cat <<EOF >> "$outFile"
-  </ul>
 </body>
 </html>
 EOF
@@ -442,105 +464,7 @@ EOF
 done
 
 ##############################################################################
-# YEAR PAGES
-##############################################################################
-
-haveMonthChapters() {
-  hmYear="$1"
-  hmMonth="$2"
-  found=0
-  idx=0
-  while [ $idx -lt $CHAPTER_COUNT ]; do
-    dd="${CHAPTER_DATES[$idx]}"
-    yy="${dd:0:4}"
-    mm="${dd:5:2}"
-    if [ "$yy" = "$hmYear" ] && [ "$mm" = "$hmMonth" ]; then
-      found=1
-      break
-    fi
-    idx=$((idx+1))
-  done
-  return $found
-}
-
-cntYears=${#UNIQUE_YEARS[@]}
-y=0
-while [ $y -lt $cntYears ]; do
-  yearNumber="${UNIQUE_YEARS[$y]}"
-  outFile="$BUILD_DIR/years/$yearNumber.html"
-
-  cat <<EOF > "$outFile"
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$SITE_TITLE - Year: $yearNumber</title>
-</head>
-<body>
-  <h1>Year: $yearNumber</h1>
-  <p><a href="../index.html">Home</a></p>
-  <hr/>
-  <aside style="float:left; width: 20%;">
-    <h2>Months</h2>
-    <ul>
-EOF
-
-  for m in {01..12}; do
-    haveMonthChapters "$yearNumber" "$m"
-    if [ $? -eq 1 ]; then
-      echo "      <li><a href=\"#month-$m\">Month $m</a></li>" >> "$outFile"
-    fi
-  done
-
-  cat <<EOF >> "$outFile"
-    </ul>
-  </aside>
-  <div style="margin-left: 22%;">
-EOF
-
-  # list chapters by month
-  mm=1
-  while [ $mm -le 12 ]; do
-    mon="$(printf "%02d" "$mm")"
-    foundCh=()
-    idx=0
-    while [ $idx -lt $CHAPTER_COUNT ]; do
-      dd="${CHAPTER_DATES[$idx]}"
-      yy="${dd:0:4}"
-      mo="${dd:5:2}"
-      if [ "$yy" = "$yearNumber" ] && [ "$mo" = "$mon" ]; then
-        foundCh+=("$idx")
-      fi
-      idx=$((idx+1))
-    done
-
-    if [ ${#foundCh[@]} -gt 0 ]; then
-      echo "    <h2 id=\"month-$mon\">Month $mon</h2>" >> "$outFile"
-      echo "    <ul>" >> "$outFile"
-      fcIndex=0
-      while [ $fcIndex -lt ${#foundCh[@]} ]; do
-        fc="${foundCh[$fcIndex]}"
-        localSlug="${CHAPTER_SLUGS[$fc]}"
-        localTitle="${CHAPTER_TITLES[$fc]}"
-        echo "      <li><a href=\"../chapters/$localSlug\">$localTitle</a></li>" >> "$outFile"
-        fcIndex=$((fcIndex+1))
-      done
-      echo "    </ul>" >> "$outFile"
-    fi
-    mm=$((mm+1))
-  done
-
-  cat <<EOF >> "$outFile"
-  </div>
-</body>
-</html>
-EOF
-
-  y=$((y+1))
-done
-
-##############################################################################
-# CHAPTER PAGES
+# CHAPTER PAGES (with the sidebar grouped by year)
 ##############################################################################
 
 make_chapter_sidebar() {
@@ -557,22 +481,43 @@ make_chapter_sidebar() {
   chList="$(trim_spaces "$chList")"
   read -r -a arr <<< "$chList"
 
-  sidebar="<div class=\"chapterSidebar\"><ul><div class=\"title\"><a href=\"/\">Meñique</a></div>
-"
-  oneIdx=0
-  while [ $oneIdx -lt ${#arr[@]} ]; do
-    cIndex2="${arr[$oneIdx]}"
+  # We'll iterate in ascending order of dates, because sort_book_chapters gave us that
+  sidebar="<div class=\"chapterSidebar\"><div class=\"title\"><a href=\"/\">Meñique</a></div>"
+  lastYear=""
+  # We open a wrapper <ul> only when we first see a year:
+  haveOpenUl=0
+
+  # newest to oldest
+  for (( i=${#arr[@]} - 1; i>=0; i-- )); do
+    cIndex2="${arr[$i]}"
+    dt="${CHAPTER_DATES[$cIndex2]}"
+    thisYear="${dt:0:4}"
     cSlug="${CHAPTER_SLUGS[$cIndex2]}"
     cTitle="${CHAPTER_TITLES[$cIndex2]}"
+
+    # When year changes, close out the old <ul> if needed, start a new heading
+    if [ "$thisYear" != "$lastYear" ]; then
+      if [ "$haveOpenUl" -eq 1 ]; then
+        sidebar="$sidebar</ul>"
+      fi
+      sidebar="$sidebar<h3>$thisYear</h3><ul>"
+      haveOpenUl=1
+      lastYear="$thisYear"
+    fi
+
     if [ "$cIndex2" -eq "$currentIndex" ]; then
       sidebar="$sidebar<li><strong>$cTitle</strong></li>"
     else
       sidebar="$sidebar<li><a href=\"$cSlug\">$cTitle</a></li>"
     fi
-    oneIdx=$((oneIdx+1))
   done
 
-  sidebar="$sidebar</ul></div>"
+  # Close the final list if we have one
+  if [ "$haveOpenUl" -eq 1 ]; then
+    sidebar="$sidebar</ul>"
+  fi
+
+  sidebar="$sidebar</div>"
   echo "$sidebar"
 }
 
@@ -628,12 +573,13 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
   prevIdx="$(echo "$pn" | awk '{print $1}')"
   nextIdx="$(echo "$pn" | awk '{print $2}')"
 
+  # Start writing the HTML (single block, so we avoid duplicate styling)
   cat <<EOF > "$outFile"
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$SITE_TITLE - $title</title>
+  <title>$title - $SITE_TITLE</title>
   <style>
     .chapterNav {
       position: fixed; top: 50%;
@@ -653,60 +599,33 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
       overflow-y: auto;
       z-index: 1000;
     }
+    .chapterSidebar h3 {
+      margin-top: 1em;
+      font-size: 1.1em;
+    }
+    .chapterSidebar ul {
+      list-style: none;
+      padding: unset;
+    }
+    .chapterSidebar .title {
+      font-weight: bold;
+      margin-bottom: 1em;
+    }
     .chapterContent {
-        margin-left: 270px;
-        padding: 60px;
-        max-width: 40em;
+      margin-left: 270px;
+      padding: 60px;
+      max-width: 40em;
     }
     h1 {
-        font-family: impact;
-        font-size: clamp(1em, 5vw, 8em)
-        line-height: .9em;
-        text-transform: uppercase;
+      font-family: impact;
+      font-size: clamp(1em, 5vw, 8em);
+      line-height: .9em;
+      text-transform: uppercase;
     }
   </style>
 </head>
 <body class="$bodyClass">
-EOF
-cat <<EOF > "$outFile"
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$SITE_TITLE - $title</title>
-  <style>
-  .chapterNav {
-        position: fixed; top: 50%;
-        width: 40px; height: 40px;
-        margin-top: -20px;
-        text-align: center; line-height: 40px;
-        font-size: 24px; font-weight: bold;
-        cursor: pointer;
-        z-index: 2000;
-      }
-      .chapterNav.left { translate: -50px 0; }
-      .chapterNav.right { left: clamp(250px, 100vw - 50px, 40em + 10px); }
 
-      .chapterSidebar {
-        position: fixed; top: 0; bottom: 0; left: 0;
-        width: 250px; padding: 10px;
-        overflow-y: auto;
-        z-index: 1000;
-      }
-      .chapterContent {
-          margin-left: 270px;
-          padding: 60px;
-          max-width: 40em;
-      }
-      h1 {
-          font-family: impact;
-          font-size: clamp(1em, 5vw, 8em);
-          line-height: .9em;
-          text-transform: uppercase;
-      }
-  </style>
-</head>
-<body class="$bodyClass">
   <div class="chapterContent">
     <h1>$title</h1>
     <p>en <strong>$primaryBook</strong> por <strong>$rawAuthors</strong> el <strong>$date</strong></p>
@@ -715,18 +634,18 @@ $content
     </div>
 EOF
 
-# Add arrows inside the chapterContent
-if [ -n "$prevIdx" ]; then
-  prevSlug="${CHAPTER_SLUGS[$prevIdx]}"
-  echo "    <a class=\"chapterNav left\" href=\"$prevSlug\">«</a>" >> "$outFile"
-fi
-if [ -n "$nextIdx" ]; then
-  nextSlug="${CHAPTER_SLUGS[$nextIdx]}"
-  echo "    <a class=\"chapterNav right\" href=\"$nextSlug\">»</a>" >> "$outFile"
-fi
+  # Navigation arrows:
+  if [ -n "$prevIdx" ]; then
+    prevSlug="${CHAPTER_SLUGS[$prevIdx]}"
+    echo "    <a class=\"chapterNav left\" href=\"$prevSlug\">«</a>" >> "$outFile"
+  fi
+  if [ -n "$nextIdx" ]; then
+    nextSlug="${CHAPTER_SLUGS[$nextIdx]}"
+    echo "    <a class=\"chapterNav right\" href=\"$nextSlug\">»</a>" >> "$outFile"
+  fi
 
-# Close chapterContent div and insert sidebar
-cat <<EOF >> "$outFile"
+  # Close chapterContent and insert the sidebar
+  cat <<EOF >> "$outFile"
   </div>
   $sidebar
 </body>
@@ -739,8 +658,6 @@ done
 ##############################################################################
 # COPY IMAGES
 ##############################################################################
-# Create the 'build/images' folder (if it doesn't exist)
-# Then copy everything from the root 'images' folder into it.
 mkdir -p "$BUILD_DIR/images"
 cp -r "$IMAGES_DIR/"* "$BUILD_DIR"/
 

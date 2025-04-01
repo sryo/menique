@@ -6,18 +6,18 @@ Volume: minuciosa ignorancia
 Location: cordoba
 Tags:
 
-Dos delincuentes entran armados y encapuchados al banco.
+<p>Dos delincuentes entran armados y encapuchados al banco.
 
-El superhéroe vestido de traje todo lo ve.
+<p>El superhéroe vestido de traje todo lo ve.
 
-Entonces, intenta cambiarse en un café pero el baño es exclusivo para clientes.
+<p>Entonces, intenta cambiarse en un café pero el baño es exclusivo para clientes.
 
-Luego comprueba, que las cabinas de teléfonos de los telecentros son transparentes.
+<p>Luego comprueba, que las cabinas de teléfonos de los telecentros son transparentes.
 
-Para colmo de males, su casa está demasiado lejos y hay paro de colectivos urbanos….
+<p>Para colmo de males, su casa está demasiado lejos y hay paro de colectivos urbanos….
 
-Hoy, el superhéroe está preso por exhibicionismo y escándalo en la vía pública.
+<p>Hoy, el superhéroe está preso por exhibicionismo y escándalo en la vía pública.
 
-Sus compañeros de celda le hacen bulling presidiario con criptonita que consiguieron en el mercado negro del penal.
+<p>Sus compañeros de celda le hacen bulling presidiario con criptonita que consiguieron en el mercado negro del penal.
 
-Los guardias del penal usan su capa como mantel las noches de pocker y chinchón.
+<p>Los guardias del penal usan su capa como mantel las noches de pocker y chinchón.
