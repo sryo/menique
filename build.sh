@@ -656,7 +656,7 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
 <body class="$bodyClass">
 
   <div class="chapterContent">
-    <img loading="lazy" src="/$safeBook.$BOOK_IMG_EXT" alt="$primaryBook" />
+    <img loading="lazy" src="/$safeBook.$BOOK_IMG_EXT" alt="$primaryBook" style="width: 10em;"/>
     <h1>$title</h1>
     <p>en <strong>$primaryBook</strong> por <strong>$rawAuthors</strong> el <strong>$date</strong></p>
     <div>
