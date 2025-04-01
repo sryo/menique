@@ -4,7 +4,7 @@ Author: monoman
 Book: misiva lasciva,el cine negro de los monos
 Volume: sangre de monos
 Location: villa allende
-Tags: radioteatros para el olvido,radio nexo fm 93.9
+Radio: radio nexo
 
 <div class="misiva">
 <br />

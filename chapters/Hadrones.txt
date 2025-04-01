@@ -4,7 +4,7 @@ Author: yoko mona
 Book: temporada de migrañas
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,literatura
+Radio: radio turismo
 
 En temporada de migrañas venimos abriendo pequeñas ventanas hacia libros relacionados con Córdoba, ya sea hecho por cordobeses o bien hechos en Córdoba, en editoriales locales. <br />
 <br />

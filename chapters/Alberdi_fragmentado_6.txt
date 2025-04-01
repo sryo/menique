@@ -4,7 +4,7 @@ Author: monoman
 Book: alberdi fragmentado
 Volume: minuciosa ignorancia
 Location: cordoba
-Tags:
+Radio: radio nacional
 
 
 <p>Generalmente la gitana Natacha no atendía niños. Pero estos dos chicos eran extraordinarios y estaban a punto de emprender un viaje muy difícil, épico, terrible.

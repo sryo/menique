@@ -4,7 +4,7 @@ Author: monoman
 Book: alberdi fragmentado
 Volume: minuciosa ignorancia
 Location: cordoba
-Tags:
+Radio: radio nacional
 
 <p>Todos los Viernes la gitana Natacha cruzaba el puente Avellaneda y caminaba por Ducasse hasta el Bv. Los Andes.
 

@@ -4,7 +4,7 @@ Author: monoman
 Book: alberdi fragmentado
 Volume: minuciosa ignorancia
 Location: cordoba
-Tags:
+Radio: radio nacional
 
 <p>Muchos años después frente a una cámara de filmar, el gran director de cine Olivio Durán había de recordar aquella tarde remota en que su padre lo llevo a conocer a Chaplin.
 <p>Alberdi era entonces una pequeña barriada de pocas casas, habitada por obreros y estudiantes, que se precipitaba a lo largo de los bordes del Suquía y alrededor del Clínicas.

@@ -4,7 +4,7 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: villa allende,cordoba
-Tags: radioteatros para el olvido,radio nacional,radio nexo fm 93.9
+Radio: radio nacional,radio nexo
 
 Cuenta la leyenda que, en las afueras de la Gran Ciudad, la humedad se condensa y produce una niebla tan espesa que resulta casi imposible ver más allá de los propios pies. Muchas personas han perdido su camino y han terminado en sitios inhóspitos o, simplemente, han desaparecido. La impenetrable niebla se traga los paisajes, los destinos y las personas. Pero un hombre ha demostrado que es posible ver más allá... el día en que mutó.<br />
 <a name='more'></a><br />

@@ -4,7 +4,7 @@ Author: monoman
 Book: chubut santa rosa y despues
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Estoy en Alberdi frente al cementerio de San Jerónimo, porque vine a ver a Natacha. Cuando las cosas no andan del todo bien me dan ganas de hablar con ella.<br />
 <br />

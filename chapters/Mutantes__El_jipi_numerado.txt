@@ -4,7 +4,7 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Cuenta la leyenda que los ojos sólo son un filtro que evalúa la realidad y la codifica de acuerdo con nuestro propio modelo de mundo. Dicen los sabios que no podemos mirar nada sino a través de nuestros fantasmas...<br />
 <br />

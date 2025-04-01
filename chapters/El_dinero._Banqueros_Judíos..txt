@@ -4,7 +4,7 @@ Author: monoman
 Book: el libro de nietzsche
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,radioteatros para el olvido
+Radio: radio turismo
 
 <b><i>Durante los siglos XIII y XIV de nuestra era, fueron los Judíos el único nexo comercial entre Occidente y Oriente próximo. Estos, junto a los banqueros Lombardos, acumularon excedentes de capital debido a su habilidad para los negocios, y entonces utilizaron esas ganancias para realizar préstamos y cobrarlos con intereses a la hora de las devoluciones. Los Cristianos condenaron estas transacciones acusando a los semitas de USUREROS, pero no fueron pocas las veces que recurrieron a sus servicios…</i></b><br />
 <br />

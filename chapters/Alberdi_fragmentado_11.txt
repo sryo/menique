@@ -4,7 +4,7 @@ Author: monoman
 Book: alberdi fragmentado
 Volume: minuciosa ignorancia
 Location: cordoba
-Tags:
+Radio: radio nacional
 
 <p>En Febrero de 1931, Skip James grabó dieciocho temas en un estudio ubicado al este de Bentonia y cobró 40 dólares por adelantado.
 

@@ -4,7 +4,7 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Cuenta la leyenda que algunas personas se caracterizan por una rigidez tal que todo lo que tocan se convierte en concreto. No hay palabra en su boca sin cimientos ni argumento sin vigas. Cual reyes Midas, sus manos solidifican hasta el vacío mismo y el agua se bebe como gelatina.<br />
 <br />

@@ -55,7 +55,34 @@ split_by_commas() {
   done
 }
 
-# Book storing. We do not use `local` or advanced bash, just plain variables.
+# Simple “join with y” helper: pass a list of items, get them joined by “ y ”
+join_with_y() {
+  arr=("$@")
+  local count=${#arr[@]}
+  if [ $count -eq 0 ]; then
+    echo ""
+    return
+  fi
+  if [ $count -eq 1 ]; then
+    echo "${arr[0]}"
+    return
+  fi
+
+  # Build "item1, item2, item3" => item1 y item2 y item3, but we do it carefully
+  # to exactly replicate "a, b, c => a y b y c" or just "a y b" if 2 items, etc.
+  joined="${arr[0]}"
+  i=1
+  while [ $i -lt $count ]; do
+    joined="$joined y ${arr[$i]}"
+    i=$((i+1))
+  done
+  echo "$joined"
+}
+
+##############################################################################
+# Book storing
+##############################################################################
+
 find_book_index_by_name() {
   bookName="$1"
   i=0
@@ -142,6 +169,8 @@ declare -a CHAPTER_SLUGS
 declare -a CHAPTER_TITLES
 declare -a CHAPTER_RAW_AUTHORS
 declare -a CHAPTER_RAW_BOOKS
+declare -a CHAPTER_RAW_RADIOS
+declare -a CHAPTER_RAW_LOCATIONS
 declare -a CHAPTER_DATES
 declare -a CHAPTER_BODYCLASS
 declare -a CHAPTER_CONTENTS
@@ -165,6 +194,8 @@ parse_chapter() {
   cTitle="Untitled"
   cAuthors=""
   cBooks=""
+  cRadios=""
+  cLocations=""
   cDate="1900-01-01"
   cClass=""
   cContent=""
@@ -181,6 +212,12 @@ parse_chapter() {
         ;;
       Book:*)
         cBooks="$(trim_spaces "${line#Book:}")"
+        ;;
+      Radio:*)
+        cRadios="$(trim_spaces "${line#Radio:}")"
+        ;;
+      Location:*)
+        cLocations="$(trim_spaces "${line#Location:}")"
         ;;
       Published:*)
         cDate="$(trim_spaces "${line#Published:}")"
@@ -207,6 +244,8 @@ parse_chapter() {
   CHAPTER_TITLES[$CHAPTER_COUNT]="$cTitle"
   CHAPTER_RAW_AUTHORS[$CHAPTER_COUNT]="$cAuthors"
   CHAPTER_RAW_BOOKS[$CHAPTER_COUNT]="$cBooks"
+  CHAPTER_RAW_RADIOS[$CHAPTER_COUNT]="$cRadios"
+  CHAPTER_RAW_LOCATIONS[$CHAPTER_COUNT]="$cLocations"
   CHAPTER_DATES[$CHAPTER_COUNT]="$cDate"
   CHAPTER_BODYCLASS[$CHAPTER_COUNT]="$cClass"
   CHAPTER_CONTENTS[$CHAPTER_COUNT]="$htmlBuffer"
@@ -233,8 +272,8 @@ fi
 
 i=0
 while [ $i -lt $CHAPTER_COUNT ]; do
+  # Handle authors
   authorLine="${CHAPTER_RAW_AUTHORS[$i]}"
-  # split authors
   while read -r oneAuthor; do
     [ -z "$oneAuthor" ] && continue
     j=0
@@ -251,7 +290,7 @@ while [ $i -lt $CHAPTER_COUNT ]; do
     fi
   done < <(split_by_commas "$authorLine")
 
-  # split books
+  # Handle books
   bookLine="${CHAPTER_RAW_BOOKS[$i]}"
   booksArray=()
   while IFS= read -r oneBook; do
@@ -273,7 +312,7 @@ while [ $i -lt $CHAPTER_COUNT ]; do
   dt="${CHAPTER_DATES[$i]}"
   yr="${dt:0:4}"
 
-  # Keep track of all distinct years (used for grouping in the authors pages, etc.)
+  # Keep track of all distinct years
   j=0
   found=0
   while [ $j -lt ${#UNIQUE_YEARS[@]} ]; do
@@ -335,7 +374,6 @@ while [ $k -lt ${#UNIQUE_AUTHORS[@]} ]; do
   k=$((k+1))
 done
 
-# Generate book data for JavaScript (floating) instead of direct positioning
 floatingBooks=""
 b=0
 cntBooks=${#BOOK_NAMES[@]}
@@ -380,7 +418,6 @@ EOF
 
 ##############################################################################
 # AUTHOR PAGES - SORT BY DATE DESC (NEWEST FIRST),
-# BUT GROUP THEM UNDER YEAR HEADINGS
 ##############################################################################
 
 cntAuthors=${#UNIQUE_AUTHORS[@]}
@@ -482,10 +519,8 @@ make_chapter_sidebar() {
   chList="$(trim_spaces "$chList")"
   read -r -a arr <<< "$chList"
 
-  # We'll iterate in ascending order of dates, because sort_book_chapters gave us that
   sidebar="<div class=\"chapterSidebar\"><div class=\"title\"><a href=\"/\">Meñique</a></div>"
   lastYear=""
-  # We open a wrapper <ul> only when we first see a year:
   haveOpenUl=0
 
   # newest to oldest
@@ -496,7 +531,6 @@ make_chapter_sidebar() {
     cSlug="${CHAPTER_SLUGS[$cIndex2]}"
     cTitle="${CHAPTER_TITLES[$cIndex2]}"
 
-    # When year changes, close out the old <ul> if needed, start a new heading
     if [ "$thisYear" != "$lastYear" ]; then
       if [ "$haveOpenUl" -eq 1 ]; then
         sidebar="$sidebar</ul>"
@@ -513,7 +547,6 @@ make_chapter_sidebar() {
     fi
   done
 
-  # Close the final list if we have one
   if [ "$haveOpenUl" -eq 1 ]; then
     sidebar="$sidebar</ul>"
   fi
@@ -561,21 +594,61 @@ ch=0
 while [ $ch -lt $CHAPTER_COUNT ]; do
   outSlug="${CHAPTER_SLUGS[$ch]}"
   title="${CHAPTER_TITLES[$ch]}"
+
+  # Collect arrays for final text output:
+  #   authors => with links
+  #   books => raw text
+  #   radios => raw text
+  #   locations => raw text
   rawAuthors="${CHAPTER_RAW_AUTHORS[$ch]}"
+  authorArray=()
+  while IFS= read -r oneAuth; do
+    [ -z "$oneAuth" ] && continue
+    # link to author page
+    aSlug="$(slugify "$oneAuth")"
+    authorArray+=("<a href=\"../authors/$aSlug.html\">$oneAuth</a>")
+  done < <(split_by_commas "$rawAuthors")
+  joinedAuthors="$(join_with_y "${authorArray[@]}")"
+
+  # Books
+  rawBooks="${CHAPTER_RAW_BOOKS[$ch]}"
+  bookArray=()
+  while IFS= read -r oneBook; do
+    [ -z "$oneBook" ] && continue
+    bookArray+=("$oneBook")
+  done < <(split_by_commas "$rawBooks")
+  joinedBooks="$(join_with_y "${bookArray[@]}")"
+
+  # Radios
+  rawRadios="${CHAPTER_RAW_RADIOS[$ch]}"
+  radioArray=()
+  while IFS= read -r oneRadio; do
+    [ -z "$oneRadio" ] && continue
+    radioArray+=("$oneRadio")
+  done < <(split_by_commas "$rawRadios")
+  joinedRadios="$(join_with_y "${radioArray[@]}")"
+
+  # Locations
+  rawLocations="${CHAPTER_RAW_LOCATIONS[$ch]}"
+  locationArray=()
+  while IFS= read -r oneLoc; do
+    [ -z "$oneLoc" ] && continue
+    locationArray+=("$oneLoc")
+  done < <(split_by_commas "$rawLocations")
+  joinedLocations="$(join_with_y "${locationArray[@]}")"
+
   primaryBook="${CHAPTER_PRIMARY_BOOK[$ch]}"
-  safeBook="$(slugify "$primaryBook")"
   date="${CHAPTER_DATES[$ch]}"
   bodyClass="${CHAPTER_BODYCLASS[$ch]}"
   content="${CHAPTER_CONTENTS[$ch]}"
-
   outFile="$BUILD_DIR/chapters/$outSlug"
 
+  # Build the sidebar & nav
   sidebar="$(make_chapter_sidebar "$primaryBook" "$ch")"
   pn="$(get_prev_next "$primaryBook" "$ch")"
   prevIdx="$(echo "$pn" | awk '{print $1}')"
   nextIdx="$(echo "$pn" | awk '{print $2}')"
 
-  # Start writing the HTML (single block, so we avoid duplicate styling)
   cat <<EOF > "$outFile"
 <!DOCTYPE html>
 <html lang="en">
@@ -609,7 +682,7 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
       z-index: 2000;
     }
     .chapterNav.left { translate: -50px 0; }
-    .chapterNav.right { left: clamp(15rem, 100vw - 50px, 40em + 10px); }
+    .chapterNav.right { left: clamp(16rem, 100vw - 50px, 16rem + 40em + 10px); }
 
     .chapterSidebar {
       position: fixed; top: 0; bottom: 0; left: 0;
@@ -651,20 +724,39 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
         line-height: 1em;
         text-wrap-style: pretty;
     }
+    .book-image-container {
+      margin-bottom: 1rem;
+    }
+    .book-image-container img {
+      width: 10em;
+      margin-right: 1rem;
+    }
   </style>
 </head>
 <body class="$bodyClass">
 
   <div class="chapterContent">
-    <img loading="lazy" src="/$safeBook.$BOOK_IMG_EXT" alt="$primaryBook" style="width: 10em;"/>
+    <div class="book-image-container">
+EOF
+
+  # Display one <img> for each book if multiple
+  for bName in "${bookArray[@]}"; do
+    safeBook="$(slugify "$bName")"
+    echo "      <img loading=\"lazy\" src=\"/$safeBook.$BOOK_IMG_EXT\" alt=\"$bName\" />" >> "$outFile"
+  done
+
+  cat <<EOF >> "$outFile"
+    </div>
     <h1>$title</h1>
-    <p>en <strong>$primaryBook</strong> por <strong>$rawAuthors</strong> el <strong>$date</strong></p>
+    <p>Desde el éter de $joinedRadios, $joinedLocations, el $date</p>
+    <p>Palabras de $joinedAuthors para $joinedBooks</p>
+
     <div>
 $content
     </div>
 EOF
 
-  # Navigation arrows:
+  # Navigation arrows
   if [ -n "$prevIdx" ]; then
     prevSlug="${CHAPTER_SLUGS[$prevIdx]}"
     echo "    <a class=\"chapterNav left\" href=\"$prevSlug\">«</a>" >> "$outFile"

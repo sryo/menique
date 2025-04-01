@@ -1,10 +1,9 @@
-Title: Pánico Sudaca.
+Title: Pánico Sudaca
 Published: 2017-02-11T15:39:00.000-03:00
 Author: monoman
-Book:
 Volume: panico sudaca
 Location: cordoba
-Tags:
+Radio: radio bicicleta
 
 
 

@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Narrador − La Gran Ciudad es una estructura compleja que organiza la experiencia humana en unidades discretas compuestas por un significante y un significado…<br />
 <br />

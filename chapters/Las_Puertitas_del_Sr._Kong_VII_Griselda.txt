@@ -4,7 +4,7 @@ Author: yoko mona
 Book: las puertitas del sr kong
 Volume: sangre de monos
 Location: villa allende
-Tags: literatura,radioteatros para el olvido,radio nexo fm 93.9
+Radio: radio nexo
 
 Desde hace días Kong no duerme.<br />
 Ahora está sentado en su box de trabajo, atormentado por las mismas preguntas que lo han dejado insomne: el lunes pasado casi sin necesitarlo Kong cruzó una puerta, un poco por costumbre, y a la hora de volver no pudo, por largo rato, lograrlo.<br />

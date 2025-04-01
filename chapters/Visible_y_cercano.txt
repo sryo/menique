@@ -4,7 +4,7 @@ Author: yoko mona
 Book: temporada de migrañas
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,literatura
+Radio: radio turismo
 
 A veces, frente al papel e blanco, un escritor se plantea qué quiere de la literatura y, también, qué quiere la literatura -los lectores- de quien escribe.<br />
 <br />

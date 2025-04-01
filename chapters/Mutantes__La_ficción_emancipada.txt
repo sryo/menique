@@ -4,7 +4,7 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Cuenta la leyenda que las mentiras forman parte de nuestras vidas hasta el punto de colonizar nuestros pensamientos. Mentimos al creer que la palabra es igual a la cosa, y eso es violencia.<br />
 Pero un hombre que creía que la valentía estaba en hacer verdadera una mentira, descubrió que el verdadero valor reside en hacer realidad una ficción el día en que mutó.<br />

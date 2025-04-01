@@ -4,7 +4,7 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Cuenta la leyenda que la pobreza y la desigualdad existen con la finalidad de perpetuar una condición de poder asimétrica, de manera tal que aquél ue se encuentre en la posición más desfavorecida dentro de la pirámide social, difícilmente pueda mejorar su situación.<br />
 <br />

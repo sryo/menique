@@ -4,7 +4,7 @@ Author: flash
 Book: flash deformativo
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,opinion
+Radio: radio turismo
 
 No hace mucho, una docente universitaria de nuestro país se había enterado de que estaba embarazada. Poco tiempo después, fue invitada por un docente de la Universidad Complutense de Madrid a entrar ahí con una beca. Tener una beca ahí es una prueba de que uno es un grosso.<br />
 <br />

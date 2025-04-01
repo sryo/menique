@@ -4,7 +4,7 @@ Author: monoman
 Book: el libro de nietzsche
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,radioteatros para el olvido
+Radio: radio turismo
 
 <b><i>La peste negra o bubónica fue una devastadora pandemia que asoló Europa en el siglo XIV, causando la muerte de una tercera parte de la población del continente. Su brote inicial se produjo al  norte de la India, probablemente en las estepas de Asia central, desde donde fue llevada al oeste por los ejércitos mongoles.</i></b><br />
 <br />

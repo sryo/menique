@@ -4,7 +4,7 @@ Author: flash
 Book: flash deformativo
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,opinion
+Radio: radio turismo
 
 En el año 2028 fue encontrada una botella con un mensaje adentro en las costas de Irlanda del Norte. El hombre que la encontró, la abrió con tanta mala suerte que fue descubierto por un agente secreto del gobierno encabezado por una computadora que emula los últimos deseos de Margaret Thatcher. Lo único que pudo leer antes de morir de un balazo, fue la fecha y el lugar en que fue escrito el mensaje: 10 de diciembre de 2021, Islas Maldivas.<br />
 <br />

@@ -4,7 +4,7 @@ Author: yoko mona
 Book: temporada de migrañas
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,literatura
+Radio: radio turismo
 
 ¿Qué tienen en común la mayoría de las abuelas, los antiguos trovadores y los borrachos de café?<br />
 <a name='more'></a><br />

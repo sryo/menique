@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: villa allende
-Tags: radioteatros para el olvido,radio nexo fm 93.9
+Radio: radio nexo
 
 El joven Héctor de la Vistamplia ha llegado a la mayoría de edad; y después de haber terminado sus estudios primarios, ha llegado la hora de partir hacia su destino: los estudios superiores. Pero no ha sido fácil la partida… su amiga y compañera de toda la vida, María Dolores de Concha y Velazco, intentó disuadirlo…<br />
 <br />

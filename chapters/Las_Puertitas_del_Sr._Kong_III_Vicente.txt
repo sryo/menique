@@ -4,7 +4,7 @@ Author: yoko mona
 Book: las puertitas del sr kong
 Volume: sangre de monos
 Location: villa allende
-Tags: literatura,radioteatros para el olvido,radio nexo fm 93.9
+Radio: radio nexo
 
 Desde hace 20 minutos Kong está mirando la punta de sus zapatos. <br />
 La sala de espera de este hospital público podría ser tranquilamente uno de los castigos del infierno, si es que a caso eso existe. <br />

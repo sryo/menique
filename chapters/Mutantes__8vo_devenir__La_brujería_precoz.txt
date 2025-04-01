@@ -4,7 +4,7 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: villa allende,cordoba
-Tags: radioteatros para el olvido,radio nacional,radio nexo fm 93.9
+Radio: radio nacional,radio nexo
 
 Cuenta la leyenda que algunas personas tienden a abandonar todo tipo de uso de razón y de actuar impulsivamente, sin importarles la presencia del otro y sin asumir ningún tipo de responsabilidad cuando se produce algún daño.<br />
 <br />

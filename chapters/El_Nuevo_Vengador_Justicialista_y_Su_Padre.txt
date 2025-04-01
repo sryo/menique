@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Narrador − La Gran Ciudad es el túnel por el cual las personas son llevadas, cual ganado, al picadero de carne. Es la ley que determina pautas fijas de conducta a las cuales todos deben adaptarse por igual; pero la competencia constante y encarnizada, la ambición de sólo algunos pocos y el desprecio por la vida ajena, hacen que aquellos con gran poder de influencia sobrepasen las normas mediante el uso de aquel “poderoso caballero, Don Dinero”. La Gran Ciudad impone la sumisión y el silencio a los humildes, mientras que sirve en bandeja la impunidad y la prepotencia a los poderosos.<br />
 <a name='more'></a><br />

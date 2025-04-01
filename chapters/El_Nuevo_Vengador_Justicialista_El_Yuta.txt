@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Narrador − La Gran Ciudad es un páramo donde los edificios esconden una infinidad de destinos posibles. La gran Ciudad es un prisma a través del cual las variables se divergen en incontables haces de posibilidades y pueden terminar en una novela que Borges nunca escribió. La Gran Ciudad es un lugar donde el vicio y la costumbre copulan y se reproducen sin usar anticonceptivo y engendran criaturas civilizadamente intoxicadas. Pero un joven ha heredado el deber de encontrar un punto fijo en el horizonte, salir en su yegua Maravillosa a combatir el gorilismo bajo el nombre de El Vengador Justicialista.<br />
 <a name='more'></a><br />

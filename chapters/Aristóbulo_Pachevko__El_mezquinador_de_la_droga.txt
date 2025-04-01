@@ -4,7 +4,8 @@ Author: flash
 Book: aristobulo pachevko
 Volume: monopolis
 Location: cordoba
-Tags: radioteatros para el olvido,radio universidad 580
+Radio: radio universidad 580
+Tags: radioteatros para el olvido
 
 Aristóbulo – [aspira y tose] Agh, ¿por esto pagué doscientos cincuenta pesos?<br />
 <br />

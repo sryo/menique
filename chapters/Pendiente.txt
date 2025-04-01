@@ -4,7 +4,7 @@ Author: yoko mona
 Book: temporada de migrañas
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,literatura
+Radio: radio turismo
 
 <table cellpadding="0" cellspacing="0" class="tr-caption-container" style="float: right; margin-left: 1em; text-align: right;"><tbody>
 <tr><td style="text-align: center;"><a href="http://25.media.tumblr.com/tumblr_lrz1tjjbYw1qz778zo1_500.jpg" imageanchor="1" style="clear: right; margin-bottom: 1em; margin-left: auto; margin-right: auto;"><img border="0" height="138" src="http://25.media.tumblr.com/tumblr_lrz1tjjbYw1qz778zo1_500.jpg" width="200" /></a></td></tr>

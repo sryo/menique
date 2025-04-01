@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Narrador – La Gran Ciudad es una obra de arte surrealista en la que se reflejan los sueños y las pesadillas de la Humanidad. Es una pintura en la que los temores y los deseos eróticos tienen lugar cuando uno menos lo espera. El amor y el odio se buscan y se repelen constantemente sin diálogo alguno que pueda conciliarlos y crear una nueva armonía; el odio nos sorprende mientras llevamos un ramo de flores en la mano y el amor nos embosca mientras disparamos un arma.<br />
 <br />

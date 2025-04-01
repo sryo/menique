@@ -4,7 +4,7 @@ Author: flash
 Book: flash deformativo
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,opinion
+Radio: radio turismo
 
 La Memoria es un concepto capaz de cambiar tanto de significado que bien puede valer para la izquierda como para la derecha. En este caso, tengo interés en invocarla para hablar de las elecciones de Chubut y hacer un guiso recordatorio.<br />
 <br />

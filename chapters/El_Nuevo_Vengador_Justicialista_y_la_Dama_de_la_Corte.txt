@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Narrador − La corte es el depósito de valores caballerescos pasados de moda, de ideales perdidos en el tiempo porque se demostró que eran todos una farsa y que, por más que sus portadores se llenasen la boca con ellos, no dejaban de ser, al mismo tiempo, los que más concentraban los pecados que condenaban. Así, cuanto más condenaba el cortesano la ambición, más ambición se escondía su discurso.<br />
 <br />

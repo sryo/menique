@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: villa allende
-Tags: radioteatros para el olvido,radio nexo fm 93.9
+Radio: radio nexo
 
 <b>Narrador</b> − La pampa argentina es una parcela delimitada por valores ambiguos, trasnacionales y mayoritariamente gorilas. Pocas ovejas han podido salir a pastar sin toparse con un gorila que les condimente la cena con un gusto culinario elitista. Pocas ovejas de este gran rebaño han podido comer sin tener que emitir la clásica queja descamisada:<br />
 <br />

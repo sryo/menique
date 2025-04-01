@@ -4,7 +4,7 @@ Author: monoman
 Book: el cine negro de los monos
 Volume: sangre de monos
 Location: villa allende
-Tags: radioteatros para el olvido,radio nexo fm 93.9
+Radio: radio nexo
 
 <div class="screenplay"><div class="separator" style="clear: both; text-align: center;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhn2zvmgsP2ob7L8nAtiNmisTxr3gGIMUo7xqyds54kHETdfPu0Hir42y_duGS9-VeqyGbGUiH-3Kpb9OzLwe0EdD5ZZTemQRAXQ92dFfbqUnrGLVBA74MLir8JxrcSUS3Dhp80wEn5oew1/s600/cinenegro.jpg" width="100%" /></div><br />
 <br />

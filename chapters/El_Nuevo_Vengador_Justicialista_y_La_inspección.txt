@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Narrador − La Gran Ciudad es un pozo en medio de una llanura casi eterna, un pozo donde la esférica discordia tiende a volver por más que sea expulsada. La Gran Ciudad es donde la concentración de pasiones sumamente diversas hacen que las confrontaciones sean el pan duro de cada día. La Gran Ciudad lleva consigo el estigma del conflicto, pero un hombre ha heredado el deber de montar sobre la yegua Maravillosa y salir a las calles a combatir el gorilismo bajo el nombre de El Vengador Justicialista.<br />
 <br />

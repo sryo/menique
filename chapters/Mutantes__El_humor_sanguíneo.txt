@@ -4,7 +4,7 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Cuenta la leyenda que el buen humor es un privilegio de los administradores del ocio. Sólo los privilegiados que pueden llevar un ministerio ameno de sus vidas son capaces de sonreírle hasta al más puro portador de un rostro compuesto por dos esferas y una grieta.<br />
 <br />

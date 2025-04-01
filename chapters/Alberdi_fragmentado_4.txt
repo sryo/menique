@@ -4,7 +4,7 @@ Author: monoman
 Book: alberdi fragmentado
 Volume: minuciosa ignorancia
 Location: cordoba
-Tags:
+Radio: radio nacional
 
 <p>La gitana Natacha miro al campeón y le dijo sin titubear:
 

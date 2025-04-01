@@ -4,7 +4,7 @@ Author: yoko mona
 Book: temporada de migrañas
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,literatura
+Radio: radio turismo
 
 Una leyenda dice en México que el mismo dios Quetzalcóatl, la serpiente emplumada, en tiempos ancestrales dio a los hombres en sus manos las primeras semillas de cacao. <br />
 Dicen también que para los mayas el cacao era tan preciado que se convirtió en moneda de cambio, como fuera para otras civilizaciones el oro o la plata. <br />

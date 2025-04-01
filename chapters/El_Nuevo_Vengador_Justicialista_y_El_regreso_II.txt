@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Narrador − La Gran Ciudad puede ser leída como un universo complejo hasta para las mentes más simples; sin embargo, los amantes de la diversidad, de la complicación, de la polémica y del quilombo liso y llano, ven a la Gran Ciudad como un “multiverso”. Un amplio espectro de universos existentes, posibles e inimaginables se abre ante los ojos de las mentes abiertas al punto de causar vértigo, miedo y terror. La insignificancia del individuo ante las magnitudes incomprensibles lo hace descubrir sólo dos destinos posibles: subirse a la gran Fragata y ser un grumete, o navegar en una cáscara de nuez y ser el capitán.<br />
 <br />

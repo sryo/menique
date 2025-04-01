@@ -4,7 +4,7 @@ Author: flash
 Book: flash deformativo
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,opinion
+Radio: radio turismo
 
 <i>“Estimado ciudadano de la Provincia de córdoba. La Policía vela por su seguridad. Para esto, han sido instaladas cámaras filmadoras en puntos estratégicos de las ciudades, pueblos y comunas de la región. Las imágenes serán transmitidas en tiempo real a nuestra base central de datos, donde nuestro personal capacitado las analizará para facilitar la prevención del delito y acelerar la resolución de conflictos”.</i><br />
 <br />

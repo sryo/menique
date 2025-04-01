@@ -4,7 +4,7 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: villa allende,cordoba
-Tags: radioteatros para el olvido,radio nacional,radio nexo fm 93.9
+Radio: radio nacional,radio nexo
 
 Narrador − Cuenta la leyenda que, cuando la Gran Ciudad encontró su calma, un rastro del Apocalipsis siguió recorriendo las calles. Las personas siguieron trabajando como si nada hubiese ocurrido, como si el orden jamás hubiese sido alterado. Todos llevaban en su memoria cada uno de los sucesos por los que el pueblo tuvo que pasar, pero los burócratas siguieron sellando papeles innecesarios, los panaderos siguieron creando el desayuno de todos, los corredores de bolsa siguieron especulando y los cocineros siguieron y seguirán dándoles de comer a los que aún no se animan a prender una hornalla.<br />
 <br />

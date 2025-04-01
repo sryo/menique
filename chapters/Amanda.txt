@@ -4,7 +4,7 @@ Author: cronopio
 Book: manual de monstruos domesticos
 Volume: sangre de monos
 Location: villa allende
-Tags:
+Radio: radio nexo
 
 
 <p>El primer amor de Amanda fue el partero que le sacudió un cachetazo en la nalga izquierda.

@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,radioteatros para el olvido
+Radio: radio turismo
 
 La pampa argentina es un territorio intransitable. Excepto algunos pocos afortunados, todo visitante distraído ha sufrido algún ataque de parte de bigotitos rectangulares, arios improperios y esporádicos comentarios de tintes neoliberales. Pero un hombre ha decidido tomar la sartén por el mango y cocinar una sociedad más igualitaria, más tolerante y más justicialista. Enmascarado con los colores de sus ideales, El  Vengador Justicialista galopa con la Yegua Maravillosa entre sus piernas y sale a combatir el injusticialismo.<br />
 <br />

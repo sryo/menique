@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Narrador − La Gran Ciudad es la amputación eficaz de la vida nómada. La Gran Ciudad es la represión absoluta de otras formas de vida posibles; es un parásito que exprime la fuerza vital de sus habitantes obligándolos a acostumbrarse a un sistema único, una mitología inmodificable, destinada a sostener la explotación del hombre por el hombre. La Gran Ciudad, con su gente acostumbrada a esta forma de vida, a esta mitología, disfraza de novedad cada capítulo siguiente del mismo culebrón.<br />
 <br />

@@ -4,7 +4,7 @@ Author: flash
 Book: flash deformativo
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,opinion
+Radio: radio turismo
 
 En ocasiones, leer el diario La Nación puede ser extremadamente nocivo para la salud. No hace falta ser un analista de discursos para notar la tendencia de los titulares.<br />
 <br />

@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,radioteatros para el olvido
+Radio: radio turismo
 
 La pampa argentina es una tierra peligrosa. Pocos pueden ufanarse de haberla cruzado y seguir con vida, intactos y con su dinero asegurado en el banco.<br />
 La desigualdad, la discriminación y las ideologías de derecha abundan en todos los parajes; las minorías temen andar por los caminos y ser señalados con el desdén propio de la oligarquía fachistoide y el gorilismo.<br />

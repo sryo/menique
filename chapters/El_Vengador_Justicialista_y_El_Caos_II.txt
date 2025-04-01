@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: villa allende
-Tags: radioteatros para el olvido,radio nexo fm 93.9
+Radio: radio nexo
 
 Héctor − La pampa argentina es un suelo contaminado, apestado, arruinado… perdido… uno planta soja y mueren cien intoxicados… otro construye un campo de golf y miles se quedan sin agua… alguien intenta evitar el fin… y todos conspiran para que el pesimismo se transforme en profecía…<br />
 <br />

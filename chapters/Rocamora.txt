@@ -4,7 +4,7 @@ Author: yoko mona
 Book: temporada de migrañas
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,literatura
+Radio: radio turismo
 
 “Pinta tu aldea y pintarás el mundo” <br />
 la frase esconde tanto de verdad como de mentira: Es cierto que en lo particular, en lo local, en esa aldea, se esconden las mismas cosas esenciales que en otras ciudades y aldeas, esas marcas universales, cosas que tenemos en común con esos otros, aunque nuestro color, idioma, historia y forma de vestir sean distintos.  <br />

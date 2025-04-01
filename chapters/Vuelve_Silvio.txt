@@ -4,7 +4,7 @@ Author: monoman
 Book: chubut santa rosa y despues
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Lo malo de tener una conversación frente al cementerio es el riesgo de caer invariablemente en el tema de los fantasmas. Y si esa conversación es con Natacha, hay póker de peligros: Porque una adivina, una profeta, un oráculo, ve todo al mismo tiempo. Es decir, el futuro y el pasado; lo que piensan los vivos, pero sobre todo lo que piensan los muertos…Porque los muertos, pobrecitos, no hacen otra cosa que pensar. No les queda otra.<br />
 <br />

@@ -4,7 +4,7 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: villa allende,cordoba
-Tags: radioteatros para el olvido,radio nacional,radio nexo fm 93.9
+Radio: radio nacional,radio nexo
 
 Cuenta la leyenda que, cuando empezó a correr el rumor de que aumentaría el precio del boleto del colectivo, los usuarios afectados empezaron a fraguar toda clase de manifestaciones en contra de tal atentado contra el bolsillo del pueblo. Cadenas de mails, artículos periodísticos independientes, investigaciones sobre los números de las empresas y hasta un paro de usuarios. De todos, el que menos resultado tuvo fue el paro de usuarios; pero un joven tuvo éxito… el día en que mutó.<br />
 <br />

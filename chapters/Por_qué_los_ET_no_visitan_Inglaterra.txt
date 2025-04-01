@@ -4,7 +4,7 @@ Author: flash
 Book: flash deformativo
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,opinion
+Radio: radio turismo
 
 El mundo, observado desde el espacio, ofrece un paisaje tan pacífico que cualquier visita extraterrestre estaría encantada. Quizás, en algún lugar del universo, ofrecen paquetes turísticos para alucinar con las aguas, las montañas y los prados de nuestra tierra. Pero, al igual que acá, cuando uno compra un paquete turístico, nunca lo van a llevar a ver los sectores empobrecidos y los rastros de los errores cometidos por una comunidad.<br />
 <br />

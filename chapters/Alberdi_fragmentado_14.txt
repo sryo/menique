@@ -4,7 +4,7 @@ Author: monoman
 Book: alberdi fragmentado
 Volume: minuciosa ignorancia
 Location: cordoba
-Tags:
+Radio: radio nacional
 
 <p>Es muy difícil para la gitana Natacha tener amigos. Ya se sabe: Un aire de autoridad sobrenatural invade las conversaciones triviales y hasta los silencios más necesarios son interpretados como trampas mortales.
 

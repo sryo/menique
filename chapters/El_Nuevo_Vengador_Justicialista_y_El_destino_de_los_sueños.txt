@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Narrador − La Gran Ciudad es el verde paisaje del Infierno, el último Bondi a Finisterre, el lado oscuro de la Luna. La Gran Ciudad es el cálido aliento del recién nacido, el grito de batalla del que aún no lo ha perdido todo, el último y frío suspiro del que se va de esta vida. La Gran Ciudad es el estribillo de una canción pop que aparenta un sinsentido mientras esconde en sus entrañas un significado revolucionario.<br />
 Y un pueblo ha destruido el pasado y pretende seguir adelante, persiguiendo el anhelo infinito, la utopía,  el destino de los sueños, subidos en el alma de la yegua Maravillosa, combatiendo el gorilismo bajo el nombre del Vengador Justicialista.<br />

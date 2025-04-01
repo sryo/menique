@@ -4,7 +4,7 @@ Author: flash
 Book: flash deformativo
 Volume: monopolis
 Location: cordoba
-Tags: opinion,radio nacional,radio universidad 580
+Radio: radio turismo,radio nacional,radio universidad 580
 
 Llegué al bar donde suelo sentarme a escribir y el barman me pregunta por qué mi mano estaba teñida de negro.<br />
 <br />

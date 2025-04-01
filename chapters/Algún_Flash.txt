@@ -4,7 +4,7 @@ Author: flash
 Book: flash deformativo
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,opinion
+Radio: radio turismo
 
 <blockquote><table cellpadding="0" cellspacing="0" class="tr-caption-container" style="float: right; margin-left: 1em; text-align: right;"><tbody>
 <tr><td style="text-align: center;"><a href="http://a4.sphotos.ak.fbcdn.net/photos-ak-snc1/v391/167/86/1051713444/n1051713444_230455_5316.jpg" imageanchor="1" style="clear: right; margin-bottom: 1em; margin-left: auto; margin-right: auto;"><img border="0" height="240" src="http://a4.sphotos.ak.fbcdn.net/photos-ak-snc1/v391/167/86/1051713444/n1051713444_230455_5316.jpg" width="320" /></a></td></tr>

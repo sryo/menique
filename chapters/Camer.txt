@@ -4,7 +4,7 @@ Author: flash
 Book: flash deformativo
 Volume: monopolis
 Location: cordoba
-Tags: opinion,radio universidad 580
+Radio: radio universidad 580
 
 Ayer me senté en un bar ricotero a tomar cerveza con los compañeros del laburo. Era necesario porque teníamos la cabeza llena y necesitábamos separar la corteza cerebral de la realidad.<br />
 <br />

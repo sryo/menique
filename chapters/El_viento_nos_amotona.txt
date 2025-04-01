@@ -4,7 +4,7 @@ Author: yoko mona
 Book: temporada de migrañas
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,literatura
+Radio: radio turismo
 
 Un hombre es un monstruo raro, mitad árbol mitad pájaro: tiene alas para volar lejos del nido, crecer hacia arriba, en todas las direcciones, raíces para mantenerse firme, nutrirse de la tierra, de todo lo que estuvo en ella antes que él.<br />
 <br />

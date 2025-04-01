@@ -4,7 +4,7 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: villa allende,cordoba
-Tags: radioteatros para el olvido,radio nacional,radio nexo fm 93.9
+Radio: radio nacional,radio nexo
 
 Cuenta la leyenda que este mundo está plagado de gente que precisa ser rescatada, que pide a gritos una deidad que la quite de su contexto de opresión y malestar. Sus cuerpos y sus almas se convierten en una especie de Rapunzel psicológica, en una soga metafísica que tanto sirve para la huida como para la horca.<br />
 <br />

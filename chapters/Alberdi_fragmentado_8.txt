@@ -4,7 +4,7 @@ Author: monoman
 Book: alberdi fragmentado
 Volume: minuciosa ignorancia
 Location: cordoba
-Tags:
+Radio: radio nacional
 
 <p>La gitana Natacha siempre supo que el fin de semana en las montañas era una escusa para escapar y no volver.
 

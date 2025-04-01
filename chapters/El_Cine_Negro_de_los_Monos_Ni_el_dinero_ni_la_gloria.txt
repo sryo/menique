@@ -4,7 +4,7 @@ Author: monoman
 Book: el cine negro de los monos
 Volume: sangre de monos
 Location: villa allende,cordoba
-Tags: radioteatros para el olvido,radio nacional,radio nexo fm 93.9
+Radio: radio nacional,radio nexo
 
 Buenas noches, radioescuchas. La saga del detective Sam Valent es una de las obras clásicas del cine barrial cordobés. Fue desarrollada mayormente en la década del 80 por uno de los directores locales más misteriosos y extravagantes que hayan filmado en la provincia.<br />
 <br />

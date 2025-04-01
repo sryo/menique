@@ -4,7 +4,7 @@ Author: flash
 Book: flash deformativo
 Volume: monopolis
 Location: cordoba
-Tags: opinion,radio universidad 580
+Radio: radio universidad 580
 
 Después de mucho tiempo de haberme pasado la vida encerrado entre las cuatro paredes y el trabajo, pude darme el lujo de asistir a mi viejo bar... emocionados, los mozos se peleaban por servirme la birra del retorno... sólo por verme de vuelta, porque nunca me sobró un centavo para una propina.<br />
 <br />

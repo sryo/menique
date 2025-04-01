@@ -2,7 +2,9 @@ Title: Buscando a Sumo
 Published: 2012-10-17T22:11:00.000-03:00
 Author: monoman
 Location: cordoba
-Tags: radioteatros para el olvido,mama rock,radio nacional
+Volume: mama rock
+Radio: radio nacional
+Tags: radioteatros para el olvido
 
 <i>En 1983, el país se encontraba en estado de efervescencia por la expectativa que generaba retirada de los militares del poder y el inicio de una nueva etapa democrática. El rock nacional vivía sus días más gloriosos en cuanto a convocatoria y masividad.</i><br />
 <br />

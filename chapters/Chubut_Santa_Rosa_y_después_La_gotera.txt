@@ -4,7 +4,8 @@ Author: monoman
 Book: chubut santa rosa y despues
 Volume: sangre de monos
 Location: villa allende,cordoba
-Tags: radioteatros para el olvido,radio nacional,radio nexo fm 93.9
+Radio: radio nacional,radio nexo
+Tags: radioteatros para el olvido
 
 <i>Dm                         Am<br />
 Ya nunca encontrare aquella esquina<br />

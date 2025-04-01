@@ -4,7 +4,7 @@ Author: yoko mona
 Book: las puertitas del sr kong
 Volume: sangre de monos
 Location: villa allende
-Tags: literatura,radioteatros para el olvido,radio nexo fm 93.9
+Radio: radio nexo
 
 Son las dos de la mañana y recién a esta altura reina el silencio en la casa de Kong.<br />
 Los vecinos de la casa de al lado viven eso que ellos llaman “una pasión tormentosa”: Se gritan, se tiran con objetos varios, se celan por cuanta cosa les sea posible para declarar luego a los gritos que les da igual si el otro existe o no. <br />

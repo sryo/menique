@@ -4,7 +4,7 @@ Author: yoko mona
 Book: temporada de migrañas
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,literatura
+Radio: radio turismo
 
 <i>“Recuerdo un poema chino, anónimo, escrito hace 3500 años: Un pastor cuida el rebaño, con un frío intenso, lejos de su mujer que está en el hogar y la imagina al lado del fuego, cosiendo; el último verso dice: Él escucha el ruido de sus tijeras bajo la noche profunda. El hecho de que ese poema se haya escrito hace tantos años y todavía nos emocione, quiere decir que hay un tejido humano imposible de romper, una capacidad de belleza imposible de aniquilar. Después, cada cual con sus dolores se las arregla como puede” </i><br />
 <br />

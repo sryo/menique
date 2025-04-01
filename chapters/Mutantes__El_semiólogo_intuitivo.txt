@@ -4,7 +4,7 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Cuenta la leyenda que la lectura de los signos es una ciencia que requiere que la concentración y el conocimiento vayan a la par. Sólo algunos pocos seres humanos son capaces de relacionar un simple signo con una multiplicidad de posibilidades que determinen una realidad en el pasado, en el presente o en el futuro. Muchos de ellos se dedicaron a la adivinación o al fraude y lucraron con ello...<br />
 <br />

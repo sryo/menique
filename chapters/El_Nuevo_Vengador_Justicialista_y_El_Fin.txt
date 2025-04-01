@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Narrador − La Gran Ciudad es un canto de mariachis con letras cursis y romanticotas, bajo el balcón de una doncella, a las seis de la mañana. Algunas personas adoran el gesto, otras lo aceptan como tal pero declinan solemnemente la oferta, y otras le arrojarían una maceta de barro a la cabeza, causándole una importante fractura expuesta de cráneo. La Gran Ciudad es un mimo en pleno centro. Al pasar, todas las personas  miran hacia él, lo admiran gesticulando en silencio la ya trillada escena del encierro, pero más de una se vio tentada de adornarle el pálido rostro a golpes.<br />
 <br />

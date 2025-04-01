@@ -4,7 +4,7 @@ Author: flash
 Book: flash deformativo
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,opinion
+Radio: radio turismo
 
 Sentado frente al Boulevard San Juan, en Córdoba, charlando con un amigo, vi pasar a un pibe que llevaba una gorra en la cabeza. Iba caminando con la máxima paz del mundo.<br />
 <br />

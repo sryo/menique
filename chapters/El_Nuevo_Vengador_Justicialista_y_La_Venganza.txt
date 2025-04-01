@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Narrador − La Gran Ciudad es un territorio lúgubre y tenebroso, donde los peores crímenes se cometen con total impunidad. La constante niebla de incertidumbre apenas permite divisar las puntas de los propios pies. Distinguir un rostro se convierte en una tarea casi imposible. La Gran Ciudad iguala a ciegos y a videntes a tal punto que Borges terminó inspeccionando pollos. Pero un joven ha recibido el deber de arreglar con sus manos el destino de la Gran Ciudad, y con los ojos vendados, intuyendo el devenir de las cosas, montado sobre su yegua Maravillosa, recorrer las calles y combatir el gorilismo bajo el nombre de El Vengador Justicialista.<br />
 <a name='more'></a><br />

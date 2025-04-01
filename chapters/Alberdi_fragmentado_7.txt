@@ -4,7 +4,7 @@ Author: monoman
 Book: alberdi fragmentado
 Volume: minuciosa ignorancia
 Location: cordoba
-Tags:
+Radio: radio nacional
 
 <p>El 5 de Julio de 1957, Ivan Vaughan soño que paseaba por las calles de Liverpool cerca de los galpones donde fundían hierro y depositaban sal.
 

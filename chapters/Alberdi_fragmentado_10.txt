@@ -4,7 +4,7 @@ Author: monoman
 Book: alberdi fragmentado
 Volume: minuciosa ignorancia
 Location: cordoba
-Tags:
+Radio: radio nacional
 
 <p>En Agosto de 1979 Cynthia MacKern volvía de ver a su hijo en la ciudad de Nono.
 <p>Mientras se acomodaba en el colectivo y ordenaba unos papeles planeando su inminente viaje a Londres, una gitana se le sentó al lado sin que se diera cuenta.

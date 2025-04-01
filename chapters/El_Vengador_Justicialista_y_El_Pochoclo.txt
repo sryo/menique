@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: villa allende
-Tags: radioteatros para el olvido,radio nexo fm 93.9
+Radio: radio nexo
 
 Narrador − La pampa argentina es un suelo histérico, inestable y de un temperamento difícil de controlar. La pampa argentina reacciona adversamente ante una caricia y amigablemente ante una trompada. Sólo algunos pocos conservan algunas vaquitas y a los demás les venden penas. Pero un hombre ha conseguido montarse a una yegua Maravillosa y con ella salir a combatir el injusticialismo bajo el nombre de… El Vengador Justicialista.<br />
 <a name='more'></a><br />

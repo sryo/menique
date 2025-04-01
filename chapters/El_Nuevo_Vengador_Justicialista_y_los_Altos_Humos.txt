@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Narrador − La Corte es la consumación del poder, un lugar en el que cada paso es medido con la vara del prejuicio, el refinamiento y los diamantes derramados en gesto de falsa filantropía. La Corte es la bolsa de valores en que se cotizan hasta las flatulencias. Es el nodo estratégico para llevar adelante la más meticulosa hipocresía y ascender socialmente a través de contactos, organizaciones no gubernamentales y tongos varios.<br />
 <a name='more'></a><br />

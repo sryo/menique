@@ -4,7 +4,7 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Cuenta la leyenda que las estructuras pueden llegar a ser tan inflexibles que el más ínfimo movimiento en el suelo produce una reacción en cadena que tiende a destruirlos. Sólo el aleteo de una libélula en Japón puede producir un colapso en la bolsa de Wall Street. Esto significa que la multiplicidad de variables hace que todo sea, en cierta medida, impredecible.<br />
 <br />

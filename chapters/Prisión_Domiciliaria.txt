@@ -4,7 +4,7 @@ Author: flash
 Book: flash deformativo
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,opinion
+Radio: radio turismo
 
 Hace un par de semanas, tuvimos la oportunidad de hablar con Dante Leguizamón sobre varios asuntos del periodismo, entre los cuales estaba el tema de la inseguridad. Según el artículo por Dante, Argentina tiene uno de los índices más bajos de criminalidad en Latinoamérica y, paradójicamente, en la población reina una sensación de inseguridad galopante. En esta incoherencia entre los hechos y la percepción de la población, el rol de los medios es clave.<br />
 <table cellpadding="0" cellspacing="0" class="tr-caption-container" style="float: right; margin-left: 1em; text-align: right;"><tbody>

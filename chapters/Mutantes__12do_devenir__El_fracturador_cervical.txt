@@ -4,7 +4,7 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Cuenta la leyenda que la atención es un bien preciado que, en algunas personas, privilegiadas o no, budistas o musulmanas, humanos o delfines telépatas, puede prolongarse durante mucho tiempo. En algunos rincones de la Gran Ciudad, existen personas capaces de sostener la mirada fija durante tanto tiempo que harían pestañear a la Gioconda.<br />
 <br />

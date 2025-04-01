@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Narrador ─ La Corte es un canal de televisión en el cual el show es siempre el mismo. Siempre los mismos gestos, las mismas palabras, los mismos nombres, pero nunca las mismas intenciones. La Corte tiene en sus entrañas el destino de la Humanidad, y todos sabemos por dónde saldrá.<br />
 <br />

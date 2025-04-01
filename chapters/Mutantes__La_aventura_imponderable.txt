@@ -4,7 +4,7 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Cuenta la leyenda que detrás de las fábulas y las novelas, hay un hecho real que las motiva. No hay escritura sin respaldo en lo sensible. Cada ser humano es esclavo de sus dichos, y no hay palabra libre de los fantasmas de su esclavo.<br />
 <br />

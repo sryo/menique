@@ -4,7 +4,7 @@ Author: flash
 Book: flash deformativo
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,opinion
+Radio: radio turismo
 
 No hace mucho se dieron a conocer dos casos de muerte por desnutrición en Misiones. Los niños afectados estaban inscriptos en el plan Hambre Cero que está llevando a cabo el gobierno de la provincia de las Mega Cataratas del Iguazú. El gobernador Maurice Closs dijo: “obviamente, algunos de ellos se nos van a morir, porque la mortalidad infantil es un problema”.<br />
 <br />

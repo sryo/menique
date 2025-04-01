@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: villa allende
-Tags: radioteatros para el olvido,radio nexo fm 93.9
+Radio: radio nexo
 
 Narrador − La pampa argentina es un suelo de aventuras inigualables y peligrosas. Pocas personas pueden enorgullecerse de poder entrar en un callejón oscuro y salir con sus ideales intactos. Sólo algunos pocos privilegiados pueden escuchar música sin ver sus oídos contaminados de pop gorila y peligrosamente insalubre. Sólo algunos contados valientes han podido celebrar un asado sin que algún ser que nunca agarró una pala, le eche más brasa y lo arrebate, o se ponga a salar los chorizos… Pero un hombre, con voluntad de hierro, ha decidido poner las manos en el fuego por un proyecto de gobierno, y vistiendo los colores de sus ideales, montó a su yegua Maravillosa y salió a combatir el injusticialismo.<br />
 <a name='more'></a><br />

@@ -3,8 +3,7 @@ Published: 2012-06-18T13:15:00.000-03:00
 Author: mateoso
 Book: cosas que pasaron
 Volume: abortos de monos
-Location: villa allende
-Tags: radio nexo fm 93.9
+
 
 <table class="grilla" style="font-size: 12px;"><tbody>
 <tr valign="top"><td width="50%"><b><span style="font-size: large;">Instaló TV, cocina y cama en el nicho de su esposo</span></b><br />

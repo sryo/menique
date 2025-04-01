@@ -4,7 +4,7 @@ Author: flash
 Book: flash deformativo
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,opinion
+Radio: radio turismo
 
 <span style="background-color: transparent;">La BBC de Londres, esta semana, fue el polo Norte de las brújulas del puterío religioso. Resulta que quisieron hacerse los progres y dijeron que no iban a usar más los términos Antes de Cristo y Después de Cristo; a cambio, dirían Era Común y Antes de la Era Común. Podrían haber sido más prácticos y hacer uso del “Nuestra Era”, que ya está acuñado como un buen reemplazo, pero cada uno es libre de hacer lo que se le canten las palabras.</span><br />
 <span style="background-color: transparent;"><br /></span><br />

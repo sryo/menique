@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Narrador − La Gran Ciudad es el semillero de todos los temores, de todos los peligros y de todas las desgracias. La Gran Ciudad es un suelo infértil en que sólo algunos pocos privilegiados han conseguido plantar soja, pero ahora están en el juzgado por tener mala puntería a la hora de fumigar. Sólo algunos pocos pueden andar por las calles sin miedo de cruzarse con un episodio de corrupción, de enriquecimiento ilícito o de liso y llano gorilismo. Pero un hombre ha heredado el deber de montar sobre la yegua maravillosa y salir a las calles a combatir el injusticialismo bajo el nombre del Vengador Justicialista.<br />
 <a name='more'></a><br />

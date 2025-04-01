@@ -4,7 +4,7 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: villa allende,cordoba
-Tags: radioteatros para el olvido,radio nacional,radio nexo fm 93.9
+Radio: radio nacional,radio nexo
 
 Cuenta la leyenda que el altruismo existe. Que entre los granos de arena y las piedras más ríspidas, la esperanza se esconde, esperando que no le cobren impuestos. <br />
 Cuando hiere el destino, aparecen anónimos los héroes sin pedir nada a cambio.<br />

@@ -4,7 +4,7 @@ Author: monoman
 Book: chubut santa rosa y despues
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,radio nacional
+Radio: radio nacional
 
 Hará unos cuantos años, en la esquina de Santa Rosa y Chubut, discutí con el escritor de Alberdi acerca de la propiedad del arte. Por supuesto él no sospechaba quién era yo, pero defendía con obstinación,  el insensato, el triunfo final de la palabra anónima, y era del todo ajeno al concepto del plagio, para él sin duda menos literario que comercial.<br />
 <br />

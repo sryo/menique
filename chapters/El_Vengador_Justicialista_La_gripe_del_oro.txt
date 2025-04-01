@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,radioteatros para el olvido
+Radio: radio turismo
 
 La pampa argentina es un territorio agreste y hostil para el caminante desprevenido. De cualquier rincón, cualquiera que no conozca cada paso, cada árbol, cada zanja, puede ser sorprendido por maleantes, gorilas, vendepatrias y Adolfos Ordóñez.<br />
 <br />

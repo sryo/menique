@@ -4,7 +4,7 @@ Author: yoko mona
 Book: temporada de migrañas
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,literatura
+Radio: radio turismo
 
 Quiero hablarles del libro<i><b> La vida que se conoce</b></i> de Ceferino Lisboa.<br />
 <br />

@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: villa allende
-Tags: radio nexo fm 93.9
+Radio: radio nexo
 
 <table class="grilla" style="font-size: 12px;"><tbody>
 <tr valign="top"><td width="50%"><b><span style="font-size: large;">Hijo de Messi será español y tendrá nombre brasileño</span></b><br />

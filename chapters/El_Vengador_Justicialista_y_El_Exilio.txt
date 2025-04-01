@@ -4,7 +4,7 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: villa allende
-Tags: radioteatros para el olvido,radio nexo fm 93.9
+Radio: radio nexo
 
 Narrador − La pampa argentina es un territorio sembrado de discordia e ideas conservadoras que pretenden prohibir la existencia de toda actividad que pueda terminar en un escándalo… la pampa argentina ruega por un héroe que reestablezca el orden y el justicialismo… pero la pampa argentina no pudo entender que los héroes… también tienen sentimientos…<br />
 <a name='more'></a><br />

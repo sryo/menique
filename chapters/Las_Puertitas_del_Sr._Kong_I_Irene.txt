@@ -4,7 +4,7 @@ Author: yoko mona
 Book: las puertitas del sr kong
 Volume: sangre de monos
 Location: villa allende
-Tags: literatura,radioteatros para el olvido,radio nexo fm 93.9
+Radio: radio nexo
 
 Cae la tarde en este lunes de Córdoba. Un lunes como cualquier otro, monótono sin remedio, aunque para algunos empleados del callcenter de Bs As y Bv San Juan la semana está terminando y el franco llegará, inoportuno, mañana martes.<br />
 Entre ellos se encuentra un hombre insignificante, el Sr. Kong. <br />

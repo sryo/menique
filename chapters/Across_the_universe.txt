@@ -4,7 +4,7 @@ Author: yoko mona
 Book: temporada de migrañas
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,literatura
+Radio: radio turismo
 
 <embed flashvars="audioUrl=http://dl.dropbox.com/u/8584145/Pedro%20Aznar%20-%20Across%20the%20Universe.mp3" height="27" quality="best" src="http://www.google.com/reader/ui/3523697345-audio-player.swf" type="application/x-shockwave-flash" width="400"></embed><br />
 <br />
