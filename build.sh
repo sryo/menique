@@ -3,7 +3,7 @@
 shopt -s extglob
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Meñique Generator (Optimized: reduce external commands, with newline fix)
+# Meñique Generator (with echo logging and improved chapter parsing)
 #
 # Usage: bash build.sh
 # ─────────────────────────────────────────────────────────────────────────────
@@ -23,7 +23,7 @@ BOOK_IMG_EXT="png"
 # Utility functions
 ##############################################################################
 
-# Trim leading and trailing whitespace using Bash parameter expansion.
+# Trim leading and trailing whitespace.
 trim_spaces() {
   var="$1"
   var="${var#"${var%%[![:space:]]*}"}"  # remove leading
@@ -31,18 +31,18 @@ trim_spaces() {
   echo "$var"
 }
 
-# Convert string to a slug using external commands (fallback for systems without ${var,,}).
+# Convert string to a slug (lowercase, replace non-alphanumerics with hyphen, etc.)
 slugify() {
   echo "$1" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g; s/-\+/-/g; s/^-//; s/-$//'
 }
 
-# Convert the original .txt filename into a safe .html filename.
+# Convert a .txt filename into a safe .html filename.
 sanitize_filename() {
   base="${1%.*}"  # Remove extension
   echo "$(slugify "$base").html"
 }
 
-# Split a comma-separated string using IFS and trim each token.
+# Split a comma-separated string and trim each token.
 split_by_commas() {
   line="$1"
   oldIFS="$IFS"
@@ -72,7 +72,7 @@ join_with_y() {
 }
 
 ##############################################################################
-# Book storing
+# Book storing functions
 ##############################################################################
 
 find_book_index_by_name() {
@@ -121,7 +121,7 @@ sort_book_chapters() {
   done
 }
 
-# For home-page icons => newest chapter
+# For home-page icons: get the newest chapter's slug for a book.
 get_newest_chapter_filename() {
   bookName="$1"
   idx="$(find_book_index_by_name "$bookName")"
@@ -164,11 +164,27 @@ declare -a BOOK_NAMES
 declare -a BOOK_CHAPTER_LIST
 
 ##############################################################################
-# Parsing .txt (single pass)
+# Parsing chapters (split header and content)
 ##############################################################################
 
 parse_chapter() {
   file="$1"
+  header=""
+  content=""
+  readingHeader=1
+  while IFS= read -r line; do
+      trimmed="$(trim_spaces "$line")"
+      if [ "$readingHeader" -eq 1 ] && [ -z "$trimmed" ]; then      readingHeader=0
+      continue
+    fi
+    if [ "$readingHeader" -eq 1 ]; then
+      header="${header}${line}"$'\n'
+    else
+      content="${content}${line}"$'\n'
+    fi
+  done < "$file"
+
+  # Process header lines
   cTitle="Untitled"
   cAuthors=""
   cBooks=""
@@ -176,44 +192,34 @@ parse_chapter() {
   cLocations=""
   cDate="1900-01-01"
   cClass=""
-  htmlBuffer=""
-  headerFinished=0
 
-  while IFS= read -r line; do
-    if [ $headerFinished -eq 0 ]; then
-      if [ -z "$line" ]; then
-        headerFinished=1
-        continue
-      fi
-      case "$line" in
-        Title:*)
-          cTitle="$(trim_spaces "${line#Title:}")"
-          ;;
-        Author:*)
-          cAuthors="$(trim_spaces "${line#Author:}")"
-          ;;
-        Book:*)
-          cBooks="$(trim_spaces "${line#Book:}")"
-          ;;
-        Radio:*)
-          cRadios="$(trim_spaces "${line#Radio:}")"
-          ;;
-        Location:*)
-          cLocations="$(trim_spaces "${line#Location:}")"
-          ;;
-        Published:*)
-          cDate="$(trim_spaces "${line#Published:}")"
-          cDate="${cDate%%T*}"
-          [ -z "$cDate" ] && cDate="1900-01-01"
-          ;;
-        BodyClass:*)
-          cClass="$(trim_spaces "${line#BodyClass:}")"
-          ;;
-      esac
-    else
-      htmlBuffer="${htmlBuffer}${line}"$'\n'
-    fi
-  done < "$file"
+  while IFS= read -r hline; do
+    case "$hline" in
+      Title:*)
+         cTitle="$(trim_spaces "${hline#Title:}")"
+         ;;
+      Author:*)
+         cAuthors="$(trim_spaces "${hline#Author:}")"
+         ;;
+      Book:*)
+         cBooks="$(trim_spaces "${hline#Book:}")"
+         ;;
+      Radio:*)
+         cRadios="$(trim_spaces "${hline#Radio:}")"
+         ;;
+      Location:*)
+         cLocations="$(trim_spaces "${hline#Location:}")"
+         ;;
+      Published:*)
+         cDate="$(trim_spaces "${hline#Published:}")"
+         cDate="${cDate%%T*}"
+         [ -z "$cDate" ] && cDate="1900-01-01"
+         ;;
+      BodyClass:*)
+         cClass="$(trim_spaces "${hline#BodyClass:}")"
+         ;;
+    esac
+  done <<< "$header"
 
   baseName="$(basename "$file")"
   safeHtml="$(sanitize_filename "$baseName")"
@@ -227,8 +233,9 @@ parse_chapter() {
   CHAPTER_RAW_LOCATIONS[$CHAPTER_COUNT]="$cLocations"
   CHAPTER_DATES[$CHAPTER_COUNT]="$cDate"
   CHAPTER_BODYCLASS[$CHAPTER_COUNT]="$cClass"
-  CHAPTER_CONTENTS[$CHAPTER_COUNT]="$htmlBuffer"
+  CHAPTER_CONTENTS[$CHAPTER_COUNT]="$content"
 
+  echo "INFO: Parsed chapter '$cTitle' from file '$baseName'"
   CHAPTER_COUNT=$((CHAPTER_COUNT+1))
 }
 
@@ -242,7 +249,7 @@ for f in "${allTxt[@]}"; do
 done
 
 if [ $CHAPTER_COUNT -eq 0 ]; then
-  echo "No .txt chapters found in '$CHAPTERS_DIR'."
+  echo "ERROR: No .txt chapters found in '$CHAPTERS_DIR'."
 fi
 
 ##############################################################################
@@ -251,6 +258,7 @@ fi
 
 i=0
 while [ $i -lt $CHAPTER_COUNT ]; do
+  # Process Authors
   authorLine="${CHAPTER_RAW_AUTHORS[$i]}"
   while read -r oneAuthor; do
     [ -z "$oneAuthor" ] && continue
@@ -268,21 +276,25 @@ while [ $i -lt $CHAPTER_COUNT ]; do
     fi
   done < <(split_by_commas "$authorLine")
 
+  # Process Books: only add nonempty values
   bookLine="${CHAPTER_RAW_BOOKS[$i]}"
   booksArray=()
   while IFS= read -r oneBook; do
-    booksArray+=("$oneBook")
+    if [ -n "$oneBook" ]; then
+      booksArray+=("$oneBook")
+    fi
   done < <(split_by_commas "$bookLine")
 
   if [ ${#booksArray[@]} -gt 0 ]; then
     CHAPTER_PRIMARY_BOOK[$i]="${booksArray[0]}"
   else
-    CHAPTER_PRIMARY_BOOK[$i]="Misc"
-    booksArray=("Misc")
+    CHAPTER_PRIMARY_BOOK[$i]=""
   fi
 
   for bName in "${booksArray[@]}"; do
-    set_book_chapters "$bName" "$i"
+    if [ -n "$bName" ]; then
+      set_book_chapters "$bName" "$i"
+    fi
   done
 
   dt="${CHAPTER_DATES[$i]}"
@@ -303,6 +315,7 @@ while [ $i -lt $CHAPTER_COUNT ]; do
   i=$((i+1))
 done
 
+# Sort UNIQUE_YEARS ascending
 i=0
 while [ $i -lt ${#UNIQUE_YEARS[@]} ]; do
   j=$((i+1))
@@ -327,7 +340,7 @@ TEMPLATE_HOME="$TEMPLATES_DIR/home.html"
 OUTPUT_HOME="$BUILD_DIR/index.html"
 
 if [ ! -f "$TEMPLATE_HOME" ]; then
-  echo "Error: $TEMPLATE_HOME not found."
+  echo "ERROR: $TEMPLATE_HOME not found."
   exit 1
 fi
 
@@ -350,6 +363,10 @@ b=0
 cntBooks=${#BOOK_NAMES[@]}
 while [ $b -lt $cntBooks ]; do
   bookName="${BOOK_NAMES[$b]}"
+  if [ -z "$bookName" ]; then
+    b=$((b+1))
+    continue
+  fi
   safeBook="$(slugify "$bookName")"
   newestSlug="$(get_newest_chapter_filename "$bookName")"
   [ -z "$newestSlug" ] && newestSlug="#"
@@ -365,7 +382,8 @@ homeHTML="${homeHTML/<!--AUTHORS_MENU-->/$authorsMenu}"
 homeHTML="${homeHTML/<!--FLOATING_BOOKS-->/$floatingBooks}"
 
 echo "$homeHTML" > "$OUTPUT_HOME"
-echo "Generated homepage at $OUTPUT_HOME"
+echo "INFO: Generated homepage at '$OUTPUT_HOME'"
+echo "INFO: Generated homepage at '$OUTPUT_HOME'"
 
 ##############################################################################
 # 404 PAGE
@@ -384,6 +402,7 @@ cat <<EOF > "$BUILD_DIR/404.html"
 </body>
 </html>
 EOF
+echo "INFO: Generated 404 page"
 
 ##############################################################################
 # AUTHOR PAGES - SORT BY DATE DESC (NEWEST FIRST)
@@ -452,6 +471,7 @@ EOF
 </body>
 </html>
 EOF
+  echo "INFO: Generated author page for '$authorName' at '$outFile'"
   a=$((a+1))
 done
 
@@ -462,6 +482,10 @@ done
 make_chapter_sidebar() {
   primaryBook="$1"
   currentIndex="$2"
+  if [ -z "$primaryBook" ]; then
+    echo ""
+    return
+  fi
   idx="$(find_book_index_by_name "$primaryBook")"
   if [ "$idx" -lt 0 ]; then
     echo "<div class=\"chapterSidebar\"><p>No Book Found</p></div>"
@@ -574,10 +598,16 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
   content="${CHAPTER_CONTENTS[$ch]}"
   outFile="$BUILD_DIR/chapters/$outSlug"
 
-  sidebar="$(make_chapter_sidebar "$primaryBook" "$ch")"
-  pn="$(get_prev_next "$primaryBook" "$ch")"
-  prevIdx="$(echo "$pn" | awk '{print $1}')"
-  nextIdx="$(echo "$pn" | awk '{print $2}')"
+  if [ -n "$primaryBook" ]; then
+    sidebar="$(make_chapter_sidebar "$primaryBook" "$ch")"
+    pn="$(get_prev_next "$primaryBook" "$ch")"
+    prevIdx="$(echo "$pn" | awk '{print $1}')"
+    nextIdx="$(echo "$pn" | awk '{print $2}')"
+  else
+    sidebar=""
+    prevIdx=""
+    nextIdx=""
+  fi
 
   metadataLine1=""
   if [ -n "$joinedRadios" ]; then
@@ -668,6 +698,7 @@ EOF
 </html>
 EOF
 
+  echo "INFO: Generated chapter page '$outFile'"
   ch=$((ch+1))
 done
 
@@ -677,5 +708,5 @@ done
 mkdir -p "$BUILD_DIR/images"
 cp -r "$IMAGES_DIR/"* "$BUILD_DIR"/
 
-echo "Done! The multi-page site is in '$BUILD_DIR/'."
-echo "Open '$BUILD_DIR/index.html' in a browser to see your new homepage!"
+echo "INFO: Done! The multi-page site is in '$BUILD_DIR'."
+echo "INFO: Open '$BUILD_DIR/index.html' in a browser to see your new homepage."
