@@ -4,7 +4,7 @@ Author: monoman
 Book: catalogos
 Volume: sangre de monos
 Location: cordoba
-Tags: radio nacional
+Radio: radio nacional
 
 <b>Primeras tres balas al aire</b><br />
 <br />

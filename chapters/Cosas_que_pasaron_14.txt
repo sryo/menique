@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <div class="separator" style="clear: both; text-align: center;"><a href="http://28.media.tumblr.com/tumblr_lmqpmkwrIy1qz4x8xo1_500.jpg" imageanchor="1" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><img border="0" height="200" src="http://28.media.tumblr.com/tumblr_lmqpmkwrIy1qz4x8xo1_500.jpg" width="173" /></a></div><b>A coger que se acaba el mundo</b><br />
 Es la idea la promueve el grupo ecologista-erótico "sin fines de lucro" Fuck for forest.<br />

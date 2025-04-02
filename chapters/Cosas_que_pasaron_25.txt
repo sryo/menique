@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>"Vampiro" en calzoncillos muerde a una mujer</b><br />
 Un hombre de Galveston, Texas, alega ser un vampiro de 500 años con mucha sed de sangre fresca. Eso dijo Lyle Monroe Bensley de 19 años al ser detenido, por irrumpir en el departamento de una mujer desconocida y morderle el cuello.<br />

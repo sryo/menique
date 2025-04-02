@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Una moto que anda a los pedos</b><br />
 El fabricante japonés Totó, que se especializa en inodoros, creó un vehículo que funciona con “biogás" proveniente de materia fecal humana.<br />

@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b><span style="font-size: large;">Arrojar excremento pudo determinar el desarrollo de un cerebro superior en los homínidos</span></b><br />
 Aunque suene un poco extraño, el hecho de tomar un objeto y arrojarlo voluntariamente y con un fin específico pudo ser uno de los gestos decisivos para que nuestros antepasados desarrollaran un cerebro distinto al de otros primates inferiores.<br />

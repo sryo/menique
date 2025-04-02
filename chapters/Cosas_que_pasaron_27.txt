@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Impacto profundo</b><br />
 Mariela Fernández, una de las figuras del canal  C5N , reveló al  programa  radial “Basta de todo” que sufrió un accidente cerebrovascular en un  hotel  alojamiento el año pasado.  <br />

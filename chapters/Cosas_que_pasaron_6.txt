@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Narcos usaban cocodrilos para sembrar el terror en las 'favelas'</b><br />
 La policía de Río de Janeiro halló el miércoles durante un operativo en una 'favela' de la ciudad dos cocodrilos en cautiverio que presuntamente eran utilizados por bandas del narcotráfico para atemorizar a vecinos y rivales, informó la prensa local.<br />

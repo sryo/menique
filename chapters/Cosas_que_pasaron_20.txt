@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Cigarrillos bajo receta</b><br />
 Una congresista de Islandia presentó un proyecto de ley que busca que la venta de cigarrillos se haga exclusivamente en farmacias bajo receta médica.<br />

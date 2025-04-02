@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <span style="font-size: large;"><b>Rescatan a niños atrapados en la vuelta al mundo de Pekos</b></span><br />
 Un contigente de alumnos de Reconquista quedo atrapado el sábado pasado en la vuelta al mundo del complejo Pekos, en Santa Cruz del lago, aparentemente por un desperfecto técnico del juego. Los chicos de la escuela Santafesina fueron rescatados por bomberos.<br />

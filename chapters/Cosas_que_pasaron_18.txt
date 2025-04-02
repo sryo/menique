@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Quiso probar que Dios existía y se lo comió un león</b><br />
 El hecho se produjo en un zoo de la capital ucraniana, donde un hombre se introdujo en la jaula y al grito de <i>“Dios me salvará”</i>. En ese momento, uno de los leones fue directo hacía el hombre, lo derrumbó y le cortó la arteria carótida.<br />

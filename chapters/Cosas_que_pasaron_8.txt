@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <span class="Apple-style-span" style="font-size: x-small;"><b>DEPORTES</b></span><br />
 <b>No lo dejan jugar por barbudo</b><br />

@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Pastor evangelista asegura que la segunda llegada de Cristo se verá en&nbsp;Youtube y Facebook</b><br />
 <br />

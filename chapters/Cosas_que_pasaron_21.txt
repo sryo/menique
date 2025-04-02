@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Protesta de chicas topless se sale de control en Ucrania</b><br />
 La guardia de la embajada de Georgia en Kiev empleó la fuerza física para disolver una protesta de ucranianas semidesnudas pertenecientes a la organización FEMEN.<br />

@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <table class="grilla" style="font-size: 12px;"><tbody>
 <tr valign="top"><td width="50%"><b><span style="font-size: large;">Para Federer, Sabatini es de las tenistas más bonitas</span></b><br />

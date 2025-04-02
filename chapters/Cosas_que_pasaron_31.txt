@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Proyecto de ley para cerrar todos los prostíbulos</b><br />
 La legisladora Chiófalo presentó un proyecto para la erradicación definitiva de estos lugares con sus nombres eufemísticos de la provincia de Córdoba.<br />

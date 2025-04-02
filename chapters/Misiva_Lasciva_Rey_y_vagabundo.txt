@@ -4,7 +4,8 @@ Author: monoman
 Book: misiva lasciva
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo,musica para tocarse,radioteatros para el olvido,audios monos
+Radio: radio turismo
+Tags: radioteatros para el olvido
 
 <br />
 <div class="misiva"><br />

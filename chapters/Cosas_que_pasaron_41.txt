@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b><span style="font-size: large;">Clerigo prohíbe a las mujeres tocar bananas o pepinos</span></b><br />
 Un clérigo islámico residente en Europa dijo que las mujeres no deben estar cerca de bananas o pepinos ya que incitan a tener<i> “pensamientos sexuales”.</i><br />

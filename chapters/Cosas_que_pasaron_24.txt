@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <div style="background: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgaNZhCTZ9h_kIfCyjYpF_l7Ark8doubMTmSfVENAx25pFndKkasmtacNiuLbi0abfHFw7MyBGAuAr17ZfKeGVsmo5Rt-fj46vP6uTwTmYQmO-U68HSXiNOKWvp0R6A_EaeM2pGBXqsoXXK/s800/303e182b2bf39f86df6be3db3a3cbac1.gif) repeat;">
 <br />

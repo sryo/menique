@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Una cebra infiel parió un híbrido concebido con un burro en un zoológico</b><br />
 <i>"El cruzamiento ocurrió de forma fortuita ya que la cebra convivía en el establo con su pareja, un par de burros y la jirafa"</i>, dijo a Prensa Latina Héctor Moreno, empleado del zoológico de Ciego de Ávila, a 600 kilómetros al este de La Habana, quien informó que se trata del primer parto del animal.<br />

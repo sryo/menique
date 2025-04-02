@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Contrabandeaba pájaros en su pantalón</b><br />
 En alguna aduana, encontraron que un hombre llevaba en el interior de sus pantalones, colibríes vivos de contrabando, según él, bien empacados. <br />

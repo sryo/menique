@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Ser gay friendly es buen negocio</b><br />
 En la ciudad de Buenos Aires, ser gay friendly es un buen negocio. El turismo orientado a este segmento está en ascenso en la capital del país donde el año pasado se convirtió en ley el matrimonio entre dos personas del mismo sexo.<br />

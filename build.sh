@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-# Enable extended pattern matching (needed for parameter expansion trimming)
+# Enable extended pattern matching for trimming
 shopt -s extglob
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Meñique Generator (with echo logging and improved chapter parsing)
-#
+# Meñique Generator
 # Usage: bash build.sh
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -12,9 +11,10 @@ CHAPTERS_DIR="chapters"
 IMAGES_DIR="images"
 BUILD_DIR="build"
 TEMPLATES_DIR="templates"
+BASE_URL="http://meñique.com.ar"
 
-# CREATE DIRECTORIES
-mkdir -p "$BUILD_DIR" "$BUILD_DIR/authors" "$BUILD_DIR/years" "$BUILD_DIR/chapters"
+# Create necessary directories
+mkdir -p "$BUILD_DIR" "$BUILD_DIR/authors" "$BUILD_DIR/chapters" "$BUILD_DIR/images"
 
 SITE_TITLE="Meñique Audiovisual"
 BOOK_IMG_EXT="png"
@@ -23,26 +23,22 @@ BOOK_IMG_EXT="png"
 # Utility functions
 ##############################################################################
 
-# Trim leading and trailing whitespace.
 trim_spaces() {
   var="$1"
-  var="${var#"${var%%[![:space:]]*}"}"  # remove leading
-  var="${var%"${var##*[![:space:]]}"}"  # remove trailing
+  var="${var#"${var%%[![:space:]]*}"}"  # remove leading spaces
+  var="${var%"${var##*[![:space:]]}"}"  # remove trailing spaces
   echo "$var"
 }
 
-# Convert string to a slug (lowercase, replace non-alphanumerics with hyphen, etc.)
 slugify() {
   echo "$1" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g; s/-\+/-/g; s/^-//; s/-$//'
 }
 
-# Convert a .txt filename into a safe .html filename.
 sanitize_filename() {
-  base="${1%.*}"  # Remove extension
+  base="${1%.*}"
   echo "$(slugify "$base").html"
 }
 
-# Split a comma-separated string and trim each token.
 split_by_commas() {
   line="$1"
   oldIFS="$IFS"
@@ -53,7 +49,6 @@ split_by_commas() {
   done
 }
 
-# Join a list with " y ".
 join_with_y() {
   arr=("$@")
   count=${#arr[@]}
@@ -121,7 +116,6 @@ sort_book_chapters() {
   done
 }
 
-# For home-page icons: get the newest chapter's slug for a book.
 get_newest_chapter_filename() {
   bookName="$1"
   idx="$(find_book_index_by_name "$bookName")"
@@ -164,7 +158,7 @@ declare -a BOOK_NAMES
 declare -a BOOK_CHAPTER_LIST
 
 ##############################################################################
-# Parsing chapters (split header and content)
+# Parsing chapters (split header and content; trim blank line)
 ##############################################################################
 
 parse_chapter() {
@@ -173,8 +167,9 @@ parse_chapter() {
   content=""
   readingHeader=1
   while IFS= read -r line; do
-      trimmed="$(trim_spaces "$line")"
-      if [ "$readingHeader" -eq 1 ] && [ -z "$trimmed" ]; then      readingHeader=0
+    trimmed="$(trim_spaces "$line")"
+    if [ "$readingHeader" -eq 1 ] && [ -z "$trimmed" ]; then
+      readingHeader=0
       continue
     fi
     if [ "$readingHeader" -eq 1 ]; then
@@ -184,7 +179,6 @@ parse_chapter() {
     fi
   done < "$file"
 
-  # Process header lines
   cTitle="Untitled"
   cAuthors=""
   cBooks=""
@@ -235,7 +229,7 @@ parse_chapter() {
   CHAPTER_BODYCLASS[$CHAPTER_COUNT]="$cClass"
   CHAPTER_CONTENTS[$CHAPTER_COUNT]="$content"
 
-  echo "INFO: Parsed chapter '$cTitle' from file '$baseName'"
+  echo "Parsed chapter '$cTitle' from file '$baseName'"
   CHAPTER_COUNT=$((CHAPTER_COUNT+1))
 }
 
@@ -276,7 +270,7 @@ while [ $i -lt $CHAPTER_COUNT ]; do
     fi
   done < <(split_by_commas "$authorLine")
 
-  # Process Books: only add nonempty values
+  # Process Books: add only nonempty values
   bookLine="${CHAPTER_RAW_BOOKS[$i]}"
   booksArray=()
   while IFS= read -r oneBook; do
@@ -372,7 +366,7 @@ while [ $b -lt $cntBooks ]; do
   [ -z "$newestSlug" ] && newestSlug="#"
   floatingBooks="${floatingBooks}<div class=\"floating\" data-factor=\"0.02\" data-book=\"$bookName\">
     <a href=\"chapters/$newestSlug\">
-      <img draggable=\"false\" loading=\"lazy\" src=\"$safeBook.$BOOK_IMG_EXT\" alt=\"$bookName\" />
+      <img draggable=\"false\" loading=\"lazy\" src=\"/images/$safeBook.$BOOK_IMG_EXT\" alt=\"$bookName\" />
     </a>
 </div>"$'\n'
   b=$((b+1))
@@ -382,7 +376,6 @@ homeHTML="${homeHTML/<!--AUTHORS_MENU-->/$authorsMenu}"
 homeHTML="${homeHTML/<!--FLOATING_BOOKS-->/$floatingBooks}"
 
 echo "$homeHTML" > "$OUTPUT_HOME"
-echo "INFO: Generated homepage at '$OUTPUT_HOME'"
 echo "INFO: Generated homepage at '$OUTPUT_HOME'"
 
 ##############################################################################
@@ -424,7 +417,7 @@ while [ $a -lt $cntAuthors ]; do
 </head>
 <body>
   <h1>Todo lo de $authorName</h1>
-  <p><a href="../index.html">Meñique</a></p>
+  <p><a href="../index.html">$SITE_TITLE</a></p>
   <hr/>
 EOF
 
@@ -476,49 +469,60 @@ EOF
 done
 
 ##############################################################################
-# CHAPTER PAGES (with sidebar grouped by year)
+# CHAPTER PAGES (with sidebar)
 ##############################################################################
 
+# Updated sidebar function: shows site title (linked to home) on top and groups chapters by year.
 make_chapter_sidebar() {
   primaryBook="$1"
   currentIndex="$2"
-  if [ -z "$primaryBook" ]; then
-    echo ""
-    return
+  # Start with site title linked to home
+  sidebar="<div class=\"chapterSidebar\"><div class=\"site-title\"><a href=\"${BASE_URL}/index.html\">$SITE_TITLE</a></div>"
+  if [ -n "$primaryBook" ]; then
+    idx="$(find_book_index_by_name "$primaryBook")"
+    if [ "$idx" -ge 0 ]; then
+      chList="${BOOK_CHAPTER_LIST[$idx]}"
+    else
+      chList=""
+    fi
+  else
+    # If no primary book, group all chapters with no book.
+    chList=""
+    for (( i=0; i<CHAPTER_COUNT; i++ )); do
+      if [ -z "${CHAPTER_PRIMARY_BOOK[$i]}" ]; then
+        chList="$chList $i"
+      fi
+    done
   fi
-  idx="$(find_book_index_by_name "$primaryBook")"
-  if [ "$idx" -lt 0 ]; then
-    echo "<div class=\"chapterSidebar\"><p>No Book Found</p></div>"
-    return
-  fi
-  chList="${BOOK_CHAPTER_LIST[$idx]}"
   chList="$(trim_spaces "$chList")"
-  read -r -a arr <<< "$chList"
-  sidebar="<div class=\"chapterSidebar\"><div class=\"title\"><a href=\"/\">Meñique</a></div>"
+  lines=""
+  for idx in $chList; do
+      dt="${CHAPTER_DATES[$idx]}"
+      lines="$lines${dt}\t$idx"$'\n'
+  done
+  sorted="$(echo -e "$lines" | sort -r)"
   lastYear=""
   haveOpenUl=0
-  for (( i=${#arr[@]} - 1; i>=0; i-- )); do
-    cIndex2="${arr[$i]}"
-    dt="${CHAPTER_DATES[$cIndex2]}"
-    thisYear="${dt:0:4}"
-    cSlug="${CHAPTER_SLUGS[$cIndex2]}"
-    cTitle="${CHAPTER_TITLES[$cIndex2]}"
-    if [ "$thisYear" != "$lastYear" ]; then
-      if [ "$haveOpenUl" -eq 1 ]; then
-        sidebar="$sidebar</ul>"
+  while IFS=$'\t' read -r dateVal idxVal; do
+      year="${dateVal:0:4}"
+      if [ "$year" != "$lastYear" ]; then
+          if [ "$haveOpenUl" -eq 1 ]; then
+              sidebar="$sidebar</ul>"
+          fi
+          sidebar="$sidebar<h3>$year</h3><ul>"
+          haveOpenUl=1
+          lastYear="$year"
       fi
-      sidebar="$sidebar<h3>$thisYear</h3><ul>"
-      haveOpenUl=1
-      lastYear="$thisYear"
-    fi
-    if [ "$cIndex2" -eq "$currentIndex" ]; then
-      sidebar="$sidebar<li><strong>$cTitle</strong></li>"
-    else
-      sidebar="$sidebar<li><a href=\"$cSlug\">$cTitle</a></li>"
-    fi
-  done
+      cSlug="${CHAPTER_SLUGS[$idxVal]}"
+      cTitle="${CHAPTER_TITLES[$idxVal]}"
+      if [ "$idxVal" -eq "$currentIndex" ]; then
+          sidebar="$sidebar<li><strong>$cTitle</strong></li>"
+      else
+          sidebar="$sidebar<li><a href=\"../chapters/$cSlug\">$cTitle</a></li>"
+      fi
+  done <<< "$sorted"
   if [ "$haveOpenUl" -eq 1 ]; then
-    sidebar="$sidebar</ul>"
+      sidebar="$sidebar</ul>"
   fi
   sidebar="$sidebar</div>"
   echo "$sidebar"
@@ -598,13 +602,12 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
   content="${CHAPTER_CONTENTS[$ch]}"
   outFile="$BUILD_DIR/chapters/$outSlug"
 
+  sidebar="$(make_chapter_sidebar "$primaryBook" "$ch")"
   if [ -n "$primaryBook" ]; then
-    sidebar="$(make_chapter_sidebar "$primaryBook" "$ch")"
     pn="$(get_prev_next "$primaryBook" "$ch")"
     prevIdx="$(echo "$pn" | awk '{print $1}')"
     nextIdx="$(echo "$pn" | awk '{print $2}')"
   else
-    sidebar=""
     prevIdx=""
     nextIdx=""
   fi
@@ -655,7 +658,7 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
     .chapterSidebar ul { list-style: none; padding: unset; }
     .chapterSidebar li { margin-bottom: 1rem; font-size: 1rem; }
     .chapterSidebar a { text-decoration: none; }
-    .chapterSidebar .title { font-weight: bold; margin-bottom: 1rem; }
+    .site-title { font-size: 1.3em; font-weight: bold; margin-bottom: 0.5em; }
     .chapterContent { margin-left: 16rem; padding: 60px; max-width: 40em; }
     h1 { font-size: clamp(2em, 4vw, 6em); line-height: 1em; }
     .book-image-container { margin-bottom: 1rem; }
@@ -669,7 +672,7 @@ EOF
 
   for bName in "${bookArray[@]}"; do
     safeBook="$(slugify "$bName")"
-    echo "      <img loading=\"lazy\" src=\"/$safeBook.$BOOK_IMG_EXT\" alt=\"$bName\" />" >> "$outFile"
+    echo "      <img loading=\"lazy\" src=\"images/$safeBook.$BOOK_IMG_EXT\" alt=\"$bName\" />" >> "$outFile"
   done
 
   cat <<EOF >> "$outFile"
@@ -705,8 +708,58 @@ done
 ##############################################################################
 # COPY IMAGES
 ##############################################################################
-mkdir -p "$BUILD_DIR/images"
-cp -r "$IMAGES_DIR/"* "$BUILD_DIR"/
+cp -r "$IMAGES_DIR/"* "$BUILD_DIR/images/"
+echo "INFO: Copied images to '$BUILD_DIR/images'"
+
+##############################################################################
+# COPY robots.txt (if exists)
+##############################################################################
+if [ -f "robots.txt" ]; then
+  cp "robots.txt" "$BUILD_DIR/robots.txt"
+  echo "INFO: Copied robots.txt to '$BUILD_DIR'"
+fi
+
+##############################################################################
+# Build RSS Feed
+##############################################################################
+rss_temp=""
+for ((i=0; i<CHAPTER_COUNT; i++)); do
+  dt="${CHAPTER_DATES[$i]}"
+  rss_temp="${rss_temp}${dt}\t$i"$'\n'
+done
+sorted_rss="$(echo -e "$rss_temp" | sort -r)"
+rss_items=""
+while IFS=$'\t' read -r pubDate idx; do
+  rfc_date=$(date -d "$pubDate" -R 2>/dev/null)
+  if [ -z "$rfc_date" ]; then
+    rfc_date="$pubDate"
+  fi
+  title="${CHAPTER_TITLES[$idx]}"
+  slug="${CHAPTER_SLUGS[$idx]}"
+  link="${BASE_URL}/chapters/${slug}"
+  description="${CHAPTER_CONTENTS[$idx]}"
+  rss_items="${rss_items}<item>
+  <title>${title}</title>
+  <link>${link}</link>
+  <pubDate>${rfc_date}</pubDate>
+  <description><![CDATA[${description}]]></description>
+</item>"$'\n'
+done <<< "$sorted_rss"
+
+rss_feed="<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<rss version=\"2.0\">
+<channel>
+  <title>${SITE_TITLE}</title>
+  <link>${BASE_URL}</link>
+  <description>RSS Feed for ${SITE_TITLE}</description>
+  <lastBuildDate>$(date -R)</lastBuildDate>
+  <pubDate>$(date -R)</pubDate>
+${rss_items}
+</channel>
+</rss>"
+
+echo "$rss_feed" > "$BUILD_DIR/rss.xml"
+echo "INFO: Generated RSS feed at '$BUILD_DIR/rss.xml'"
 
 echo "INFO: Done! The multi-page site is in '$BUILD_DIR'."
 echo "INFO: Open '$BUILD_DIR/index.html' in a browser to see your new homepage."

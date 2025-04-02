@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Martínez contra todos</b><br />
 Los ciudadanos Mario Alberto Quiroga y Nicolás Martínez Dalke presentaron ayer una denuncia ante el Instituto Nacional contra la Discriminación, la Xenofobia y el Racismo (INADI) contra el Diputado Nacional por la Unión Cívica Radical (UCR), Heriberto Martínez, por declaraciones discriminatorias contra la señora presidente Cristina Fernández de Kirchner. El diputado describió a la mandataria como “una autista que no vive en el mundo real. Criticó tambien a Mestre, a Aguad y a Pino Solanas.<br />

@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Zorra, deja de ser insulto, según la justicia de Murcia.</b><br />
 La Audiencia Provincial de Murcia ha revocado una condena por amenazas a un hombre que, entre otros insultos, llamó<i> "zorra"</i> a su mujer y le aseguró al hijo de ambos que <i>"la vería en una caja de pino"</i>. Durante el juicio, cuya sentencia ha sido ahora revocada, admitió haber insultado a su mujer pero su defensa argumentó que utilizó la palabra zorra para <i>"describir la actitud de un animal que debe actuar con especial precaución."</i><br />

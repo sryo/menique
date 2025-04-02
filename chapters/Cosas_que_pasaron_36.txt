@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <span style="font-size: large;"><b>Bolivia, único país en el que quebró McDonald's</b></span><br />
 Existe un sólo lugar de América Latina en el que la cadena de hamburguesas McDonald's no tuvo el éxito esperado: Bolivia. El restaurante de origen estadounidense intentó adaptarse a los gustos locales, pero no logró triunfar.<br />

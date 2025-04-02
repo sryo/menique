@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Curan a la nena que estornudaba 12 mil veces al día</b><br />
 Los médicos detectaron que se trataba de un tic nervioso y lograron parar los estornudos. Pero ahora tose.<br />

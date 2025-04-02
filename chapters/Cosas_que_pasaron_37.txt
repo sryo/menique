@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <span style="font-size: large;"><b>"Ese pebete no me lo comí yo"</b></span><br />
 <div class="separator" style="clear: both; text-align: center;">

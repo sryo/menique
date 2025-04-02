@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <span style="font-size: large;"><b>Aseguran que Frank Sinatra fue actor porno</b></span><br />
 En 1934 Frank Sinatra tenía apenas 19 años y soñaba con poder triunfar como cantante. Sin embargo no tenía dinero y todo se le hacía difícil.<br />

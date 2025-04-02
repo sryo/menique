@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <span style="font-size: x-small;"><b>INTERNACIONALES</b></span><br />
 <b>Berlusconi: Soy travieso, pero 33 chicas son demasiado</b><br />

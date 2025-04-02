@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <span style="font-size: large;"><b>“Debemos evitar el contacto con extraterrestres”</b></span><br />
 Es casi seguro que exista vida extra terrestre, pero esos seres pueden ser potencialmente desvastadores para los humanos, advierte Stephen Hawking, uno de los científicos más importantes del mundo, y sugiere que los extraterrestres incursionarían en la tierra para obtener recursos, luego de agotar los recursos disponibles en su planeta de origen. Ellos buscarían conquistar y colonizar planetas, por lo que tratar de hacer contacto con razas alienígenas es “demasiado arriesgado”.<br />

@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>El fin del mundo llega hoy</b><br />
 "De acuerdo a lo que dice la Biblia en el Libro de Revelaciones, va a haber un terremoto a nivel mundial. No estamos seguros si va a suceder al mismo tiempo en todas partes, porque los horarios son diferentes, pero se supone que va a ocurrir de forma simultánea", afirma Manny, un predicador Neoyorkino. La fecha del 21 de mayo de 2011 puede parecer azarosa o rebuscada, pero según los seguidores de esta predicción, tiene bases claras en un análisis numérico de La Biblia.<br />

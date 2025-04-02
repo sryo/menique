@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b><span style="font-size: large;">Pescan una tararira con tres ojos en Embalse</span></b><br />
 Una verdadera sorpresa se llevaron unos jóvenes que pescaban en el lago de Embalse, cerca de la central nuclear, en la provincia de Córdoba.<br />

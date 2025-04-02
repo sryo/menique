@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Ofrecen recompensa por una "vaca prófuga" </b><br />
 Se escapó el 24 de mayo del matadero y la buscan con helicópteros y hasta un médium por los bosques de Baviera.<br />

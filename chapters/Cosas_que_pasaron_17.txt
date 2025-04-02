@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <span class="Apple-style-span" style="font-size: large;"><b>Página web “echó” a 30 mil miembros por “feos”</b></span><br />
 Una página de citas que sólo admite "gente linda" echó a 30 mil recientes miembros. "Lamentamos que creyeran que eran hermosos", se disculpó uno de los administradores.<br />

@@ -4,7 +4,7 @@ Author: mateoso
 Book: cosas que pasaron
 Volume: sangre de monos
 Location: rio ceballos
-Tags: radio turismo
+Radio: radio turismo
 
 <b>Ofrecen marihuana gratis a las personas que se registren a votar</b><br />
 A lo largo de la historia hemos visto todo tipo de técnicas orientadas a generar la participación ciudadana en una elección, pero esta debe de ser una de las más efectivas en persuadir a personas que generalmente no están interesadas en la política.Una clínica de marihuana médica en el estado de Michigan ofrece una muestra gratis de ganja a sus clientes si se registran en el padrón electoral.<br />
