@@ -4,7 +4,7 @@ Author: cronopio
 Book: manual de monstruos domesticos
 Volume: sangre de monos
 Location: villa allende
-Tags:
+Radio: radio nexo
 
 <p>No hubo angelitos para Rolando, no hubo luz al final del camino, solo ese traje de carne que llevaba desde que nació.
 <p>Vaya a saber que planilla no llenó, en ese cielo de cosas que uno nunca sabe, que a Rolando le toco un andar de muerte después de muerto.

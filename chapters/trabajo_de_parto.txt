@@ -4,7 +4,7 @@ Author: cronopio
 Book: manual de monstruos domesticos
 Volume: sangre de monos
 Location: villa allende
-Tags:
+Radio: radio nexo
 
 <p>Feliciano Rodríguez, había adoptado como costumbre parirse.
 <p>Cuando la monotonía lo agobiaba decidía concebirse en él mismo y empezaba de nuevo, con la espléndida primera luz de recién nacido, que ya nadie recuerda, luego a caminar, a hablar, a comer, a mentir, a enamorarse, a hacerse personalmente persona.

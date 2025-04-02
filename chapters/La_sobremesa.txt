@@ -4,7 +4,7 @@ Author: cronopio
 Book: manual de monstruos domesticos
 Volume: sangre de monos
 Location: villa allende
-Tags:
+Radio: radio nexo
 
 <p>Evaristo se disponía a comer el postre, era su preferido, frutillas con crema. Comenzó la sobremesa con paciencia, tomaba una frutilla la untaba en crema y se la comía, una detrás de otra. Miraba como se le acababan las deliciosas frutas cuando de pronto una ansiedad le crecía adentro y consumía con más ganas.
 <p>Con cada fruto su ansia engordaba.

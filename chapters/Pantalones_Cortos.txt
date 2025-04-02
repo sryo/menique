@@ -4,7 +4,7 @@ Author: cronopio
 Book: manual de monstruos domesticos
 Volume: sangre de monos
 Location: villa allende
-Tags:
+Radio: radio nexo
 
 <p>Cuatro manos tenía Manuel.
 <p>Una para sostener el libro.
