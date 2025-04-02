@@ -4,7 +4,7 @@ Author: monoman
 Book: superheroes del subdesarrollo
 Volume: minuciosa ignorancia
 Location: cordoba
-Tags:
+Radio: radio nacional
 
 <p>Hay un enojo muy grande en el fondo del hombre verde.
 

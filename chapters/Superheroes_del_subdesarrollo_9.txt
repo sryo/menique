@@ -4,7 +4,7 @@ Author: monoman
 Book: superheroes del subdesarrollo
 Volume: minuciosa ignorancia
 Location: cordoba
-Tags:
+Radio: radio nacional
 
 <p>Al pingüino le va tan mal que da pena verlo.
 

@@ -4,7 +4,7 @@ Author: monoman
 Book: superheroes del subdesarrollo
 Volume: minuciosa ignorancia
 Location: cordoba
-Tags:
+Radio: radio nacional
 
 <p>Se acabó la época de vacas gordas para linterna verde.
 

@@ -4,7 +4,7 @@ Author: monoman
 Book: superheroes del subdesarrollo
 Volume: minuciosa ignorancia
 Location: cordoba
-Tags:
+Radio: radio nacional
 
 <p>El Acertijo tenía el alma llena de preguntas.
 
