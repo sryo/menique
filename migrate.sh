@@ -28,7 +28,7 @@ mkdir -p "$OUTDIR"
 AUTHORS=("yoko mona" "monoman" "flash" "mateoso" "cronopio")
 BOOKS=(
   "el vengador justicialista" "flash deformativo" "flash performativo"
-  "desde cosquin rock" "semblanzas deportivas" "el libro de nietzche" "el cine negro de los monos" "la mancha del quijote"
+  "desde cosquin rock" "semblanzas deportivas" "el libro de nietzsche" "el cine negro de los monos" "la mancha del quijote"
   "temporada de migrañas" "el alquimista de los sueños" "videoclub del oso panza"
   "cosas que pasaron" "misiva lasciva" "chubut santa rosa y despues"
   "mutantes" "evatest positivo" "catalogos"
