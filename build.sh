@@ -621,13 +621,13 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
   fi
   if [ -n "$date" ]; then
     if [ -n "$metadataLine1" ]; then
-      metadataLine1="$metadataLine1, un $date"
+      metadataLine1="$metadataLine1, un <span exterms:creation-date>$date</span>"
     else
-      metadataLine1="un $date"
+      metadataLine1="un <span exterms:creation-date>$date</span>"
     fi
   fi
 
-  metadataLine2="Palabras de $joinedAuthors"
+  metadataLine2="Palabras de <span property="dc:maker">$joinedAuthors</span>"
   if [ -n "$joinedBooks" ]; then
     metadataLine2="$metadataLine2 para $joinedBooks"
   fi
@@ -638,6 +638,7 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="pubdate" content="$date">
   <title>$title - $SITE_TITLE</title>
   <style>
     @media only screen and (max-width: 600px) {
@@ -673,7 +674,7 @@ EOF
 
   cat <<EOF >> "$outFile"
     </div>
-    <h1>$title</h1>
+    <h1 property="dc:title">$title</h1>
     <p>$metadataLine1</p>
     <p>$metadataLine2</p>
     <div>
@@ -730,12 +731,10 @@ while IFS=$'\t' read -r pubDate idx; do
   title="${CHAPTER_TITLES[$idx]}"
   slug="${CHAPTER_SLUGS[$idx]}"
   link="${BASE_URL}/chapters/${slug}"
-  description="${CHAPTER_CONTENTS[$idx]}"
   rss_items="${rss_items}<item>
   <title>${title}</title>
   <link>${link}</link>
   <pubDate>${rfc_date}</pubDate>
-  <description><![CDATA[${description}]]></description>
 </item>"$'\n'
 done <<< "$sorted_rss"
 
