@@ -229,7 +229,6 @@ parse_chapter() {
   CHAPTER_BODYCLASS[$CHAPTER_COUNT]="$cClass"
   CHAPTER_CONTENTS[$CHAPTER_COUNT]="$content"
 
-  echo "Parsed chapter '$cTitle' from file '$baseName'"
   CHAPTER_COUNT=$((CHAPTER_COUNT+1))
 }
 
@@ -376,7 +375,6 @@ homeHTML="${homeHTML/<!--AUTHORS_MENU-->/$authorsMenu}"
 homeHTML="${homeHTML/<!--FLOATING_BOOKS-->/$floatingBooks}"
 
 echo "$homeHTML" > "$OUTPUT_HOME"
-echo "INFO: Generated homepage at '$OUTPUT_HOME'"
 
 ##############################################################################
 # 404 PAGE
@@ -395,7 +393,6 @@ cat <<EOF > "$BUILD_DIR/404.html"
 </body>
 </html>
 EOF
-echo "INFO: Generated 404 page"
 
 ##############################################################################
 # AUTHOR PAGES - SORT BY DATE DESC (NEWEST FIRST)
@@ -464,7 +461,6 @@ EOF
 </body>
 </html>
 EOF
-  echo "INFO: Generated author page for '$authorName' at '$outFile'"
   a=$((a+1))
 done
 
@@ -672,7 +668,7 @@ EOF
 
   for bName in "${bookArray[@]}"; do
     safeBook="$(slugify "$bName")"
-    echo "      <img loading=\"lazy\" src=\"images/$safeBook.$BOOK_IMG_EXT\" alt=\"$bName\" />" >> "$outFile"
+    echo "      <img loading=\"lazy\" src=\"/images/$safeBook.$BOOK_IMG_EXT\" alt=\"$bName\" />" >> "$outFile"
   done
 
   cat <<EOF >> "$outFile"
@@ -701,7 +697,6 @@ EOF
 </html>
 EOF
 
-  echo "INFO: Generated chapter page '$outFile'"
   ch=$((ch+1))
 done
 
@@ -709,14 +704,12 @@ done
 # COPY IMAGES
 ##############################################################################
 cp -r "$IMAGES_DIR/"* "$BUILD_DIR/images/"
-echo "INFO: Copied images to '$BUILD_DIR/images'"
 
 ##############################################################################
 # COPY robots.txt (if exists)
 ##############################################################################
 if [ -f "robots.txt" ]; then
   cp "robots.txt" "$BUILD_DIR/robots.txt"
-  echo "INFO: Copied robots.txt to '$BUILD_DIR'"
 fi
 
 ##############################################################################
@@ -759,7 +752,3 @@ ${rss_items}
 </rss>"
 
 echo "$rss_feed" > "$BUILD_DIR/rss.xml"
-echo "INFO: Generated RSS feed at '$BUILD_DIR/rss.xml'"
-
-echo "INFO: Done! The multi-page site is in '$BUILD_DIR'."
-echo "INFO: Open '$BUILD_DIR/index.html' in a browser to see your new homepage."

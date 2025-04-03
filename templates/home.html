@@ -102,16 +102,17 @@
             .floating::after {
                 content: attr(data-book);
                 position: absolute;
-                left: 0;
-                right: 0;
                 font-size: 1.4rem;
                 line-height: 1.4rem;
-                text-align: right;
                 opacity: 0;
                 transition: opacity 0.3s ease;
                 pointer-events: none;
-                translate: -100% 50%;
                 width: 100%;
+                -webkit-text-stroke-width: 6px;
+                -webkit-text-stroke-color: black;
+                font-weight: 800;
+                color: white;
+                paint-order: stroke;
             }
 
             .floating:hover::after {
@@ -124,7 +125,7 @@
             }
 
             .floating img:hover {
-                transform: scale(1.2);
+                transform: scale(1.4);
             }
 
             canvas {
@@ -144,7 +145,7 @@
         <canvas id="drawCanvas"></canvas>
 
         <header>
-            <div class="title">Meñique</div>
+            <div class="title">Meñique Audiovisual</div>
             <div class="menu">
                 <!--AUTHORS_MENU-->
             </div>

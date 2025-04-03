@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <title>{{CHAPTER_TITLE}} - {{SITE_TITLE}}</title>
+        <style>
+            @media only screen and (max-width: 600px) {
+                .chapterContent {
+                    margin-left: unset !important;
+                }
+                .chapterSidebar {
+                    position: unset !important;
+                    width: unset !important;
+                    padding: 60px !important;
+                }
+            }
+            body {
+                font-family: sans-serif;
+                font-size: clamp(1em, 2vw, 1.4em);
+                line-height: 1.6;
+            }
+            .chapterNav {
+                position: fixed;
+                top: 50%;
+                width: 40px;
+                height: 40px;
+                margin-top: -20px;
+                text-align: center;
+                line-height: 40px;
+                font-size: 24px;
+                font-weight: bold;
+                cursor: pointer;
+                z-index: 2000;
+            }
+            .chapterNav.left {
+                translate: -50px 0;
+            }
+            .chapterNav.right {
+                left: clamp(16rem, 100vw - 50px, 16rem + 40em + 10px);
+            }
+            .chapterSidebar {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                width: 16rem;
+                padding: 10px;
+                overflow-y: auto;
+                z-index: 1000;
+            }
+            .chapterSidebar > * {
+                line-height: 1.6rem;
+            }
+            .chapterSidebar h3 {
+                margin-top: 1rem;
+                font-size: 1.1rem;
+            }
+            .chapterSidebar ul {
+                list-style: none;
+                padding: 0;
+            }
+            .chapterSidebar li {
+                margin-bottom: 1rem;
+                font-size: 1rem;
+            }
+            .chapterSidebar a {
+                text-decoration: none;
+            }
+            .site-title {
+                font-size: 1.3em;
+                font-weight: bold;
+                margin-bottom: 0.5em;
+            }
+            .chapterContent {
+                margin-left: 16rem;
+                padding: 60px;
+                max-width: 40em;
+            }
+            h1 {
+                font-size: clamp(2em, 4vw, 6em);
+                line-height: 1em;
+            }
+            .book-image-container {
+                margin-bottom: 1rem;
+            }
+            .book-image-container img {
+                width: 10em;
+                margin-right: 1rem;
+            }
+        </style>
+    </head>
+    <body class="{{BODY_CLASS}}">
+        <div class="chapterContent">
+            <div class="book-image-container">{{BOOK_IMAGES}}</div>
+            <h1>{{CHAPTER_TITLE}}</h1>
+            <p>{{METADATA_LINE_1}}</p>
+            <p>{{METADATA_LINE_2}}</p>
+            <div>{{CHAPTER_CONTENT}}</div>
+            {{NAVIGATION}}
+        </div>
+        {{SIDEBAR}}
+    </body>
+</html>
