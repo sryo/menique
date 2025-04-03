@@ -639,6 +639,7 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="pubdate" content="$date">
+  <meta property="og:image" content="/images/$safeBook.$BOOK_IMG_EXT\">
   <title>$title - $SITE_TITLE</title>
   <style>
     @media only screen and (max-width: 600px) {
