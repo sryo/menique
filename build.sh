@@ -11,7 +11,7 @@ CHAPTERS_DIR="chapters"
 IMAGES_DIR="images"
 BUILD_DIR="build"
 TEMPLATES_DIR="templates"
-BASE_URL="http://meñique.com.ar"
+BASE_URL="//meñique.com.ar"
 
 # Create necessary directories
 mkdir -p "$BUILD_DIR" "$BUILD_DIR/authors" "$BUILD_DIR/chapters" "$BUILD_DIR/images"
@@ -26,7 +26,7 @@ BOOK_IMG_EXT="png"
 trim_spaces() {
   var="$1"
   var="${var#"${var%%[![:space:]]*}"}"  # remove leading spaces
-  var="${var%"${var##*[![:space:]]}"}"  # remove trailing spaces
+  var="${var%"${var##*[![:space:]]}"}"    # remove trailing spaces
   echo "$var"
 }
 
@@ -377,22 +377,19 @@ homeHTML="${homeHTML/<!--FLOATING_BOOKS-->/$floatingBooks}"
 echo "$homeHTML" > "$OUTPUT_HOME"
 
 ##############################################################################
-# 404 PAGE
+# 404 PAGE - Using Template
 ##############################################################################
-cat <<EOF > "$BUILD_DIR/404.html"
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>404 - Page Not Found</title>
-</head>
-<body>
-  <h1>404 - Page Not Found</h1>
-  <p>Oops! This page doesn't exist.</p>
-  <p><a href="../index.html">Back to Home</a></p>
-</body>
-</html>
-EOF
+TEMPLATE_404="$TEMPLATES_DIR/404.html"
+if [ ! -f "$TEMPLATE_404" ]; then
+  echo "ERROR: $TEMPLATE_404 not found."
+  exit 1
+fi
+
+template404Content=""
+while IFS= read -r line; do
+  template404Content="${template404Content}${line}"$'\n'
+done < "$TEMPLATE_404"
+echo "$template404Content" > "$BUILD_DIR/404.html"
 
 ##############################################################################
 # AUTHOR PAGES - SORT BY DATE DESC (NEWEST FIRST)
@@ -406,16 +403,38 @@ while [ $a -lt $cntAuthors ]; do
   outFile="$BUILD_DIR/authors/$safeAuthor.html"
   cat <<EOF > "$outFile"
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="color-scheme" content="light dark" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>$authorName - $SITE_TITLE</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      font-size: clamp(1em, 2vw, 1.4em);
+      line-height: 1.6;
+      margin: 0;
+      padding: 60px;
+    }
+    .authors-container {
+      max-width: 40em;
+      margin: 0 auto;
+    }
+    .chapterSidebar ul { list-style: none; padding: unset; }
+    h1 {
+      font-size: clamp(2em, 4vw, 6em);
+      line-height: 1em;
+    }
+    a {
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>Todo lo de $authorName</h1>
+  <div class="authors-container">
   <p><a href="../index.html">$SITE_TITLE</a></p>
-  <hr/>
+    <h1>Todo lo de $authorName</h1>
 EOF
 
   lines=""
@@ -458,6 +477,7 @@ EOF
     echo "</ul>" >> "$outFile"
   fi
   cat <<EOF >> "$outFile"
+  </div>
 </body>
 </html>
 EOF
@@ -468,31 +488,40 @@ done
 # CHAPTER PAGES (with sidebar)
 ##############################################################################
 
-# Updated sidebar function: shows site title (linked to home) on top and groups chapters by year.
+# Updated sidebar function:
+# If a chapter is listed in multiple books, we build a union of all matching chapters.
 make_chapter_sidebar() {
-  primaryBook="$1"
   currentIndex="$2"
-  # Start with site title linked to home
-  sidebar="<div class=\"chapterSidebar\"><div class=\"site-title\"><a href=\"${BASE_URL}/index.html\">$SITE_TITLE</a></div>"
-  if [ -n "$primaryBook" ]; then
-    idx="$(find_book_index_by_name "$primaryBook")"
-    if [ "$idx" -ge 0 ]; then
-      chList="${BOOK_CHAPTER_LIST[$idx]}"
-    else
-      chList=""
-    fi
-  else
-    # If no primary book, group all chapters with no book.
-    chList=""
+  # Get the raw list of books for the current chapter
+  rawBooks="${CHAPTER_RAW_BOOKS[$currentIndex]}"
+  unionList=""
+  if [ -n "$rawBooks" ]; then
+    # For each book listed in the chapter, add its chapters to the union
+    while read -r oneBook; do
+      [ -z "$oneBook" ] && continue
+      idx="$(find_book_index_by_name "$oneBook")"
+      if [ "$idx" -ge 0 ]; then
+        unionList="$unionList ${BOOK_CHAPTER_LIST[$idx]}"
+      fi
+    done < <(split_by_commas "$rawBooks")
+  fi
+
+  # If no books are found, then group chapters with no primary book.
+  if [ -z "$(trim_spaces "$unionList")" ]; then
     for (( i=0; i<CHAPTER_COUNT; i++ )); do
       if [ -z "${CHAPTER_PRIMARY_BOOK[$i]}" ]; then
-        chList="$chList $i"
+        unionList="$unionList $i"
       fi
     done
   fi
-  chList="$(trim_spaces "$chList")"
+
+  # Remove duplicate chapter indices by sorting uniquely
+  uniqueList=$(echo "$unionList" | tr ' ' '\n' | sort -u | tr '\n' ' ')
+  unionList="$(trim_spaces "$uniqueList")"
+
+  sidebar="<div class=\"chapterSidebar\"><div class=\"site-title\"><a href=\"${BASE_URL}/index.html\">$SITE_TITLE</a></div>"
   lines=""
-  for idx in $chList; do
+  for idx in $unionList; do
       dt="${CHAPTER_DATES[$idx]}"
       lines="$lines${dt}\t$idx"$'\n'
   done
@@ -627,31 +656,39 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
     fi
   fi
 
-  metadataLine2="Palabras de <span property="dc:maker">$joinedAuthors</span>"
+  metadataLine2="Palabras de <span property=\"dc:maker\">$joinedAuthors</span>"
   if [ -n "$joinedBooks" ]; then
     metadataLine2="$metadataLine2 para $joinedBooks"
   fi
 
   cat <<EOF > "$outFile"
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="color-scheme" content="light dark">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="pubdate" content="$date">
-  <meta property="og:image" content="/images/$safeBook.$BOOK_IMG_EXT\">
+  <meta property="og:image" content="$BASE_URL/images/$safeBook.$BOOK_IMG_EXT">
   <title>$title - $SITE_TITLE</title>
   <style>
+  @media (prefers-color-scheme: dark) {
+      img,
+      video,
+      iframe,
+      svg {
+          filter: invert(100%) hue-rotate(180deg);
+      }
+    }
     @media only screen and (max-width: 600px) {
         .chapterContent { margin-left: unset !important; }
         .chapterSidebar { position: unset !important; width: unset !important; padding: 60px !important; }
     }
     body { font-family: sans-serif; font-size: clamp(1em, 2vw, 1.4em); line-height: 1.6; }
-    .chapterNav { position: fixed; top: 50%; width: 40px; height: 40px; margin-top: -20px; text-align: center; line-height: 40px; font-size: 24px; font-weight: bold; cursor: pointer; z-index: 2000; }
+    .chapterNav { position: fixed; top: 50%; width: 40px; height: 40px; margin-top: -20px; text-align: center; line-height: 40px; text-decoration: none; font-size: 2rem; font-weight: bold; cursor: pointer; z-index: 2000; }
     .chapterNav.left { translate: -50px 0; }
     .chapterNav.right { left: clamp(16rem, 100vw - 50px, 16rem + 40em + 10px); }
-    .chapterSidebar { position: fixed; top: 0; bottom: 0; left: 0; width: 16rem; padding: 10px; overflow-y: auto; z-index: 1000; }
-    .chapterSidebar>* { line-height: 1.6rem; }
+    .chapterSidebar { position: fixed; top: 0; bottom:0; padding: 10px; padding-top: 60px; width: 16rem; overflow-y: auto; z-index: 1000; }
     .chapterSidebar h3 { margin-top: 1rem; font-size: 1.1rem; }
     .chapterSidebar ul { list-style: none; padding: unset; }
     .chapterSidebar li { margin-bottom: 1rem; font-size: 1rem; }
