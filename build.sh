@@ -11,7 +11,7 @@ CHAPTERS_DIR="chapters"
 IMAGES_DIR="images"
 BUILD_DIR="build"
 TEMPLATES_DIR="templates"
-BASE_URL="//meñique.com.ar"
+BASE_URL="https://meñique.com.ar"
 
 # Create necessary directories
 mkdir -p "$BUILD_DIR" "$BUILD_DIR/authors" "$BUILD_DIR/chapters" "$BUILD_DIR/images"
@@ -669,7 +669,10 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
   <meta name="color-scheme" content="light dark">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="pubdate" content="$date">
+  <meta property="og:title" content="$title - $SITE_TITLE">
   <meta property="og:image" content="$BASE_URL/images/$safeBook.$BOOK_IMG_EXT">
+  <meta property="og:url" content="$BASE_URL/chapters/$outSlug">
+  <meta property="og:type" content="article">
   <title>$title - $SITE_TITLE</title>
   <style>
   @media (prefers-color-scheme: dark) {
