@@ -1,6 +1,6 @@
 Title: La persistencia de la memoria
 Published: 2011-04-09T19:51:00.000-03:00
-Author: yoko mona
+Author: quir-k
 Book: temporada de migrañas
 Volume: sangre de monos
 Location: rio ceballos
