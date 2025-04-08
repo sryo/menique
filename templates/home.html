@@ -32,6 +32,7 @@
                     font-size: clamp(1em, 2vw, 1.4em);
                     line-height: 1.6;
                     overflow: unset !important;
+                    overflow-x: hidden !important;
                 }
                 header {
                     position: unset !important;
@@ -151,6 +152,8 @@
             }
 
             body.drawing header,
+            body.drawing header .menu,
+            body.drawing header .title,
             body.drawing .floating {
                 pointer-events: none !important;
             }

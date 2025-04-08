@@ -4,7 +4,7 @@ Author: monoman
 Book: catalogos
 Volume: sangre de monos
 Location: cordoba
-Tags: radio nacional
+Radio: radio nacional
 
 El rumor se inició el 12 de octubre de 1969, cuando un sujeto anónimo llamó a la emisora WKNR-FM en Dearborn (estado de Míchigan, en Estados Unidos), y anunció que Paul McCartney habría muerto. <br />
 <br />

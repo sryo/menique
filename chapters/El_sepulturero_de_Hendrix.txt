@@ -4,7 +4,7 @@ Author: monoman
 Book: catalogos
 Volume: sangre de monos
 Location: cordoba
-Tags: radio nacional
+Radio: radio nacional
 
 El sepulturero del cementerio de San Jerónimo viene siempre después de las siete de la tarde al puesto de flores de Natacha a tomarse unos mates y a escuchar la radio.<br />
 <br />

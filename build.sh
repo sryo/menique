@@ -675,6 +675,9 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
   <meta property="og:type" content="article">
   <title>$title - $SITE_TITLE</title>
   <style>
+  @view-transition {
+    navigation: auto;
+  }
   @media (prefers-color-scheme: dark) {
       img,
       video,
@@ -690,7 +693,7 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
     body { font-family: sans-serif; font-size: clamp(1em, 2vw, 1.4em); line-height: 1.6; }
     .chapterNav { position: fixed; top: 50%; width: 40px; height: 40px; margin-top: -20px; text-align: center; line-height: 40px; text-decoration: none; font-size: 2rem; font-weight: bold; cursor: pointer; z-index: 2000; }
     .chapterNav.left { translate: -50px 0; }
-    .chapterNav.right { left: clamp(16rem, 100vw - 50px, 16rem + 40em + 10px); }
+    .chapterNav.right { left: clamp(16rem, 100vw - 50px, 40em - 50px); }
     .chapterSidebar { position: fixed; top: 0; bottom:0; padding: 10px; padding-top: 60px; width: 16rem; overflow-y: auto; z-index: 1000; }
     .chapterSidebar h3 { margin-top: 1rem; font-size: 1.1rem; }
     .chapterSidebar ul { list-style: none; padding: unset; }
@@ -701,6 +704,7 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
     h1 { font-size: clamp(2em, 4vw, 6em); line-height: 1em; }
     .book-image-container { margin-bottom: 1rem; }
     .book-image-container img { width: 10em; margin-right: 1rem; }
+    body.facebook iframe { width: 100%; height: unset; aspect-ratio: 9 / 9; }
   </style>
 </head>
 <body class="$bodyClass">
