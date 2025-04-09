@@ -519,7 +519,7 @@ make_chapter_sidebar() {
   uniqueList=$(echo "$unionList" | tr ' ' '\n' | sort -u | tr '\n' ' ')
   unionList="$(trim_spaces "$uniqueList")"
 
-  sidebar="<div class=\"chapterSidebar\" id=\"menu\"><div class=\"site-title\"><a href=\"${BASE_URL}/index.html\">$SITE_TITLE</a></div>"
+  sidebar="<div class=\"chapterSidebar\" id=\"menu\"><h3><a href=\"${BASE_URL}/index.html\">Todo $SITE_TITLE</a></h3>"
   lines=""
   for idx in $unionList; do
       dt="${CHAPTER_DATES[$idx]}"
@@ -639,7 +639,7 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
 
   metadataLine1=""
   if [ -n "$joinedRadios" ]; then
-    metadataLine1="Desde el éter de $joinedRadios"
+    metadataLine1="desde el éter de $joinedRadios"
   fi
   if [ -n "$joinedLocations" ]; then
     if [ -n "$metadataLine1" ]; then
@@ -650,9 +650,9 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
   fi
   if [ -n "$date" ]; then
     if [ -n "$metadataLine1" ]; then
-      metadataLine1="$metadataLine1, un <span exterms:creation-date>$date</span>"
+      metadataLine1="$metadataLine1, un <span exterms:creation-date>$date.</span>"
     else
-      metadataLine1="un <span exterms:creation-date>$date</span>"
+      metadataLine1="un <span exterms:creation-date>$date.</span>"
     fi
   fi
 
@@ -687,16 +687,17 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
       }
     }
     @media only screen and (max-width: 600px) {
+        .mobile {display: block !important; }
         .chapterContent { margin-left: unset !important; }
-        .chapterSidebar { position: unset !important; width: unset !important; padding: 60px !important; }
-        .chapterNav.menu { display: block !important; }
+        .chapterSidebar { position: unset !important; width: unset !important; padding: 40px !important; }
     }
+    html { scroll-behavior: smooth; }
     body { font-family: sans-serif; font-size: clamp(1em, 2vw, 1.4em); line-height: 1.6; }
-    .chapterNav { position: fixed; top: 50%; width: 40px; height: 40px; margin-top: -20px; text-align: center; line-height: 40px; text-decoration: none; font-size: 2rem; font-weight: bold; cursor: pointer; z-index: 2000; }
+    .chapterNav { position: fixed; top: 50%; width: 40px; height: 40px; margin-top: -20px; text-align: center; line-height: 40px; text-decoration: none; font-size: 1.6rem; cursor: pointer; z-index: 2000; }
     .chapterNav.left { translate: -50px 0; }
     .chapterNav.right { left: clamp(16rem, 100vw - 10vw, 40em + 40px); }
     .chapterNav.home { translate: -50px -100px; position: fixed; }
-    .chapterNav.menu { translate: -50px 100px; position: fixed; display: none; }
+    .chapterNav.menu { translate: -50px 100px; position: fixed; }
     .chapterSidebar { position: fixed; top: 0; bottom:0; padding: 10px; padding-top: 60px; width: 16rem; overflow-y: auto; z-index: 1000; }
     .chapterSidebar h3 { margin-top: 1rem; font-size: 1.1rem; }
     .chapterSidebar ul { list-style: none; padding: unset; }
@@ -708,6 +709,7 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
     .book-image-container { margin-bottom: 1rem; }
     .book-image-container img { width: 10em; margin-right: 1rem; }
     body.facebook iframe { width: 100%; height: unset; aspect-ratio: 9 / 9; }
+    .mobile { display: none; }
   </style>
 </head>
 <body class="$bodyClass">
@@ -723,11 +725,10 @@ EOF
   cat <<EOF >> "$outFile"
     </div>
     <h1 property="dc:title">$title</h1>
-    <p>$metadataLine1</p>
-    <p>$metadataLine2</p>
     <div>
 $content
     </div>
+    <p>$metadataLine2, $metadataLine1</p>
 EOF
 
   if [ -n "$prevIdx" ]; then
@@ -738,9 +739,9 @@ EOF
     nextSlug="${CHAPTER_SLUGS[$nextIdx]}"
     echo "    <a class=\"chapterNav right\" href=\"$nextSlug\">☞</a>" >> "$outFile"
   fi
-    echo "    <a class=\"chapterNav home\" href=\"${BASE_URL}/index.html\">≡</a>" >> "$outFile"
+    echo "    <a class=\"chapterNav home mobile\" href=\"${BASE_URL}/index.html\">×</a>" >> "$outFile"
 
-    echo "    <a class=\"chapterNav menu\" href=\"#menu\">☟</a>" >> "$outFile"
+    echo "    <a class=\"chapterNav menu mobile\" href=\"#menu\">≡</a>" >> "$outFile"
 
   cat <<EOF >> "$outFile"
   </div>
