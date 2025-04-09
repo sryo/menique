@@ -18,9 +18,13 @@
             Llegando los monos...)
         </title>
         <style>
+            @view-transition {
+                navigation: auto;
+            }
             @media (prefers-color-scheme: dark) {
                 img,
                 video,
+                canvas,
                 iframe,
                 svg {
                     filter: invert(100%) hue-rotate(180deg);
@@ -69,7 +73,6 @@
                 font-size: 21px;
                 line-height: 1.6;
             }
-
             header {
                 position: fixed;
                 top: 20px;
@@ -79,24 +82,20 @@
                 justify-content: space-between;
                 pointer-events: none;
             }
-
             .title {
                 font-size: 2rem;
                 font-weight: bold;
                 pointer-events: auto;
             }
-
             .menu {
                 text-align: right;
                 pointer-events: auto;
             }
-
             .menu a {
                 display: block;
                 text-decoration: none;
                 margin-bottom: 5px;
             }
-
             .home {
                 position: absolute;
                 top: 0;
@@ -105,7 +104,6 @@
                 height: 100vh;
                 pointer-events: none;
             }
-
             .floating {
                 position: absolute;
                 will-change: opacity;
@@ -118,8 +116,8 @@
             .floating::after {
                 content: attr(data-book);
                 position: absolute;
-                font-size: 1.4rem;
-                line-height: 1.4rem;
+                font-size: 2vw;
+                line-height: 2vw;
                 opacity: 0;
                 transition: opacity 0.3s ease;
                 pointer-events: none;
@@ -129,28 +127,24 @@
                 font-weight: 800;
                 color: white;
                 paint-order: stroke;
+                translate: -25% 75%;
             }
-
             .floating:hover::after {
                 opacity: 1;
             }
-
             .floating img {
                 width: 10vh;
                 transition: transform 0.3s ease;
             }
-
             .floating:hover img {
-                transform: scale(1.4);
+                transform: scale(1.8);
             }
-
             canvas {
                 position: fixed;
                 top: 0;
                 left: 0;
                 z-index: 0;
             }
-
             body.drawing header,
             body.drawing header .menu,
             body.drawing header .title,
@@ -161,58 +155,50 @@
     </head>
     <body>
         <canvas id="drawCanvas"></canvas>
-
         <header>
             <div class="title">Meñique Audiovisual</div>
             <div class="menu">
                 <!--AUTHORS_MENU-->
             </div>
         </header>
-
         <div class="home">
             <!--FLOATING_BOOKS-->
         </div>
-
         <script>
-            // Floating motion with boundary constraints
+            // Magnetic effect on mousemove.
+            // When the cursor comes close, floating elements are pulled a bit toward it.
             document.addEventListener("mousemove", (e) => {
-                const { clientX, clientY } = e;
-                const winWidth = window.innerWidth;
-                const winHeight = window.innerHeight;
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+                const magnetRadius = 150; // Distance threshold in pixels
+                const magnetStrength = 0.3; // Multiplier for the effect strength
 
                 document.querySelectorAll(".floating").forEach((el) => {
-                    // Get original position and element dimensions
-                    const origX = parseFloat(el.dataset.origX || 0);
-                    const origY = parseFloat(el.dataset.origY || 0);
-                    const elementWidth = el.offsetWidth;
-                    const elementHeight = el.offsetHeight;
+                    // Get the element's bounding rectangle
+                    const rect = el.getBoundingClientRect();
+                    const elCenterX = rect.left + rect.width / 2;
+                    const elCenterY = rect.top + rect.height / 2;
 
-                    // Calculate max allowed movement in each direction
-                    const padding = 20; // Keep elements at least this far from edges
-                    const maxLeft = origX - padding;
-                    const maxRight =
-                        winWidth - (origX + elementWidth + padding);
-                    const maxTop = origY - padding;
-                    const maxBottom =
-                        winHeight - (origY + elementHeight + padding);
+                    // Calculate distance from mouse to element's center
+                    const dx = mouseX - elCenterX;
+                    const dy = mouseY - elCenterY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
 
-                    // Calculate movement factor (smaller factor for larger movements)
-                    const factor = parseFloat(el.dataset.factor || 0.01);
-
-                    // Calculate displacement with boundaries
-                    const rawDx = (clientX - winWidth / 2) * factor;
-                    const rawDy = (clientY - winHeight / 2) * factor;
-
-                    // Constrain movement to keep elements on screen
-                    const dx = Math.max(Math.min(rawDx, maxRight), -maxLeft);
-                    const dy = Math.max(Math.min(rawDy, maxBottom), -maxTop);
-
-                    // Apply the constrained movement
-                    el.style.transform = `translate(${dx}px, ${dy}px)`;
+                    // If the mouse is within the magnetic radius, pull the element toward the cursor
+                    if (distance < magnetRadius) {
+                        // Calculate force (1 means very close, 0 at the edge of magnetRadius)
+                        const force = (magnetRadius - distance) / magnetRadius;
+                        const translateX = dx * force * magnetStrength;
+                        const translateY = dy * force * magnetStrength;
+                        el.style.transform = `translate(${translateX}px, ${translateY}px)`;
+                    } else {
+                        // Reset the transform when outside the magnetic range
+                        el.style.transform = "translate(0, 0)";
+                    }
                 });
             });
 
-            // Drawing on canvas
+            // Drawing on canvas remains unchanged.
             const canvas = document.getElementById("drawCanvas");
             const ctx = canvas.getContext("2d");
             let drawing = false;
@@ -221,7 +207,6 @@
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
             }
-
             resizeCanvas();
             window.addEventListener("resize", resizeCanvas);
 
@@ -231,12 +216,10 @@
                 ctx.beginPath();
                 ctx.moveTo(e.clientX, e.clientY);
             });
-
             canvas.addEventListener("mouseup", () => {
                 drawing = false;
                 document.body.classList.remove("drawing");
             });
-
             canvas.addEventListener("mousemove", (e) => {
                 if (!drawing) return;
                 ctx.lineTo(e.clientX, e.clientY);
@@ -246,16 +229,12 @@
                 ctx.stroke();
             });
 
-            // Function to position floating elements randomly without overlap
+            // Position floating elements randomly without overlap
             function positionFloatingElements() {
                 const floatingElements = document.querySelectorAll(".floating");
                 const container = document.querySelector(".home");
                 const containerRect = container.getBoundingClientRect();
-
-                // Padding from the edges (in pixels)
-                const padding = 70; // Increased padding to allow for parallax movement
-
-                // Keep track of occupied areas
+                const padding = 70; // Increased padding to allow for movement
                 const occupiedAreas = [];
 
                 // Reset transforms before measuring
@@ -264,41 +243,29 @@
                 });
 
                 floatingElements.forEach((element) => {
-                    // Force reflow to ensure accurate measurements
-                    element.offsetHeight;
-
+                    element.offsetHeight; // Force reflow for accurate measurement
                     const elementWidth = element.offsetWidth;
                     const elementHeight = element.offsetHeight;
-
-                    // Available area for positioning
                     const maxX =
                         containerRect.width - elementWidth - padding * 2;
                     const maxY =
                         containerRect.height - elementHeight - padding * 2;
 
-                    if (maxX <= 0 || maxY <= 0) return; // Skip if no space available
+                    if (maxX <= 0 || maxY <= 0) return;
 
                     let attemptCount = 0;
                     let validPosition = false;
                     let randomX, randomY;
-
-                    // Try to find a non-overlapping position (max 100 attempts)
                     while (!validPosition && attemptCount < 100) {
-                        // Generate random position within bounds
                         randomX = padding + Math.random() * maxX;
                         randomY = padding + Math.random() * maxY;
-
-                        // Add a safety margin for overlap detection
                         const safetyMargin = 20;
-
-                        // Check for overlap with existing elements
                         const newRect = {
                             left: randomX - safetyMargin,
                             top: randomY - safetyMargin,
                             right: randomX + elementWidth + safetyMargin,
                             bottom: randomY + elementHeight + safetyMargin,
                         };
-
                         validPosition = !occupiedAreas.some(
                             (rect) =>
                                 !(
@@ -308,22 +275,16 @@
                                     newRect.top > rect.bottom
                                 ),
                         );
-
                         attemptCount++;
                     }
 
                     if (validPosition) {
-                        // Position the element
                         element.style.left = `${randomX}px`;
                         element.style.top = `${randomY}px`;
                         element.style.transform = "translate(0, 0)"; // Reset transform
                         element.style.opacity = "1";
-
-                        // Store original position for mouse movement
                         element.dataset.origX = randomX;
                         element.dataset.origY = randomY;
-
-                        // Add to occupied areas
                         occupiedAreas.push({
                             left: randomX - 10,
                             top: randomY - 10,
@@ -338,13 +299,9 @@
                     }
                 });
             }
-
-            // Initial positioning with a delay to ensure images are loaded
             window.addEventListener("load", () => {
                 setTimeout(positionFloatingElements, 100);
             });
-
-            // Reposition on window resize
             let resizeTimeout;
             window.addEventListener("resize", () => {
                 clearTimeout(resizeTimeout);
