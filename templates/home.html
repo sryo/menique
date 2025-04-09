@@ -36,13 +36,18 @@
                     font-size: clamp(1em, 2vw, 1.4em);
                     line-height: 1.6;
                     overflow: unset !important;
-                    overflow-x: hidden !important;
                 }
                 header {
                     position: unset !important;
                     top: unset !important;
                     left: unset !important;
                     pointer-events: none !important;
+                }
+                canvas {
+                    display: none;
+                }
+                header {
+                    padding: 20px;
                 }
                 .home {
                     position: unset !important;
@@ -55,11 +60,13 @@
                     grid-template-columns: 1fr 1fr 1fr;
                 }
                 .floating {
-                    position: unset !important;
+                    position: relative !important;
+                    overflow: hidden;
                     left: unset !important;
                     top: unset !important;
                     transform: unset !important;
                     opacity: unset !important;
+                    padding: 20px;
                 }
                 .floating img {
                     width: 100% !important;
@@ -143,6 +150,8 @@
                 position: fixed;
                 top: 0;
                 left: 0;
+                bottom: 0;
+                right: 0;
                 z-index: 0;
             }
             body.drawing header,
@@ -234,7 +243,7 @@
                 const floatingElements = document.querySelectorAll(".floating");
                 const container = document.querySelector(".home");
                 const containerRect = container.getBoundingClientRect();
-                const padding = 70; // Increased padding to allow for movement
+                const padding = 80; // Increased padding to allow for movement
                 const occupiedAreas = [];
 
                 // Reset transforms before measuring

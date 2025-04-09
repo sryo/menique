@@ -519,7 +519,7 @@ make_chapter_sidebar() {
   uniqueList=$(echo "$unionList" | tr ' ' '\n' | sort -u | tr '\n' ' ')
   unionList="$(trim_spaces "$uniqueList")"
 
-  sidebar="<div class=\"chapterSidebar\"><div class=\"site-title\"><a href=\"${BASE_URL}/index.html\">$SITE_TITLE</a></div>"
+  sidebar="<div class=\"chapterSidebar\" id=\"menu\"><div class=\"site-title\"><a href=\"${BASE_URL}/index.html\">$SITE_TITLE</a></div>"
   lines=""
   for idx in $unionList; do
       dt="${CHAPTER_DATES[$idx]}"
@@ -689,18 +689,21 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
     @media only screen and (max-width: 600px) {
         .chapterContent { margin-left: unset !important; }
         .chapterSidebar { position: unset !important; width: unset !important; padding: 60px !important; }
+        .chapterNav.menu { display: block !important; }
     }
     body { font-family: sans-serif; font-size: clamp(1em, 2vw, 1.4em); line-height: 1.6; }
     .chapterNav { position: fixed; top: 50%; width: 40px; height: 40px; margin-top: -20px; text-align: center; line-height: 40px; text-decoration: none; font-size: 2rem; font-weight: bold; cursor: pointer; z-index: 2000; }
     .chapterNav.left { translate: -50px 0; }
-    .chapterNav.right { left: clamp(16rem, 100vw - 50px, 40em - 50px); }
+    .chapterNav.right { left: clamp(16rem, 100vw - 10vw, 40em + 40px); }
+    .chapterNav.home { translate: -50px -100px; position: fixed; }
+    .chapterNav.menu { translate: -50px 100px; position: fixed; display: none; }
     .chapterSidebar { position: fixed; top: 0; bottom:0; padding: 10px; padding-top: 60px; width: 16rem; overflow-y: auto; z-index: 1000; }
     .chapterSidebar h3 { margin-top: 1rem; font-size: 1.1rem; }
     .chapterSidebar ul { list-style: none; padding: unset; }
     .chapterSidebar li { margin-bottom: 1rem; font-size: 1rem; }
     .chapterSidebar a { text-decoration: none; }
     .site-title { font-size: 1.3em; font-weight: bold; margin-bottom: 0.5em; }
-    .chapterContent { margin-left: 16rem; padding: 60px; max-width: 40em; }
+    .chapterContent { margin-left: 16rem; padding: clamp(40px, 600px, 10vw); max-width: 40em; }
     h1 { font-size: clamp(2em, 4vw, 6em); line-height: 1em; }
     .book-image-container { margin-bottom: 1rem; }
     .book-image-container img { width: 10em; margin-right: 1rem; }
@@ -729,12 +732,15 @@ EOF
 
   if [ -n "$prevIdx" ]; then
     prevSlug="${CHAPTER_SLUGS[$prevIdx]}"
-    echo "    <a class=\"chapterNav left\" href=\"$prevSlug\">«</a>" >> "$outFile"
+    echo "    <a class=\"chapterNav left\" href=\"$prevSlug\">☜</a>" >> "$outFile"
   fi
   if [ -n "$nextIdx" ]; then
     nextSlug="${CHAPTER_SLUGS[$nextIdx]}"
-    echo "    <a class=\"chapterNav right\" href=\"$nextSlug\">»</a>" >> "$outFile"
+    echo "    <a class=\"chapterNav right\" href=\"$nextSlug\">☞</a>" >> "$outFile"
   fi
+    echo "    <a class=\"chapterNav home\" href=\"${BASE_URL}/index.html\">≡</a>" >> "$outFile"
+
+    echo "    <a class=\"chapterNav menu\" href=\"#menu\">☟</a>" >> "$outFile"
 
   cat <<EOF >> "$outFile"
   </div>
