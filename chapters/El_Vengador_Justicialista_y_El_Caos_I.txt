@@ -4,7 +4,8 @@ Author: flash
 Book: el vengador justicialista
 Volume: sangre de monos
 Location: villa allende
-Tags: argentores 2012,radioteatros para el olvido,radio nexo
+Radio: radio nexo
+Tags: argentores 2012,radioteatros para el olvido
 
 Por Guillermo Donicelli<br />
 <br />

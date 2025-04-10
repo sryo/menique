@@ -4,7 +4,7 @@ Author: monoman
 Book: semblanzas deportivas
 Volume: llegando los monos
 Location: villa allende
-Tags: 
+Radio: radio nexo
 
 <p>( Inspirado en la historia de Martín Zevallos Mata y Tito Símon. Historia deportiva Ecuatoriana)
 <h2>El Rocky argentino: Federico Manuel Vinotti.</h2>

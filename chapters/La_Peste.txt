@@ -3,7 +3,9 @@ Published: 2012-01-30T02:01:00.000-03:00
 Author: flash
 Book: flash deformativo
 Volume: sangre de monos
-Tags: la calera,radioteatros para el olvido,la radio 88.7
+Location: la calera
+Radio: la radio 88.7
+Tags: radioteatros para el olvido
 
 La peste ha caído sobre el pueblo. Sólo algunos pocos, que se hacen llamar “Los Distinguidos”, se han salvado de ser contagiados. Viven alejados de la gente contagiada, separados por muros impenetrables custodiados por guardias entrenados en todo tipo de técnicas de combate.<br />
 <br />

@@ -4,7 +4,8 @@ Author: flash
 Book: mutantes
 Volume: sangre de monos
 Location: cordoba
-Tags: radioteatros para el olvido,audios monos,radio nacional
+Radio: radio nacional
+Tags: radioteatros para el olvido
 
 Cuenta la leyenda que la música es el eco del paisaje que lo inspiró, una fractura del lenguaje, un recuerdo de los orígenes.<br />
 <br />
