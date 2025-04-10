@@ -695,7 +695,7 @@ while [ $ch -lt $CHAPTER_COUNT ]; do
     body { font-family: sans-serif; font-size: clamp(1em, 2vw, 1.4em); line-height: 1.6; }
     .chapterNav { position: fixed; top: 50%; width: 40px; height: 40px; margin-top: -20px; text-align: center; line-height: 40px; text-decoration: none; font-size: 1.6rem; cursor: pointer; z-index: 2000; }
     .chapterNav.left { translate: -50px 0; }
-    .chapterNav.right { left: clamp(16rem, 100vw - 10vw, 40em + 40px); }
+    .chapterNav.right { left: clamp(16rem, 100vw - 10vw, 40em + 10vw + 140px); }
     .chapterNav.home { translate: -50px -100px; position: fixed; }
     .chapterNav.menu { translate: -50px 100px; position: fixed; }
     .chapterSidebar { position: fixed; top: 0; bottom:0; padding: 10px; padding-top: 60px; width: 16rem; overflow-y: auto; z-index: 1000; }
